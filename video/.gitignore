@@ -7,3 +7,5 @@ renders/work-*
 renders/.*
 __pycache__/
 *.pyc
+renders/*
+!renders/.gitkeep
