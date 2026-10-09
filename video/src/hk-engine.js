@@ -219,7 +219,7 @@
   const PLATE_KEYS = [
     [0.0, "warm", 1.0], [2.0, "warm", 1.0], [2.4, "warm", 0.45], [2.8, "ice", 0.55], [3.2, "ice", 1.0],
     [5.19, "ice", 1.0], [5.2, "dark", 0.0], [9.55, "dark", 0.0],
-    [T.hit, "burst", 1.0], [T.hit + 0.5, "burst", 1.0], [T.lock[0], "burst", 0.95], [T.lock[0] + 0.35, "drain", 0.85], [T.lock[1] + 0.25, "dark", 0.0],
+    [T.hit, "burst", 1.0], [T.hit + 0.5, "burst", 1.0], [T.hit + 0.68, "drain", 0.85], [T.hit + 0.98, "dark", 0.0],
     [T.lastTick - 0.034, "dark", 0.0], [T.lastTick, "burst", 0.85], [T.lastTick + 0.07, "burst", 0.7], [T.lastTick + 0.17, "drain", 0.8], [T.lastTick + 0.4, "dark", 0.0],
   ];
   function plateState(t) {
@@ -248,7 +248,7 @@
       X.globalAlpha = clamp(ps.i);
       if (ps.warm > 0.01) {
         const lg = X.createLinearGradient(0, CY - 380, 0, CY + 380);
-        lg.addColorStop(0, "#FFD36B"); lg.addColorStop(1, "#FF6B2C");
+        lg.addColorStop(0, "#FFF3CC"); lg.addColorStop(1, "#FF9A3A");
         X.fillStyle = lg; X.fillRect(0, 0, W, H);
       }
       const g = X.createRadialGradient(cam.ox, cam.oy, 0, cam.ox, cam.oy, R);
@@ -295,7 +295,7 @@
 
   function wallColor(t, tone) {
     // Act I: pure brand blue. Act II: dimmer so the white cut reads. Act III: dimmest so the void cut reads.
-    const dim = 0.0 + 0.40 * smooth(T.ideaClose[0], T.ideaClose[1], t) + 0.25 * smooth(T.dock[0], T.dock[1], t);
+    const dim = 0.15 * smooth(0.34, 0.46, t) + 0.25 * smooth(T.ideaClose[0], T.ideaClose[1], t) + 0.25 * smooth(T.dock[0], T.dock[1], t);
     const dimK = t >= 9.4 ? dim * (1 - smooth(9.4, 9.6, t)) : dim;
     const base = mix(C.wall, C.wallDim, clamp(dimK));
     const hi = clamp(tone - 1, 0, 0.6);
@@ -442,12 +442,13 @@
       const s1 = segs[0], s2 = segs[1], s3 = segs[2];
       const h1 = lerp(s1.x0, s1.x1, p1), h3 = lerp(s3.x1, s3.x0, p3), h2 = lerp(w.top - 8, w.bottom + 8, p2);
       const crisp = w.crisp, pix = pixWord(w, 30);
+      const l1 = p1 >= 0.999 ? 0 : lag, l2 = p2 >= 0.999 ? 0 : lag, l3 = p3 >= 0.999 ? 0 : lag; // a finished cut is crisp
       // КО: left → right
-      clipRect(X, s1.x0, 0, h1 - lag, H, crisp); clipRect(X, Math.max(s1.x0, h1 - lag), 0, h1, H, pix);
+      clipRect(X, s1.x0, 0, h1 - l1, H, crisp); clipRect(X, Math.max(s1.x0, h1 - l1), 0, h1, H, pix);
       // МАН: top → bottom
-      clipRect(X, s2.x0, 0, s2.x1, h2 - lag, crisp); clipRect(X, s2.x0, Math.max(0, h2 - lag), s2.x1, h2, pix);
+      clipRect(X, s2.x0, 0, s2.x1, h2 - l2, crisp); clipRect(X, s2.x0, Math.max(0, h2 - l2), s2.x1, h2, pix);
       // ДА: right → left
-      clipRect(X, h3 + lag, 0, s3.x1, H, crisp); clipRect(X, h3, 0, Math.min(s3.x1, h3 + lag), H, pix);
+      clipRect(X, h3 + l3, 0, s3.x1, H, crisp); clipRect(X, h3, 0, Math.min(s3.x1, h3 + l3), H, pix);
       const done = (v) => v >= 0.999;
       fx.push({ type: "vbar", x: h1, y0: w.top - 30, y1: w.bottom + 30, col: [255, 160, 90], off: done(p1) });
       fx.push({ type: "hbar", y: h2, x0: s2.x0, x1: s2.x1, col: [255, 255, 255], off: done(p2) });
@@ -535,78 +536,89 @@
     return { x: lerp(p0.x, p1.x, u), y: lerp(p0.y, p1.y, u) - arc * Math.sin(Math.PI * u) };
   }
 
-  const DOCK = [0, 1, 2].map((k) => ({ x: W - 72 - 3 * 56 - 2 * 18 + k * 74 + 28, y: 72 + 28 }));
-  const SPARK_COL = [C.amber.map((v, i) => [255, 150, 60][i]), [255, 255, 255], [60, 215, 255]];
+  const DOCK = [0, 1, 2].map((k) => ({ x: CX + (k - 1) * 136, y: 972 }));
+  const SPARK_COL = [[255, 150, 60], [255, 255, 255], [60, 215, 255]];
+  const SP = 72; // size of the three team sparks, px
 
   function dockSquare(X, x, y, size, col, hot) {
     X.save();
-    X.fillStyle = rgba(C.hudInk); X.fillRect(x - size / 2 - 7, y - size / 2 - 7, size + 14, size + 14);
+    X.fillStyle = rgba(C.hudInk); X.fillRect(x - size / 2 - 8, y - size / 2 - 8, size + 16, size + 16);
     X.fillStyle = rgba(col); X.fillRect(x - size / 2, y - size / 2, size, size);
-    X.fillStyle = "#fff"; const c = size * (0.28 + 0.34 * hot); X.fillRect(x - c / 2, y - c / 2, c, c);
+    X.fillStyle = "#fff"; const c = size * (0.28 + 0.36 * hot); X.fillRect(x - c / 2, y - c / 2, c, c);
     if (hot > 0.15) {
       X.globalCompositeOperation = "lighter";
-      const R = size * 2.2, g = X.createRadialGradient(x, y, 0, x, y, R);
-      g.addColorStop(0, rgba(col, 0.35 * hot)); g.addColorStop(1, rgba(col, 0));
+      const R = size * 2.4, g = X.createRadialGradient(x, y, 0, x, y, R);
+      g.addColorStop(0, rgba(col, 0.4 * hot)); g.addColorStop(1, rgba(col, 0));
       X.fillStyle = g; X.fillRect(x - R, y - R, R * 2, R * 2);
     }
     X.restore();
   }
 
+  function echoes(X, t, hp, col, size) {
+    for (let e = 1; e <= 4; e++) {
+      const te = t - e * STEP;
+      if (te < hp.t0) break;
+      const pe = hop(te, hp.t0, hp.t1, hp.from, hp.to, hp.arc);
+      X.globalAlpha = 0.55 / e; X.fillStyle = rgba(col); X.fillRect(pe.x - size / 2, pe.y - size / 2, size, size); X.globalAlpha = 1;
+    }
+  }
+
   function sparkSet(X, t, fx) {
     const wI = WORDS.idea, wT = WORDS.team, wA = WORDS.agent;
     const segs = teamSegs();
-    // idea spark in the slab (frame 0 event)
+    // frame 0: the idea spark and the amber light leaking out of the crack
+    if (t < 0.9) {
+      const a = 0.32 * (1 - inv(0.35, 0.9, t));
+      const h = H * (0.34 + 0.66 * eOutExpo(inv(0, T.crackFull, t)));
+      const g = X.createLinearGradient(CX - 150, 0, CX + 150, 0);
+      g.addColorStop(0, "rgba(255,170,70,0)"); g.addColorStop(0.5, `rgba(255,196,110,${a})`); g.addColorStop(1, "rgba(255,170,70,0)");
+      X.save(); X.globalCompositeOperation = "lighter"; X.fillStyle = g; X.fillRect(CX - 150, CY - h / 2, 300, h); X.restore();
+    }
     if (t < T.ideaOpen + 0.2) {
       const pul = 1 + 0.9 * Math.sin(inv(0, 0.2, t) * Math.PI) * (t < 0.2 ? 1 : 0);
-      const s = (t < 0.4 ? lerp(44, 24, inv(0, 0.4, t)) : 24 * (1 - inv(0.4, 0.6, t))) * pul;
-      spark(X, CX, CY, s, SPARK_COL[0], 1 - inv(0.5, 0.6, t), 1.4);
+      const s0 = (t < 0.4 ? lerp(96, 44, inv(0, 0.4, t)) : 44 * (1 - inv(0.4, 0.6, t))) * pul;
+      spark(X, CX, CY, s0, SPARK_COL[0], 1 - inv(0.5, 0.6, t), 1.4);
     }
     // three sparks: born at the closing front of ИДЕЯ, hop to the cutters' start points
     const cl0 = T.ideaClose[0], cl1 = T.ideaClose[1];
     const born = [0, 1, 2].map((k) => cl0 + (cl1 - cl0) * (0.25 + 0.25 * k));
     const bx = [0.25, 0.5, 0.75].map((f) => lerp(wI.l, wI.r, f));
-    const starts = [{ x: segs[0].x0, y: wT.mid }, { x: (segs[1].x0 + segs[1].x1) / 2, y: wT.top - 8 }, { x: segs[2].x1, y: wT.mid }];
-    const ends = [{ x: segs[0].x1, y: wT.mid }, { x: (segs[1].x0 + segs[1].x1) / 2, y: wT.bottom + 8 }, { x: segs[2].x0, y: wT.mid }];
-    const arcs = [-170, 0, 170];
+    const cB = (segs[1].x0 + segs[1].x1) / 2;
+    const starts = [{ x: segs[0].x0, y: wT.mid }, { x: cB, y: wT.top - 8 }, { x: segs[2].x1, y: wT.mid }];
+    const fin = [{ x: segs[0].x1, y: wT.mid }, { x: cB, y: wT.bottom + 8 }, { x: segs[2].x0, y: wT.mid }];
+    const rest = [{ x: segs[0].x1, y: wT.top - 90 }, { x: cB, y: wT.bottom + 96 }, { x: segs[2].x0, y: wT.top - 90 }]; // off the glyphs
+    const arcs = [-190, 0, 190];
     const docks = DOCK;
+    const cut1 = T.teamCut[1];
     for (let k = 0; k < 3; k++) {
       const col = SPARK_COL[k];
-      let p = null, size = 42, a = 1;
+      let p = null, hp = null, size = SP, a = 1;
+      const mkhop = (t0, t1, from, to, arc) => { hp = { t0, t1, from, to, arc }; return hop(t, t0, t1, from, to, arc); };
       if (t >= born[k] && t < T.sparkHop[0]) p = { x: bx[k], y: wI.mid };
-      else if (t >= T.sparkHop[0] && t < T.teamCut[0]) p = hop(t, T.sparkHop[0], T.sparkHop[1], { x: bx[k], y: wI.mid }, starts[k], arcs[k]);
-      else if (t >= T.teamCut[0] && t < T.teamClose[0]) {
+      else if (t >= T.sparkHop[0] && t < T.teamCut[0]) p = mkhop(T.sparkHop[0], T.sparkHop[1], { x: bx[k], y: wI.mid }, starts[k], arcs[k]);
+      else if (t >= T.teamCut[0] && t < cut1) {
         const p1 = teamP(t, eOutCubic), p2 = teamP(t, (u) => u), p3 = teamP(t, eInOutCubic);
         if (k === 0) p = { x: lerp(segs[0].x0, segs[0].x1, p1), y: wT.mid };
         if (k === 1) p = { x: starts[1].x, y: lerp(wT.top - 8, wT.bottom + 8, p2) };
         if (k === 2) p = { x: lerp(segs[2].x1, segs[2].x0, p3), y: wT.mid };
-      } else if (t >= T.teamClose[0] && t < T.dock[0]) p = ends[k];
-      else if (t >= T.dock[0] && t < T.dock[1]) p = hop(t, T.dock[0], T.dock[1], ends[k], docks[k], arcs[k] * 0.6);
+      } else if (t >= cut1 && t < cut1 + 0.4) p = mkhop(cut1, cut1 + 0.4, fin[k], rest[k], arcs[k] * 0.3);
+      else if (t >= cut1 + 0.4 && t < T.dock[0]) p = rest[k];
+      else if (t >= T.dock[0] && t < T.dock[1]) p = mkhop(T.dock[0], T.dock[1], rest[k], docks[k], arcs[k] * 0.5);
       else if (t >= T.dock[1] && t < T.gather[0]) {
-        // docked: team stays and keeps pulsing with the work
+        // docked: the team stays below the word and pulses with the work
         const lp = letterPulse(t, k);
-        dockSquare(X, docks[k].x, docks[k].y, 56, SPARK_COL[k], Math.min(1, pulse(t, T.buildPulses, 0.12) + lp + pulse(t, T.syncPulses, 0.1)));
-        p = null;
-      } else if (t >= T.gather[0] && t < T.gather[1]) p = hop(t, T.gather[0], T.gather[1], docks[k], { x: CX, y: CY }, (k - 1) * 90);
+        dockSquare(X, docks[k].x, docks[k].y, 84, SPARK_COL[k], Math.min(1, pulse(t, T.buildPulses, 0.12) + lp + pulse(t, T.syncPulses, 0.1)));
+      } else if (t >= T.gather[0] && t < T.gather[1]) { size = 84; p = mkhop(T.gather[0], T.gather[1], docks[k], { x: CX, y: CY }, (k - 1) * 110); }
       if (p) {
-        // pixel echoes behind a stepped hop
-        if (t >= T.sparkHop[0] && t < T.teamCut[0] || (t >= T.dock[0] && t < T.dock[1]) || (t >= T.gather[0] && t < T.gather[1])) {
-          for (let e = 1; e <= 3; e++) {
-            const te = t - e * STEP; const t0 = t < T.teamCut[0] ? T.sparkHop[0] : t < T.dock[1] ? T.dock[0] : T.gather[0];
-            if (te < t0) break;
-            const t1 = t0 + (t < T.teamCut[0] ? 0.8 : 0.4);
-            const from = t < T.teamCut[0] ? { x: bx[k], y: wI.mid } : t < T.dock[1] ? ends[k] : docks[k];
-            const to = t < T.teamCut[0] ? starts[k] : t < T.dock[1] ? docks[k] : { x: CX, y: CY };
-            const pe = hop(te, t0, t1, from, to, t < T.teamCut[0] ? arcs[k] : t < T.dock[1] ? arcs[k] * 0.6 : (k - 1) * 90);
-            X.globalAlpha = 0.5 / e; X.fillStyle = rgba(col); X.fillRect(pe.x - size / 2, pe.y - size / 2, size, size); X.globalAlpha = 1;
-          }
-        }
+        if (hp) echoes(X, t, hp, col, size);
         spark(X, p.x, p.y, size, col, a, 1);
       }
     }
-    // agent spark: the writer
+    // agent spark: the writer. During the build it waits under the word and is fed by the team.
     const wl = T.agentLetters, last = wl[wl.length - 1][1];
+    const hub = { x: CX, y: wA.bottom + 108 };
     if (t >= T.dock[1] - 0.1 && t < T.gather[1]) {
-      let p = null, size = 40;
+      let p = null, size = 64;
       if (t < wl[0][0]) p = { x: CX, y: CY };
       else if (t < last) {
         let i = 0; for (let n = 0; n < wl.length; n++) if (t >= wl[n][0]) i = n;
@@ -616,27 +628,30 @@
       else if (t < T.scan[1] + STEP) {
         const k = Math.min(8, Math.floor((t - T.scan[0]) / STEP + EPS));
         p = { x: scanX(k, camera(t)), y: CY };
-      } else p = hop(t, T.scan[1] + STEP, T.scan[1] + 3 * STEP, { x: scanX(8, camera(T.scan[0])), y: CY }, { x: CX, y: CY }, 0);
-      const charge = t > T.scan[1] ? 1 + 0.7 * pulse(t, T.buildPulses, 0.1) : 1;
-      if (t >= T.gather[0]) p = null;
+      } else if (t < T.gather[0]) p = hop(t, T.scan[1] + STEP, T.scan[1] + 3 * STEP, { x: scanX(8, camera(T.scan[0])), y: CY }, hub, 0);
+      else p = hop(t, T.gather[0], T.gather[1], hub, { x: CX, y: CY }, 0);
+      const charge = t > T.scan[1] ? 1 + 0.6 * pulse(t, T.buildPulses, 0.1) : 1;
       if (p) spark(X, p.x, p.y, size * charge, [255, 255, 255], 1, 1.3);
     }
-    // team → agent: each pulse of the build is a packet from one docked member to the centre spark
+    // team → agent: every build pulse sends three packets from the docked team to the agent
     for (let m = 0; m < T.buildPulses.length; m++) {
-      const pt = T.buildPulses[m], k = m % 3;
+      const pt = T.buildPulses[m];
       if (t >= pt - 0.3 && t < pt) {
-        const pp = hop(t, pt - 0.3, pt, docks[k], { x: CX, y: CY }, (k - 1) * 150);
-        for (let e = 1; e <= 2; e++) { const te = t - e * STEP; if (te < pt - 0.3) break; const pe = hop(te, pt - 0.3, pt, docks[k], { x: CX, y: CY }, (k - 1) * 150); X.globalAlpha = 0.45 / e; X.fillStyle = rgba(SPARK_COL[k]); X.fillRect(pe.x - 13, pe.y - 13, 26, 26); X.globalAlpha = 1; }
-        X.fillStyle = rgba(SPARK_COL[k]); X.fillRect(pp.x - 17, pp.y - 17, 34, 34);
-        X.fillStyle = "#fff"; X.fillRect(pp.x - 9, pp.y - 9, 18, 18);
+        for (let k = 0; k < 3; k++) {
+          const hp = { t0: pt - 0.3, t1: pt, from: docks[k], to: hub, arc: (k - 1) * 46 };
+          const pp = hop(t, hp.t0, hp.t1, hp.from, hp.to, hp.arc);
+          echoes(X, t, hp, SPARK_COL[k], 34);
+          X.fillStyle = rgba(SPARK_COL[k]); X.fillRect(pp.x - 24, pp.y - 24, 48, 48);
+          X.fillStyle = "#fff"; X.fillRect(pp.x - 12, pp.y - 12, 24, 24);
+        }
       }
     }
     // the centre spark just before the hit (mirror of frame 0)
     if (t >= T.gather[1] && t < T.hit) {
       const g = inv(T.gather[1], T.hit, t);
-      spark(X, CX, CY, lerp(46, 64, g), [255, 255, 255], 1, 1.8);
+      spark(X, CX, CY, lerp(60, 84, g), [255, 255, 255], 1, 1.8);
     }
-    // heads of the three cutters are drawn as bars (see fx); fx bars below
+    // heads of the three cutters are drawn as bars (see fx)
     fx.forEach((f) => {
       if (f.off) return;
       X.save();
@@ -729,7 +744,7 @@
     }
     // front outline: lives while the front travels, fades right after it closes the square
     const doneT = T.hit + 7 * fr;
-    const oa = wv < 480 ? 1 : 1 - inv(doneT, doneT + 0.12, t);
+    const oa = wv < 480 ? 1 : 1 - inv(doneT, doneT + 0.05, t);
     if (oa > 0.01) {
       const th = Math.max(5, 12 * Math.min(1, S / 2));
       X.fillStyle = rgba(WHITE, 0.95 * oa);
@@ -742,10 +757,10 @@
       X.strokeRect(x0, y0, half * 2, half * 2);
     }
     // light shaft out of the figure (the site's own hero light, brief)
-    const sh = age > 0.05 ? Math.exp(-(age - 0.05) / 0.22) : 0;
+    const sh = age > 0.05 ? Math.exp(-(age - 0.05) / 0.12) : 0;
     if (sh > 0.01) {
       const g = X.createLinearGradient(cam.ox - 90, 0, cam.ox + 90, 0);
-      g.addColorStop(0, "rgba(0,200,255,0)"); g.addColorStop(0.5, `rgba(190,240,255,${0.42 * sh})`); g.addColorStop(1, "rgba(0,200,255,0)");
+      g.addColorStop(0, "rgba(0,200,255,0)"); g.addColorStop(0.5, `rgba(190,240,255,${0.30 * sh})`); g.addColorStop(1, "rgba(0,200,255,0)");
       X.fillStyle = g; X.fillRect(cam.ox - 90, 0, 180, H);
     }
     X.restore();
@@ -872,22 +887,21 @@
 
   // ───────────────────────── HUD ─────────────────────────
   function drawHUD(X, t) {
-    if (t >= T.hit + 0.65) return;
-    const a = 1 - smooth(T.hit + 0.45, T.hit + 0.65, t);
+    if (t >= T.hit + 0.84) return;
+    const a = 1 - smooth(T.hit + 0.62, T.hit + 0.82, t);
     const n = pixelCount(t);
     const chg = [T.n2, T.n4, T.n8, ...T.countdown, T.hit];
     let flash = 0;
     chg.forEach((c) => { if (t >= c && t < c + 0.1) flash = 1; });
     X.save();
     X.globalAlpha = a;
-    const ink = t >= T.hit ? rgba(C.ice) : rgba(flash ? C.ice : C.hudInk);
-    X.fillStyle = ink;
+    X.fillStyle = t >= T.hit ? rgba(C.ice) : rgba(flash ? C.ice : C.hudInk);
     X.textBaseline = "alphabetic";
-    X.font = `600 24px ${MONO}`; X.letterSpacing = "6px";
-    X.fillText(TXT.hudLabel, 72, 98);
-    X.font = `800 84px ${MONO}`; X.letterSpacing = "-2px";
-    X.fillText(String(n), 72, 182);
-    X.fillRect(72, 112, 54, 4);
+    X.font = `700 31px ${MONO}`; X.letterSpacing = "7px";
+    X.fillText(TXT.hudLabel, 72, 106);
+    X.font = `800 104px ${MONO}`; X.letterSpacing = "-3px";
+    X.fillText(String(n), 72, 208);
+    X.fillRect(72, 124, 64, 5);
     X.restore();
   }
 
@@ -976,7 +990,7 @@
     frameX.setTransform(1, 0, 0, 1, 0, 0);
     frameX.globalAlpha = 1;
     frameX.globalCompositeOperation = "source-over";
-    frameX.fillStyle = PAL.void;
+    frameX.fillStyle = t < T.hit + 0.1 ? rgba(wallColor(t, 1.0)) : PAL.void; // shake must never expose a dark edge
     frameX.fillRect(0, 0, W, H);
     frameX.setTransform(sp.k, 0, 0, sp.k, CX + sp.dx - CX * sp.k, CY + sp.dy - CY * sp.k);
     frameX.drawImage(sceneC, 0, 0);
@@ -1002,7 +1016,7 @@
       renderSample(t);
       out.drawImage(frameC, 0, 0);
     } else {
-      const shutter = 0.5 / FPS; // 180°
+      const shutter = 0.25 / FPS; // 180° shutter, only on the whip-out
       accX.setTransform(1, 0, 0, 1, 0, 0);
       for (let i = 0; i < n; i++) {
         const ts = Math.max(T.hit, t + (i / (n - 1) - 0.5) * shutter * 2);
@@ -1025,7 +1039,7 @@
   // Cover: the lit mark + title, for a still / thumbnail. window.HK.renderCover()
   function renderCover() {
     COVER = true;
-    const t = 10.3;
+    const t = 10.1;
     renderSample(t);
     out.setTransform(1, 0, 0, 1, 0, 0);
     out.globalAlpha = 1;

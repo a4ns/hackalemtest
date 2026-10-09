@@ -51,12 +51,12 @@
     "hit": 9.6,
     "waveFrames": 2,
     "whip": 0.45,
-    "lock": [10.5, 11.1],
-    "print": [10.95, 11.7],
-    "rule": [11.8, 12.1],
-    "tagline": [11.9, 12.7],
-    "dotAccents": [12.7, 13.1, 13.5],
-    "lastTick": 14.0,
-    "staticFrom": 14.4
+    "lock": [10.9, 11.45],
+    "print": [11.2, 11.9],
+    "rule": [12.0, 12.3],
+    "tagline": [12.1, 12.9],
+    "dotAccents": [12.9, 13.25, 13.6],
+    "lastTick": 14.1,
+    "staticFrom": 14.5
   }
 }
