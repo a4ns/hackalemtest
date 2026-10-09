@@ -3,3 +3,5 @@ node_modules/
 renders/draft*
 renders/*.log
 renders/test_*
+renders/work-*
+renders/.*
