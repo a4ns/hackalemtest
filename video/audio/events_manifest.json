@@ -1,8 +1,11 @@
 {
  "sr": 48000,
  "samples": 720000,
- "master_gain_db": -0.207,
- "sha256_wav": "50684cf7ab51cbe368e5e4f0467e84cde5a85770c1eea8841915a966a7755be6",
+ "master_gain_db": 0.673,
+ "limiter_ceiling_db": -2.75,
+ "after_aac192_true_peak_db": -1.1,
+ "after_aac192_lufs": -14.1,
+ "sha256_wav": "61518daa2d2ef33a59290948b4d45a9b9a032b4713a774ef00364a9f707603cd",
  "events": [
   {
    "label": "accent1 crackle 2bit/4kHz",
@@ -1164,7 +1167,7 @@
    "t": 9.6,
    "sample": 460800,
    "layer": "pad",
-   "gain_db": -8.0
+   "gain_db": -6.0
   },
   {
    "label": "HIT big kick",
@@ -1178,7 +1181,7 @@
    "t": 9.6,
    "sample": 460800,
    "layer": "hit",
-   "gain_db": -12.5
+   "gain_db": -15.5
   },
   {
    "label": "HIT sub boom 80->36Hz (fades with light)",
@@ -1192,7 +1195,7 @@
    "t": 9.6,
    "sample": 460800,
    "layer": "hit",
-   "gain_db": -6.5
+   "gain_db": -9.5
   },
   {
    "label": "metal click D5",
@@ -1325,7 +1328,7 @@
    "t": 11.9,
    "sample": 571200,
    "layer": "post",
-   "gain_db": -12.0
+   "gain_db": -15.0
   },
   {
    "label": "rule sweep step F#5",

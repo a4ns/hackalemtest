@@ -48,6 +48,8 @@ TARGET_LUFS = -14.0
 TRUE_PEAK_CEIL_DB = -1.35   # потолок лимитера (детекция по 4x oversampling); цель <= -1.0 dBTP
 # Поправка внутреннего измерителя к ffmpeg ebur128 (подбирается по проверке ffmpeg, см. 04_sound.md)
 LUFS_CAL_DB = 0.0
+AAC_TP_LIMIT_DB = -1.05     # HyperFrames кодирует AAC 192k и сам занижает звук, если true peak ПОСЛЕ AAC > -1 dBTP; подбираем потолок так, чтобы не занижал
+PRE_TRIM = 0.0              # доп. подрезка пред-слоя перед сведением (дБ); 0 - не используется
 
 with open(CUES_PATH, "r", encoding="utf-8") as _f:
     CUES = json.load(_f)
@@ -374,8 +376,11 @@ def kick_drum(dur=0.36, f0=165.0, f1=55.0, tau_p=0.028, tau_a=0.13, click=0.35, 
     amp = np.minimum(1.0, t / 0.001) * np.exp(-t / tau_a)
     body = np.sin(2 * np.pi * phase_of(f)) * amp
     body = np.tanh(drive * body) / np.tanh(drive)
-    nz = np.diff(rng(name).standard_normal(n), prepend=0.0)
-    ck = nz * np.exp(-t / 0.0025) * 0.5
+    nc = min(n, int(0.012 * SR))
+    ck = np.zeros(n)
+    if click:
+        ck[:nc] = svf(rng(name).standard_normal(nc), 3500.0, 0.8, "bp") * 0.55
+        ck *= np.minimum(1.0, t / 0.0006) * np.exp(-t / 0.0025)
     y = body + click * ck
     if bits or rate:
         y = crush(y, bits, rate, "tread")
@@ -463,11 +468,11 @@ def clap(dur=0.26, name="clap", fc=1700.0, q=1.1, bursts=3, spacing=0.011, tail_
     env = np.zeros(n)
     for k in range(bursts):
         tk = k * spacing
-        env += np.where(t >= tk, np.exp(-np.maximum(t - tk, 0) / 0.004), 0.0)
+        env += np.clip((t - tk) / 0.0008, 0.0, 1.0) * np.exp(-np.maximum(t - tk, 0) / 0.004)
     tb = bursts * spacing
-    env += np.where(t >= tb, np.exp(-np.maximum(t - tb, 0) / tail_tau), 0.0)
-    env = np.minimum(env, 1.0) * np.minimum(1.0, t / 0.0004)
-    y = y * env
+    env += np.clip((t - tb) / 0.0008, 0.0, 1.0) * np.exp(-np.maximum(t - tb, 0) / tail_tau)
+    env = np.minimum(env, 1.0)
+    y = svf(y, 8000.0, 0.7071, "lp") * env
     if bits or rate:
         y = crush(y, bits, rate, "tread")
     return y
@@ -476,10 +481,10 @@ def clap(dur=0.26, name="clap", fc=1700.0, q=1.1, bursts=3, spacing=0.011, tail_
 def snare(dur=0.22, name="snare", tone=190.0, bits=None, rate=None, noise_tau=0.07):
     n = int(dur * SR)
     t = tvec(n)
-    nz = svf(rng(name).standard_normal(n), 1100.0, 0.8, "hp")
-    nz = nz * env_exp(n, a=0.0004, tau=noise_tau)
+    nz = svf(svf(rng(name).standard_normal(n), 1100.0, 0.8, "hp"), 7000.0, 0.7071, "lp")
+    nz = nz * env_exp(n, a=0.0009, tau=noise_tau)
     f = tone * (1.0 + 0.6 * np.exp(-t / 0.02))
-    tn = osc_tri(phase_of(f)) * env_exp(n, a=0.0004, tau=0.055)
+    tn = osc_tri(phase_of(f)) * env_exp(n, a=0.0009, tau=0.055)
     y = 0.8 * nz + 0.55 * tn
     if bits or rate:
         y = crush(y, bits, rate, "tread")
@@ -530,9 +535,9 @@ def metal_click(f, dur=0.12, name="mc"):
     y = np.zeros(n)
     for ratio, a_ in ((1.0, 1.0), (1.504, 0.7), (2.1, 0.55), (3.7, 0.4), (5.23, 0.3)):
         y += a_ * np.sin(2 * np.pi * (f * ratio * t + r.random()))
-    y *= np.exp(-t / 0.022) * np.minimum(1.0, t / 0.0004)
-    y += 0.5 * np.diff(r.standard_normal(n), prepend=0.0) * np.exp(-t / 0.0018)
-    return y * 0.35
+    y *= np.exp(-t / 0.022)
+    y += 0.4 * svf(r.standard_normal(n), 6500.0, 0.7071, "lp") * np.exp(-t / 0.0022)
+    return y * np.minimum(1.0, t / 0.0005) * 0.35
 
 
 def supersaw(freqs, dur, name, voices=5, detune_c=13.0, spread=0.9, vib_c=3.5):
@@ -587,7 +592,7 @@ def crash(dur=2.6, name="crash", tau=0.9):
             m += osc_square_naive(phase_of(full(ff, n)) + r.random())
         m /= 10.0
         y = 0.55 * m + 0.7 * r.standard_normal(n)
-        y = svf(y, 3500.0, 0.8, "hp")
+        y = svf(svf(y, 3500.0, 0.8, "hp"), 12000.0, 0.7071, "lp")
         chans.append(y)
     y = np.stack(chans) * env_exp(n, a=0.002, tau=tau)[None, :]
     return y
@@ -1014,17 +1019,17 @@ def score_climax():
     put("hit", kick_drum(0.6, 210, 52, 0.032, 0.2, click=0.5, drive=2.4, name="k-big"), HIT, g=-3.0, trig=True,
         label="HIT big kick")
     # широкий шум (стерео, декоррелированный)
-    wn = noise_sweep(1.8, 14000.0, 2200.0, q=0.7, name="hit-noise", mode="lp", wide=True,
+    wn = noise_sweep(1.8, 8500.0, 1800.0, q=0.7, name="hit-noise", mode="lp", wide=True,
                      ampfn=lambda u: np.exp(-u * 3.4))
-    put("hit", wn, HIT, g=-6.5, rev=-8.0, fi=48, label="HIT wide noise")
+    put("hit", wn, HIT, g=-9.5, rev=-8.0, fi=96, label="HIT wide noise")
     # тарелка-крэш
-    put("hit", crash(2.8, "hit-crash", tau=0.95), HIT, g=-12.5, rev=-8.0, fi=48, label="HIT crash")
+    put("hit", crash(2.8, "hit-crash", tau=0.95), HIT, g=-15.5, rev=-8.0, fi=96, label="HIT crash")
     # аккорд Dmaj9 (суперпила) D2 A2 E3 F#3 A3 C#4 E4
     chord_hz = [note(x) for x in ("D2", "A2", "E3", "F#3", "A3", "C#4", "E4")]
     cd = LIGHT_OUT - HIT + 0.02
     ss = supersaw(chord_hz, cd, "dmaj9-super", voices=5, detune_c=14.0)
     ss *= curve([(0, 1.0), (0.12, 1.0), (LIGHT_BRIGHT - HIT, 0.62), (LIGHT_OUT - HIT, 0.0), (cd, 0.0)], n=int(cd * SR), ease_on=True)[None, :]
-    put("pad", ss, HIT, g=-8.0, rev=-5.0, fo=960, label="HIT Dmaj9 supersaw")
+    put("pad", ss, HIT, g=-6.0, rev=-5.0, fo=960, label="HIT Dmaj9 supersaw")
 
     # ---- 9.600-10.100: 8 металлических кликов с ростом высоты (по аккорду), расширяющаяся база
     fr = T["waveFrames"] * FRAME
@@ -1067,7 +1072,7 @@ def score_climax():
 
     d1 = (t_b + 0.4) - t_a
     pad_chord(ch1, t_a, d1, 0, 0, "pad Dmaj9", -3.0,
-              pts=[(0, 0), (0.18, 1), (LIGHT_BRIGHT - t_a, 1), (LIGHT_OUT - t_a, 0.15), (t_b - t_a, 0.15), (d1, 0)])
+              pts=[(0, 0), (0.18, 1), (LIGHT_BRIGHT - t_a, 1), (LIGHT_OUT - t_a, 0.22), (t_b - t_a, 0.22), (d1, 0)])
     pad_chord(ch2, t_b, (t_c + 0.35) - t_b, 0.5, 0.6, "pad Gmaj9", -2.0)
     pad_chord(ch3, t_c - 0.08, DURATION - (t_c - 0.08), 0.45, DURATION - T["lastTick"] - 0.02, "pad D final", -2.0)
 
@@ -1093,7 +1098,7 @@ def score_climax():
         lvl = -33.0 + 5.0 * math.sin(math.pi * u) + float(r.uniform(-1.5, 1.5))
         put("post", y, tt, g=lvl, pan=-0.9 + 1.8 * u + float(r.uniform(-0.05, 0.05)), rev=-3.0, fi=0, fo=0)
     EVENTS.append({"label": "print cascade grains x%d (~400/s) L->R" % ntick, "t": p0, "sample": S(p0), "layer": "post", "gain_db": -33.0})
-    put("post", fm_bell(note("D6"), 1.4, ratio=3.5, index=1.6, tau_i=0.12, tau_a=0.5, name="bellD6"), p1, g=-12.0, pan=0.1,
+    put("post", fm_bell(note("D6"), 1.4, ratio=3.5, index=1.6, tau_i=0.12, tau_a=0.5, name="bellD6"), p1, g=-15.0, pan=0.1,
         rev=-4.0, label="bell D6 @print end")
 
     # ---- 11.8-12.1 тонкий восходящий свип в 3 ступени
@@ -1356,6 +1361,20 @@ def write_wav24(path, x2):
 
 
 # --------------------------------------------------------------------------- #
+def aac_probe(y):
+    """Кодирует микс как рендер (AAC 192k, 48 кГц), декодирует и меряет ffmpeg ebur128: (true peak dBTP, integrated LUFS)."""
+    import subprocess, tempfile, re
+    with tempfile.TemporaryDirectory() as d:
+        wav = os.path.join(d, "m.wav"); m4a = os.path.join(d, "m.m4a")
+        write_wav24(wav, y)
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", wav, "-c:a", "aac", "-b:a", "192k", "-ar", "48000", m4a], check=True)
+        r = subprocess.run(["ffmpeg", "-v", "info", "-i", m4a, "-af", "ebur128=peak=true", "-f", "null", "-"], capture_output=True, text=True)
+    tail = r.stderr[r.stderr.rfind("Summary:"):]
+    tp = float(re.search(r"Peak:\s+(-?[\d.]+) dBFS", tail).group(1))
+    li = float(re.search(r"I:\s+(-?[\d.]+) LUFS", tail).group(1))
+    return tp, li
+
+
 def main():
     t_start = time.time()
     score_all()
@@ -1369,16 +1388,23 @@ def main():
     # HP 22 Гц: убрать DC/субзвук
     mix = svf_st(mix, 22.0, 0.7071, "hp")
 
-    # подбор мастер-гейна под -14 LUFS integrated
+    # подбор мастер-гейна под -14 LUFS integrated, потолка лимитера - под true peak после AAC
     g = 0.0
-    for it in range(8):
-        y, gr = master(mix, g)
-        l = integrated_lufs(y) + LUFS_CAL_DB
-        print(f"[gain] it={it} gain={g:+.2f} dB  LUFS={l:.2f}  maxGR={20*np.log10(gr.min()):.2f} dB")
-        if abs(l - TARGET_LUFS) < 0.03:
+    ceil = TRUE_PEAK_CEIL_DB
+    for outer in range(6):
+        for it in range(8):
+            y, gr = master(mix, g, ceil)
+            l = integrated_lufs(y) + LUFS_CAL_DB
+            print(f"[gain] ceil={ceil:+.2f} it={it} gain={g:+.2f} dB  LUFS={l:.2f}  maxGR={20*np.log10(gr.min()):.2f} dB")
+            if abs(l - TARGET_LUFS) < 0.03:
+                break
+            g += (TARGET_LUFS - l) * 0.9
+        y, gr = master(mix, g, ceil)
+        tp_aac, l_aac = aac_probe(y)
+        print(f"[aac] ceiling={ceil:+.2f} dBTP -> after AAC 192k: true-peak={tp_aac:+.2f} dBTP, integrated={l_aac:.2f} LUFS")
+        if tp_aac <= AAC_TP_LIMIT_DB:
             break
-        g += (TARGET_LUFS - l) * 0.9
-    y, gr = master(mix, g)
+        ceil -= (tp_aac - AAC_TP_LIMIT_DB) + 0.05
     grdb = 20 * np.log10(np.maximum(gr, 1e-6))
     print("[limiter] макс. gain reduction по секундам (dB): " +
           " ".join(f"{grdb[i*SR:(i+1)*SR].min():.1f}" for i in range(15)))
@@ -1389,12 +1415,11 @@ def main():
     print(f"[meter] integrated={integrated_lufs(y):.2f} LUFS  true-peak(4x)={20*np.log10(true_peak_lin(y)):.2f} dBTP  "
           f"sample-peak={20*np.log10(np.abs(y).max()):.2f} dBFS")
     with open(MANIFEST, "w", encoding="utf-8") as f:
-        json.dump({"sr": SR, "samples": N, "master_gain_db": round(g, 3), "sha256_wav": sha,
+        json.dump({"sr": SR, "samples": N, "master_gain_db": round(g, 3), "limiter_ceiling_db": round(ceil, 3),
+                   "after_aac192_true_peak_db": tp_aac, "after_aac192_lufs": l_aac, "sha256_wav": sha,
                    "events": sorted(EVENTS, key=lambda e: (e["sample"], e["label"]))}, f, ensure_ascii=False, indent=1)
     print(f"[done] {time.time()-t_start:.1f} c")
 
-
-PRE_TRIM = 0.0
 
 if __name__ == "__main__":
     main()

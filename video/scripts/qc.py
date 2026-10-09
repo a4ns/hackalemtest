@@ -43,11 +43,16 @@ raw = subprocess.run(["ffmpeg", "-v", "error", "-i", src, "-vn", "-f", "f32le", 
 a = np.frombuffer(raw, np.float32).reshape(-1, 2)
 print(f"samples: {len(a)} ({len(a) / 48000:.3f} s)  sample peak: {20 * np.log10(np.abs(a).max() + 1e-12):.2f} dBFS  clipped(>=0.999): {(np.abs(a) >= 0.999).sum()}")
 print("first 10 ms peak:", round(float(np.abs(a[:480]).max()), 4), " last 10 ms peak:", round(float(np.abs(a[-480:]).max()), 6))
-mono = np.abs(a).max(axis=1)
-w0, w1 = int((HIT - 0.1) * 48000), int((HIT + 0.3) * 48000)
-thr = 0.5 * mono[w0:w1].max()
-onset = (np.argmax(mono[w0:w1] > thr) + w0) / 48000  # first sample of the main impact (threshold crossing)
-print(f"main impact onset: {onset:.4f} s (expected {HIT})")
+mono = a.mean(axis=1)
+# the impact is a sub-bass boom (D1 glide); the reverse swell before it has no energy below 150 Hz
+spec = np.fft.rfft(mono)
+freqs = np.fft.rfftfreq(len(mono), 1 / 48000)
+spec[freqs > 150] = 0
+sub = np.abs(np.fft.irfft(spec, len(mono)))
+w0, w1 = int((HIT - 0.15) * 48000), int((HIT + 0.4) * 48000)
+thr = 0.35 * sub[w0:w1].max()
+onset = (np.argmax(sub[w0:w1] > thr) + w0) / 48000
+print(f"main impact onset (sub-bass <150 Hz, 35% of window peak): {onset:.4f} s (expected {HIT})")
 import os
 WAV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "assets", "audio", "hackalem-intro-mix.wav")
 if os.path.exists(WAV):

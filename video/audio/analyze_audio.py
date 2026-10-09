@@ -18,6 +18,8 @@ import wave
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
+sys.dont_write_bytecode = True
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 WAV = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "assets", "audio", "hackalem-intro-mix.wav")
@@ -71,6 +73,16 @@ def momentary_table(x, sr):
     print(f"  Integrated (внутренний): {B.integrated_lufs(x):.2f} LUFS, true-peak(4x) {20 * math.log10(B.true_peak_lin(x)):.2f} dBTP")
 
 
+def sm_hp(seg, sr, f0=200.0):
+    """S/M (dB) и корреляция L/R выше f0 (в басе стерео не показательно)."""
+    m = seg.shape[1]
+    F = np.fft.rfft(seg, axis=1)
+    F[:, np.fft.rfftfreq(m, 1.0 / sr) < f0] = 0
+    h = np.fft.irfft(F, m, axis=1)
+    mid, side = (h[0] + h[1]) / 2, (h[0] - h[1]) / 2
+    return rms_db(side) - rms_db(mid), corr(h[0], h[1])
+
+
 def metrics(x, sr):
     n = x.shape[1]
     mono = x.mean(axis=0)
@@ -96,7 +108,8 @@ def metrics(x, sr):
     for name, a, b in wins:
         seg = x[:, int(a * sr):int(b * sr)]
         mid_, side_ = (seg[0] + seg[1]) / 2, (seg[0] - seg[1]) / 2
-        print(f" {name:28s} RMS {rms_db(seg):7.1f} dBFS   пик {dbfs(np.abs(seg).max()):7.1f}   S/M {rms_db(side_) - rms_db(mid_):6.1f} dB   corr {corr(seg[0], seg[1]):5.2f}")
+        smh, ch_ = sm_hp(seg, sr)
+        print(f" {name:30s} RMS {rms_db(seg):7.1f} dBFS   пик {dbfs(np.abs(seg).max()):7.1f}   S/M {rms_db(side_) - rms_db(mid_):6.1f} dB   corr {corr(seg[0], seg[1]):5.2f}   | >200 Гц: S/M {smh:6.1f} dB corr {ch_:5.2f}")
     # 20 мс окна вокруг 9.2..9.6 для проверки "вырезания"
     print("\n== 9.2-9.6, окна по 20 мс (RMS dBFS) ==")
     row = []
@@ -136,16 +149,6 @@ def metrics(x, sr):
             print(f"    t={k / sr:.4f} с  скачок {d[k]:.3f} FS{near}")
     print(f" семплов >= 0.98 FS: {(np.abs(x) >= 0.98).sum()},  >= 0.89 FS (-1 dBFS): {(np.abs(x) >= 0.891).sum()}")
     print(f" DC (среднее): L {x[0].mean():+.2e}  R {x[1].mean():+.2e}")
-    # локальные "щелчки": резкие скачки на фоне тихой окрестности
-    hp = np.diff(mono, n=2)
-    blk = 480
-    worst = (0.0, 0)
-    for s in range(blk, n - blk, blk):
-        loc = np.abs(hp[s - blk:s]).mean() + 1e-6
-        jump = np.abs(hp[s:s + blk]).max()
-        if jump / loc > worst[0] and jump > 0.02:
-            worst = (jump / loc, s)
-    print(f" макс. отношение 2-й разности к фону (кандидат на щелчок): {worst[0]:.1f} на t={worst[1] / sr:.3f} с")
 
 
 # --------------------------------------------------------------------------- #
