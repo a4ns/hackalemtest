@@ -223,6 +223,7 @@
     [T.lastTick - 0.034, "dark", 0.0], [T.lastTick, "burst", 0.85], [T.lastTick + 0.07, "burst", 0.7], [T.lastTick + 0.17, "drain", 0.8], [T.lastTick + 0.4, "dark", 0.0],
   ];
   function plateState(t) {
+    if (COVER) return { core: PL.burst[0], mid: PL.burst[1], edge: PL.burst[2], i: 1, warm: 0 };
     let a = PLATE_KEYS[0], b = PLATE_KEYS[PLATE_KEYS.length - 1];
     if (t <= a[0]) b = a;
     else if (t >= b[0]) a = b;
@@ -731,7 +732,7 @@
     X.globalCompositeOperation = "lighter";
     // freshly revealed void cells flash white → settle into the glow
     const fr = T.waveFrames / FPS;
-    for (let j = 0; j < 16; j++) for (let i = 0; i < 16; i++) {
+    for (let j = 0; j < 16 && !COVER; j++) for (let i = 0; i < 16; i++) {
       if (GRID[j][i]) continue;
       const ring = Math.max(Math.abs(i - 7.5), Math.abs(j - 7.5)) - 0.5;
       const rt = T.hit + ring * fr;
@@ -744,7 +745,7 @@
     }
     // front outline: lives while the front travels, fades right after it closes the square
     const doneT = T.hit + 7 * fr;
-    const oa = wv < 480 ? 1 : 1 - inv(doneT, doneT + 0.05, t);
+    const oa = COVER ? 0 : wv < 480 ? 1 : 1 - inv(doneT, doneT + 0.05, t);
     if (oa > 0.01) {
       const th = Math.max(5, 12 * Math.min(1, S / 2));
       X.fillStyle = rgba(WHITE, 0.95 * oa);
@@ -757,7 +758,7 @@
       X.strokeRect(x0, y0, half * 2, half * 2);
     }
     // light shaft out of the figure (the site's own hero light, brief)
-    const sh = age > 0.05 ? Math.exp(-(age - 0.05) / 0.12) : 0;
+    const sh = !COVER && age > 0.05 ? Math.exp(-(age - 0.05) / 0.12) : 0;
     if (sh > 0.01) {
       const g = X.createLinearGradient(cam.ox - 90, 0, cam.ox + 90, 0);
       g.addColorStop(0, "rgba(0,200,255,0)"); g.addColorStop(0.5, `rgba(190,240,255,${0.30 * sh})`); g.addColorStop(1, "rgba(0,200,255,0)");
@@ -938,7 +939,7 @@
   function post(X, t) {
     // vignette
     const g = X.createRadialGradient(CX, CY, 600, CX, CY, 1320);
-    g.addColorStop(0, "rgba(3,6,13,0)"); g.addColorStop(1, "rgba(3,6,13,0.40)");
+    g.addColorStop(0, "rgba(3,6,13,0)"); g.addColorStop(1, COVER ? "rgba(3,6,13,0.12)" : "rgba(3,6,13,0.40)");
     X.fillStyle = g; X.fillRect(0, 0, W, H);
     // grain (deterministic per frame)
     const f = frameOf(t);
@@ -1044,7 +1045,6 @@
     out.setTransform(1, 0, 0, 1, 0, 0);
     out.globalAlpha = 1;
     out.drawImage(frameC, 0, 0);
-    COVER = false;
     out.save();
     out.textBaseline = "alphabetic";
     out.fillStyle = rgba(C.ice);
@@ -1061,6 +1061,7 @@
     out.fillRect(962, 770, 150, 5);
     out.restore();
     post(out, t);
+    COVER = false;
   }
 
   // ───────────────────────── boot ─────────────────────────

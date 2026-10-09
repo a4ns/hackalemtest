@@ -20,6 +20,8 @@
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-width="1920" data-height="1080" data-duration="15" data-fps="30">
       <canvas id="stage" width="1920" height="1080" data-layout-allow-overflow></canvas>
+      <!-- Soundtrack: synthesised from scratch by audio/build_audio.py (reads config/cues.json). 15.000 s, 48 kHz, stereo. -->
+      <audio id="mix" src="assets/audio/hackalem-intro-mix.wav" data-start="0" data-duration="15" data-track-index="1" data-volume="1"></audio>
     </div>
     <script src="config/cues.js"></script>
     <script src="src/hk-engine.js"></script>

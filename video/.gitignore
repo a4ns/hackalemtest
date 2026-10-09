@@ -5,3 +5,5 @@ renders/*.log
 renders/test_*
 renders/work-*
 renders/.*
+__pycache__/
+*.pyc

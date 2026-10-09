@@ -1,0 +1,1401 @@
+{
+ "sr": 48000,
+ "samples": 720000,
+ "master_gain_db": -0.733,
+ "sha256_wav": "d0df7c19c2a2eeaacc0152a2a8e2871654ecd69e4355e4600cb43acf3ef65bbe",
+ "events": [
+  {
+   "label": "accent1 crackle 2bit/4kHz",
+   "t": 0.0,
+   "sample": 0,
+   "layer": "perc",
+   "gain_db": -12.0
+  },
+  {
+   "label": "accent1 sub D1",
+   "t": 0.0,
+   "sample": 0,
+   "layer": "kick",
+   "gain_db": -6.0
+  },
+  {
+   "label": "crack sweep 200->900 2bit",
+   "t": 0.05,
+   "sample": 2400,
+   "layer": "fx",
+   "gain_db": -20.0
+  },
+  {
+   "label": "kick 0.4 lofi 4bit",
+   "t": 0.4,
+   "sample": 19200,
+   "layer": "kick",
+   "gain_db": -6.0
+  },
+  {
+   "label": "stab D/A 4bit",
+   "t": 0.4,
+   "sample": 19200,
+   "layer": "bed",
+   "gain_db": -13.0
+  },
+  {
+   "label": "res-tick D4 2bit/4k",
+   "t": 0.6,
+   "sample": 28800,
+   "layer": "bed",
+   "gain_db": -12.0
+  },
+  {
+   "label": "res-tick F4 3bit/8k",
+   "t": 0.8,
+   "sample": 38400,
+   "layer": "bed",
+   "gain_db": -11.0
+  },
+  {
+   "label": "res-tick A4 4bit/12k",
+   "t": 1.0,
+   "sample": 48000,
+   "layer": "bed",
+   "gain_db": -10.0
+  },
+  {
+   "label": "clean bell D5 1.2",
+   "t": 1.2,
+   "sample": 57600,
+   "layer": "bed",
+   "gain_db": -13.0
+  },
+  {
+   "label": "res-tick D5 6bit/24k",
+   "t": 1.2,
+   "sample": 57600,
+   "layer": "bed",
+   "gain_db": -9.0
+  },
+  {
+   "label": "sub pedal D1",
+   "t": 1.2,
+   "sample": 57600,
+   "layer": "kick",
+   "gain_db": -22.0
+  },
+  {
+   "label": "pixel blip 0",
+   "t": 1.284907,
+   "sample": 61676,
+   "layer": "bed",
+   "gain_db": -24.05
+  },
+  {
+   "label": "pixel blip 1",
+   "t": 1.439933,
+   "sample": 69117,
+   "layer": "bed",
+   "gain_db": -25.59
+  },
+  {
+   "label": "pixel blip 2",
+   "t": 1.470393,
+   "sample": 70579,
+   "layer": "bed",
+   "gain_db": -24.0
+  },
+  {
+   "label": "pixel blip 3",
+   "t": 1.535373,
+   "sample": 73698,
+   "layer": "bed",
+   "gain_db": -23.77
+  },
+  {
+   "label": "pixel blip 4",
+   "t": 1.545416,
+   "sample": 74180,
+   "layer": "bed",
+   "gain_db": -24.97
+  },
+  {
+   "label": "pixel blip 5",
+   "t": 1.552537,
+   "sample": 74522,
+   "layer": "bed",
+   "gain_db": -25.13
+  },
+  {
+   "label": "ghost kick",
+   "t": 1.6,
+   "sample": 76800,
+   "layer": "kick",
+   "gain_db": -17.0
+  },
+  {
+   "label": "pixel blip 6",
+   "t": 1.619668,
+   "sample": 77744,
+   "layer": "bed",
+   "gain_db": -23.89
+  },
+  {
+   "label": "pixel blip 7",
+   "t": 1.698422,
+   "sample": 81524,
+   "layer": "bed",
+   "gain_db": -23.56
+  },
+  {
+   "label": "pixel blip 8",
+   "t": 1.899181,
+   "sample": 91161,
+   "layer": "bed",
+   "gain_db": -25.73
+  },
+  {
+   "label": "closing noise L->R",
+   "t": 2.0,
+   "sample": 96000,
+   "layer": "fx",
+   "gain_db": -17.0
+  },
+  {
+   "label": "ghost kick",
+   "t": 2.0,
+   "sample": 96000,
+   "layer": "kick",
+   "gain_db": -17.0
+  },
+  {
+   "label": "spark birth A5",
+   "t": 2.1,
+   "sample": 100800,
+   "layer": "bed",
+   "gain_db": -15.0
+  },
+  {
+   "label": "spark birth C6",
+   "t": 2.2,
+   "sample": 105600,
+   "layer": "bed",
+   "gain_db": -15.0
+  },
+  {
+   "label": "spark birth E6",
+   "t": 2.3,
+   "sample": 110400,
+   "layer": "bed",
+   "gain_db": -15.0
+  },
+  {
+   "label": "riser 2.4->3.2",
+   "t": 2.4,
+   "sample": 115200,
+   "layer": "fx",
+   "gain_db": -11.0
+  },
+  {
+   "label": "spark hop arp x8 6bit",
+   "t": 2.4,
+   "sample": 115200,
+   "layer": "bed",
+   "gain_db": -12.5
+  },
+  {
+   "label": "ACCENT2 kick",
+   "t": 3.2,
+   "sample": 153600,
+   "layer": "kick",
+   "gain_db": -1.5
+  },
+  {
+   "label": "ACCENT2 noise burst",
+   "t": 3.2,
+   "sample": 153600,
+   "layer": "perc",
+   "gain_db": -9.0
+  },
+  {
+   "label": "ACCENT2 sub boom",
+   "t": 3.2,
+   "sample": 153600,
+   "layer": "kick",
+   "gain_db": -4.0
+  },
+  {
+   "label": "arp 8bit/24k 16th x60",
+   "t": 3.2,
+   "sample": 153600,
+   "layer": "bed",
+   "gain_db": -17.0
+  },
+  {
+   "label": "hat 16th",
+   "t": 3.2,
+   "sample": 153600,
+   "layer": "perc",
+   "gain_db": -27.02
+  },
+  {
+   "label": "scan layer scanC",
+   "t": 3.22,
+   "sample": 154560,
+   "layer": "fx",
+   "gain_db": -23.0
+  },
+  {
+   "label": "scan layer scanL",
+   "t": 3.22,
+   "sample": 154560,
+   "layer": "fx",
+   "gain_db": -22.0
+  },
+  {
+   "label": "scan layer scanR",
+   "t": 3.22,
+   "sample": 154560,
+   "layer": "fx",
+   "gain_db": -22.0
+  },
+  {
+   "label": "hat 16th",
+   "t": 3.3,
+   "sample": 158400,
+   "layer": "perc",
+   "gain_db": -32.06
+  },
+  {
+   "label": "hat 16th",
+   "t": 3.4,
+   "sample": 163200,
+   "layer": "perc",
+   "gain_db": -21.45
+  },
+  {
+   "label": "hat 16th",
+   "t": 3.5,
+   "sample": 168000,
+   "layer": "perc",
+   "gain_db": -30.9
+  },
+  {
+   "label": "hat 16th",
+   "t": 3.6,
+   "sample": 172800,
+   "layer": "perc",
+   "gain_db": -27.02
+  },
+  {
+   "label": "hat 16th",
+   "t": 3.7,
+   "sample": 177600,
+   "layer": "perc",
+   "gain_db": -32.06
+  },
+  {
+   "label": "hat 16th",
+   "t": 3.8,
+   "sample": 182400,
+   "layer": "perc",
+   "gain_db": -21.45
+  },
+  {
+   "label": "hat 16th",
+   "t": 3.9,
+   "sample": 187200,
+   "layer": "perc",
+   "gain_db": -30.9
+  },
+  {
+   "label": "clap 4.0",
+   "t": 4.0,
+   "sample": 192000,
+   "layer": "perc",
+   "gain_db": -7.0
+  },
+  {
+   "label": "hat 16th",
+   "t": 4.0,
+   "sample": 192000,
+   "layer": "perc",
+   "gain_db": -27.02
+  },
+  {
+   "label": "kick 4.0 (+clap)",
+   "t": 4.0,
+   "sample": 192000,
+   "layer": "kick",
+   "gain_db": -1.5
+  },
+  {
+   "label": "hat 16th",
+   "t": 4.1,
+   "sample": 196800,
+   "layer": "perc",
+   "gain_db": -32.06
+  },
+  {
+   "label": "bass offbeat",
+   "t": 4.2,
+   "sample": 201600,
+   "layer": "bed",
+   "gain_db": -6.0
+  },
+  {
+   "label": "hat 16th",
+   "t": 4.2,
+   "sample": 201600,
+   "layer": "perc",
+   "gain_db": -21.45
+  },
+  {
+   "label": "hat 16th",
+   "t": 4.3,
+   "sample": 206400,
+   "layer": "perc",
+   "gain_db": -30.9
+  },
+  {
+   "label": "hat 16th",
+   "t": 4.4,
+   "sample": 211200,
+   "layer": "perc",
+   "gain_db": -27.02
+  },
+  {
+   "label": "kick 4-on-floor",
+   "t": 4.4,
+   "sample": 211200,
+   "layer": "kick",
+   "gain_db": -2.0
+  },
+  {
+   "label": "hat 16th",
+   "t": 4.5,
+   "sample": 216000,
+   "layer": "perc",
+   "gain_db": -32.06
+  },
+  {
+   "label": "bass offbeat",
+   "t": 4.6,
+   "sample": 220800,
+   "layer": "bed",
+   "gain_db": -6.0
+  },
+  {
+   "label": "hat 16th",
+   "t": 4.6,
+   "sample": 220800,
+   "layer": "perc",
+   "gain_db": -21.45
+  },
+  {
+   "label": "hat 16th",
+   "t": 4.7,
+   "sample": 225600,
+   "layer": "perc",
+   "gain_db": -30.9
+  },
+  {
+   "label": "descending tick A5",
+   "t": 4.8,
+   "sample": 230400,
+   "layer": "bed",
+   "gain_db": -13.0
+  },
+  {
+   "label": "hat 16th",
+   "t": 4.8,
+   "sample": 230400,
+   "layer": "perc",
+   "gain_db": -27.02
+  },
+  {
+   "label": "kick 4-on-floor",
+   "t": 4.8,
+   "sample": 230400,
+   "layer": "kick",
+   "gain_db": -2.0
+  },
+  {
+   "label": "reverse snare 4.8->5.2",
+   "t": 4.8,
+   "sample": 230400,
+   "layer": "perc",
+   "gain_db": -10.0
+  },
+  {
+   "label": "descending tick F5",
+   "t": 4.9,
+   "sample": 235200,
+   "layer": "bed",
+   "gain_db": -13.0
+  },
+  {
+   "label": "hat 16th",
+   "t": 4.9,
+   "sample": 235200,
+   "layer": "perc",
+   "gain_db": -32.06
+  },
+  {
+   "label": "bass offbeat",
+   "t": 5.0,
+   "sample": 240000,
+   "layer": "bed",
+   "gain_db": -6.0
+  },
+  {
+   "label": "descending tick D5",
+   "t": 5.0,
+   "sample": 240000,
+   "layer": "bed",
+   "gain_db": -13.0
+  },
+  {
+   "label": "hat 16th",
+   "t": 5.0,
+   "sample": 240000,
+   "layer": "perc",
+   "gain_db": -21.45
+  },
+  {
+   "label": "descending tick A4",
+   "t": 5.1,
+   "sample": 244800,
+   "layer": "bed",
+   "gain_db": -13.0
+  },
+  {
+   "label": "hat 16th",
+   "t": 5.1,
+   "sample": 244800,
+   "layer": "perc",
+   "gain_db": -30.9
+  },
+  {
+   "label": "clap backbeat",
+   "t": 5.2,
+   "sample": 249600,
+   "layer": "perc",
+   "gain_db": -10.0
+  },
+  {
+   "label": "hat 16th",
+   "t": 5.2,
+   "sample": 249600,
+   "layer": "perc",
+   "gain_db": -27.02
+  },
+  {
+   "label": "kick 4-on-floor",
+   "t": 5.2,
+   "sample": 249600,
+   "layer": "kick",
+   "gain_db": -2.0
+  },
+  {
+   "label": "dock pluck D4",
+   "t": 5.3,
+   "sample": 254400,
+   "layer": "bed",
+   "gain_db": -12.0
+  },
+  {
+   "label": "hat 16th",
+   "t": 5.3,
+   "sample": 254400,
+   "layer": "perc",
+   "gain_db": -32.06
+  },
+  {
+   "label": "bass offbeat",
+   "t": 5.4,
+   "sample": 259200,
+   "layer": "bed",
+   "gain_db": -6.0
+  },
+  {
+   "label": "dock pluck F4",
+   "t": 5.4,
+   "sample": 259200,
+   "layer": "bed",
+   "gain_db": -12.0
+  },
+  {
+   "label": "hat 16th",
+   "t": 5.4,
+   "sample": 259200,
+   "layer": "perc",
+   "gain_db": -21.45
+  },
+  {
+   "label": "dock pluck A4",
+   "t": 5.5,
+   "sample": 264000,
+   "layer": "bed",
+   "gain_db": -12.0
+  },
+  {
+   "label": "hat 16th",
+   "t": 5.5,
+   "sample": 264000,
+   "layer": "perc",
+   "gain_db": -30.9
+  },
+  {
+   "label": "dock chord Dm @5.6",
+   "t": 5.6,
+   "sample": 268800,
+   "layer": "bed",
+   "gain_db": -11.0
+  },
+  {
+   "label": "hat accel",
+   "t": 5.6,
+   "sample": 268800,
+   "layer": "perc",
+   "gain_db": -27.94
+  },
+  {
+   "label": "kick 4-on-floor",
+   "t": 5.6,
+   "sample": 268800,
+   "layer": "kick",
+   "gain_db": -2.0
+  },
+  {
+   "label": "hat accel",
+   "t": 5.7,
+   "sample": 273600,
+   "layer": "perc",
+   "gain_db": -27.44
+  },
+  {
+   "label": "bass offbeat",
+   "t": 5.8,
+   "sample": 278400,
+   "layer": "bed",
+   "gain_db": -6.0
+  },
+  {
+   "label": "hat accel",
+   "t": 5.8,
+   "sample": 278400,
+   "layer": "perc",
+   "gain_db": -26.98
+  },
+  {
+   "label": "hat accel",
+   "t": 5.9,
+   "sample": 283200,
+   "layer": "perc",
+   "gain_db": -26.53
+  },
+  {
+   "label": "clap backbeat",
+   "t": 6.0,
+   "sample": 288000,
+   "layer": "perc",
+   "gain_db": -10.0
+  },
+  {
+   "label": "hat accel",
+   "t": 6.0,
+   "sample": 288000,
+   "layer": "perc",
+   "gain_db": -26.11
+  },
+  {
+   "label": "kick 4-on-floor",
+   "t": 6.0,
+   "sample": 288000,
+   "layer": "kick",
+   "gain_db": -2.0
+  },
+  {
+   "label": "letter bell D4 @6.0",
+   "t": 6.0,
+   "sample": 288000,
+   "layer": "bed",
+   "gain_db": -12.0
+  },
+  {
+   "label": "hat accel",
+   "t": 6.09,
+   "sample": 292320,
+   "layer": "perc",
+   "gain_db": -25.71
+  },
+  {
+   "label": "hat accel",
+   "t": 6.18,
+   "sample": 296640,
+   "layer": "perc",
+   "gain_db": -25.32
+  },
+  {
+   "label": "bass offbeat",
+   "t": 6.2,
+   "sample": 297600,
+   "layer": "bed",
+   "gain_db": -6.0
+  },
+  {
+   "label": "hat accel",
+   "t": 6.27,
+   "sample": 300960,
+   "layer": "perc",
+   "gain_db": -24.96
+  },
+  {
+   "label": "hat accel",
+   "t": 6.36,
+   "sample": 305280,
+   "layer": "perc",
+   "gain_db": -24.6
+  },
+  {
+   "label": "letter bell F4 @6.36",
+   "t": 6.36,
+   "sample": 305280,
+   "layer": "bed",
+   "gain_db": -11.2
+  },
+  {
+   "label": "kick 4-on-floor",
+   "t": 6.4,
+   "sample": 307200,
+   "layer": "kick",
+   "gain_db": -2.0
+  },
+  {
+   "label": "hat accel",
+   "t": 6.435,
+   "sample": 308880,
+   "layer": "perc",
+   "gain_db": -24.26
+  },
+  {
+   "label": "hat accel",
+   "t": 6.51,
+   "sample": 312480,
+   "layer": "perc",
+   "gain_db": -23.94
+  },
+  {
+   "label": "hat accel",
+   "t": 6.585,
+   "sample": 316080,
+   "layer": "perc",
+   "gain_db": -23.62
+  },
+  {
+   "label": "bass offbeat",
+   "t": 6.6,
+   "sample": 316800,
+   "layer": "bed",
+   "gain_db": -6.0
+  },
+  {
+   "label": "hat accel",
+   "t": 6.66,
+   "sample": 319680,
+   "layer": "perc",
+   "gain_db": -23.32
+  },
+  {
+   "label": "letter bell A4 @6.66",
+   "t": 6.66,
+   "sample": 319680,
+   "layer": "bed",
+   "gain_db": -10.4
+  },
+  {
+   "label": "hat accel",
+   "t": 6.72,
+   "sample": 322560,
+   "layer": "perc",
+   "gain_db": -23.02
+  },
+  {
+   "label": "hat accel",
+   "t": 6.78,
+   "sample": 325440,
+   "layer": "perc",
+   "gain_db": -22.74
+  },
+  {
+   "label": "clap backbeat",
+   "t": 6.8,
+   "sample": 326400,
+   "layer": "perc",
+   "gain_db": -10.0
+  },
+  {
+   "label": "kick 4-on-floor",
+   "t": 6.8,
+   "sample": 326400,
+   "layer": "kick",
+   "gain_db": -2.0
+  },
+  {
+   "label": "hat accel",
+   "t": 6.84,
+   "sample": 328320,
+   "layer": "perc",
+   "gain_db": -22.47
+  },
+  {
+   "label": "hat accel",
+   "t": 6.9,
+   "sample": 331200,
+   "layer": "perc",
+   "gain_db": -22.2
+  },
+  {
+   "label": "letter bell C5 @6.9",
+   "t": 6.9,
+   "sample": 331200,
+   "layer": "bed",
+   "gain_db": -9.6
+  },
+  {
+   "label": "hat accel",
+   "t": 6.95,
+   "sample": 333600,
+   "layer": "perc",
+   "gain_db": -21.94
+  },
+  {
+   "label": "bass offbeat",
+   "t": 7.0,
+   "sample": 336000,
+   "layer": "bed",
+   "gain_db": -6.0
+  },
+  {
+   "label": "hat accel",
+   "t": 7.0,
+   "sample": 336000,
+   "layer": "perc",
+   "gain_db": -21.69
+  },
+  {
+   "label": "hat accel",
+   "t": 7.05,
+   "sample": 338400,
+   "layer": "perc",
+   "gain_db": -21.45
+  },
+  {
+   "label": "letter bell D5 @7.1",
+   "t": 7.1,
+   "sample": 340800,
+   "layer": "bed",
+   "gain_db": -8.8
+  },
+  {
+   "label": "kick 4-on-floor",
+   "t": 7.2,
+   "sample": 345600,
+   "layer": "kick",
+   "gain_db": -2.0
+  },
+  {
+   "label": "riser 7.2->8.0 (200->8k)",
+   "t": 7.2,
+   "sample": 345600,
+   "layer": "fx",
+   "gain_db": -16.0
+  },
+  {
+   "label": "scan click D5",
+   "t": 7.2,
+   "sample": 345600,
+   "layer": "bed",
+   "gain_db": -16.0
+  },
+  {
+   "label": "hat 16th",
+   "t": 7.3,
+   "sample": 350400,
+   "layer": "perc",
+   "gain_db": -32.06
+  },
+  {
+   "label": "scan click F5",
+   "t": 7.3,
+   "sample": 350400,
+   "layer": "bed",
+   "gain_db": -15.4
+  },
+  {
+   "label": "bass offbeat",
+   "t": 7.4,
+   "sample": 355200,
+   "layer": "bed",
+   "gain_db": -6.0
+  },
+  {
+   "label": "hat 16th",
+   "t": 7.4,
+   "sample": 355200,
+   "layer": "perc",
+   "gain_db": -21.45
+  },
+  {
+   "label": "scan click A5",
+   "t": 7.4,
+   "sample": 355200,
+   "layer": "bed",
+   "gain_db": -14.8
+  },
+  {
+   "label": "hat 16th",
+   "t": 7.5,
+   "sample": 360000,
+   "layer": "perc",
+   "gain_db": -30.9
+  },
+  {
+   "label": "scan click C6",
+   "t": 7.5,
+   "sample": 360000,
+   "layer": "bed",
+   "gain_db": -14.2
+  },
+  {
+   "label": "clap backbeat",
+   "t": 7.6,
+   "sample": 364800,
+   "layer": "perc",
+   "gain_db": -10.0
+  },
+  {
+   "label": "hat 16th",
+   "t": 7.6,
+   "sample": 364800,
+   "layer": "perc",
+   "gain_db": -27.02
+  },
+  {
+   "label": "kick 4-on-floor",
+   "t": 7.6,
+   "sample": 364800,
+   "layer": "kick",
+   "gain_db": -2.0
+  },
+  {
+   "label": "scan click D6",
+   "t": 7.6,
+   "sample": 364800,
+   "layer": "bed",
+   "gain_db": -13.6
+  },
+  {
+   "label": "hat 16th",
+   "t": 7.7,
+   "sample": 369600,
+   "layer": "perc",
+   "gain_db": -32.06
+  },
+  {
+   "label": "scan click F6",
+   "t": 7.7,
+   "sample": 369600,
+   "layer": "bed",
+   "gain_db": -13.0
+  },
+  {
+   "label": "bass offbeat",
+   "t": 7.8,
+   "sample": 374400,
+   "layer": "bed",
+   "gain_db": -6.0
+  },
+  {
+   "label": "hat 16th",
+   "t": 7.8,
+   "sample": 374400,
+   "layer": "perc",
+   "gain_db": -21.45
+  },
+  {
+   "label": "scan click A6",
+   "t": 7.8,
+   "sample": 374400,
+   "layer": "bed",
+   "gain_db": -12.4
+  },
+  {
+   "label": "hat 16th",
+   "t": 7.9,
+   "sample": 379200,
+   "layer": "perc",
+   "gain_db": -30.9
+  },
+  {
+   "label": "scan click C7",
+   "t": 7.9,
+   "sample": 379200,
+   "layer": "bed",
+   "gain_db": -11.8
+  },
+  {
+   "label": "big riser 8.0->9.2 peak@9.2",
+   "t": 8.0,
+   "sample": 384000,
+   "layer": "fx",
+   "gain_db": -14.0
+  },
+  {
+   "label": "build clap/snare 8.0",
+   "t": 8.0,
+   "sample": 384000,
+   "layer": "perc",
+   "gain_db": -8.0
+  },
+  {
+   "label": "hat 16th",
+   "t": 8.0,
+   "sample": 384000,
+   "layer": "perc",
+   "gain_db": -27.02
+  },
+  {
+   "label": "kick 4-on-floor",
+   "t": 8.0,
+   "sample": 384000,
+   "layer": "kick",
+   "gain_db": -2.0
+  },
+  {
+   "label": "sub swell 8.0->9.2",
+   "t": 8.0,
+   "sample": 384000,
+   "layer": "kick",
+   "gain_db": -17.0
+  },
+  {
+   "label": "hat 16th",
+   "t": 8.1,
+   "sample": 388800,
+   "layer": "perc",
+   "gain_db": -32.06
+  },
+  {
+   "label": "bass offbeat",
+   "t": 8.2,
+   "sample": 393600,
+   "layer": "bed",
+   "gain_db": -6.0
+  },
+  {
+   "label": "hat 16th",
+   "t": 8.2,
+   "sample": 393600,
+   "layer": "perc",
+   "gain_db": -21.45
+  },
+  {
+   "label": "hat 16th",
+   "t": 8.3,
+   "sample": 398400,
+   "layer": "perc",
+   "gain_db": -30.9
+  },
+  {
+   "label": "build clap/snare 8.4",
+   "t": 8.4,
+   "sample": 403200,
+   "layer": "perc",
+   "gain_db": -7.3
+  },
+  {
+   "label": "hat 16th",
+   "t": 8.4,
+   "sample": 403200,
+   "layer": "perc",
+   "gain_db": -27.02
+  },
+  {
+   "label": "kick 4-on-floor",
+   "t": 8.4,
+   "sample": 403200,
+   "layer": "kick",
+   "gain_db": -2.0
+  },
+  {
+   "label": "hat 16th",
+   "t": 8.5,
+   "sample": 408000,
+   "layer": "perc",
+   "gain_db": -32.06
+  },
+  {
+   "label": "bass offbeat",
+   "t": 8.6,
+   "sample": 412800,
+   "layer": "bed",
+   "gain_db": -6.0
+  },
+  {
+   "label": "hat 16th",
+   "t": 8.6,
+   "sample": 412800,
+   "layer": "perc",
+   "gain_db": -21.45
+  },
+  {
+   "label": "hat 16th",
+   "t": 8.7,
+   "sample": 417600,
+   "layer": "perc",
+   "gain_db": -30.9
+  },
+  {
+   "label": "build clap/snare 8.8",
+   "t": 8.8,
+   "sample": 422400,
+   "layer": "perc",
+   "gain_db": -6.6
+  },
+  {
+   "label": "hat 16th",
+   "t": 8.8,
+   "sample": 422400,
+   "layer": "perc",
+   "gain_db": -27.02
+  },
+  {
+   "label": "kick 4-on-floor",
+   "t": 8.8,
+   "sample": 422400,
+   "layer": "kick",
+   "gain_db": -2.0
+  },
+  {
+   "label": "hat 16th",
+   "t": 8.9,
+   "sample": 427200,
+   "layer": "perc",
+   "gain_db": -32.06
+  },
+  {
+   "label": "bass offbeat",
+   "t": 9.0,
+   "sample": 432000,
+   "layer": "bed",
+   "gain_db": -6.0
+  },
+  {
+   "label": "build clap/snare 9.0",
+   "t": 9.0,
+   "sample": 432000,
+   "layer": "perc",
+   "gain_db": -5.9
+  },
+  {
+   "label": "roll 32nd",
+   "t": 9.05,
+   "sample": 434400,
+   "layer": "perc",
+   "gain_db": -18.08
+  },
+  {
+   "label": "build clap/snare 9.1",
+   "t": 9.1,
+   "sample": 436800,
+   "layer": "perc",
+   "gain_db": -5.2
+  },
+  {
+   "label": "roll 32nd",
+   "t": 9.15,
+   "sample": 439200,
+   "layer": "perc",
+   "gain_db": -15.16
+  },
+  {
+   "label": "countdown tone 0 A5 8bit",
+   "t": 9.2,
+   "sample": 441600,
+   "layer": "cd",
+   "gain_db": -2.5
+  },
+  {
+   "label": "countdown tone 1 A4 6bit",
+   "t": 9.3,
+   "sample": 446400,
+   "layer": "cd",
+   "gain_db": -3.0
+  },
+  {
+   "label": "countdown tone 2 A3 4bit",
+   "t": 9.4,
+   "sample": 451200,
+   "layer": "cd",
+   "gain_db": -3.5
+  },
+  {
+   "label": "countdown tone 3 A2 3bit",
+   "t": 9.5,
+   "sample": 456000,
+   "layer": "cd",
+   "gain_db": -4.0
+  },
+  {
+   "label": "reverse swell (inhale) ->9.6",
+   "t": 9.505,
+   "sample": 456240,
+   "layer": "cd",
+   "gain_db": -4.0
+  },
+  {
+   "label": "high ping A6",
+   "t": 9.55,
+   "sample": 458400,
+   "layer": "cd",
+   "gain_db": -12.0
+  },
+  {
+   "label": "HIT Dmaj9 supersaw",
+   "t": 9.6,
+   "sample": 460800,
+   "layer": "pad",
+   "gain_db": -8.0
+  },
+  {
+   "label": "HIT big kick",
+   "t": 9.6,
+   "sample": 460800,
+   "layer": "hit",
+   "gain_db": -3.0
+  },
+  {
+   "label": "HIT crash",
+   "t": 9.6,
+   "sample": 460800,
+   "layer": "hit",
+   "gain_db": -12.5
+  },
+  {
+   "label": "HIT sub boom 80->36Hz 1.2s",
+   "t": 9.6,
+   "sample": 460800,
+   "layer": "hit",
+   "gain_db": -4.5
+  },
+  {
+   "label": "HIT wide noise",
+   "t": 9.6,
+   "sample": 460800,
+   "layer": "hit",
+   "gain_db": -6.5
+  },
+  {
+   "label": "metal click D5",
+   "t": 9.6,
+   "sample": 460800,
+   "layer": "post",
+   "gain_db": -17.0
+  },
+  {
+   "label": "pad Dmaj9",
+   "t": 9.6,
+   "sample": 460800,
+   "layer": "pad",
+   "gain_db": -3.0
+  },
+  {
+   "label": "metal click F#5",
+   "t": 9.666667,
+   "sample": 464000,
+   "layer": "post",
+   "gain_db": -16.6
+  },
+  {
+   "label": "metal click A5",
+   "t": 9.733333,
+   "sample": 467200,
+   "layer": "post",
+   "gain_db": -16.2
+  },
+  {
+   "label": "metal click C#6",
+   "t": 9.8,
+   "sample": 470400,
+   "layer": "post",
+   "gain_db": -15.8
+  },
+  {
+   "label": "metal click E6",
+   "t": 9.866667,
+   "sample": 473600,
+   "layer": "post",
+   "gain_db": -15.4
+  },
+  {
+   "label": "metal click F#6",
+   "t": 9.933333,
+   "sample": 476800,
+   "layer": "post",
+   "gain_db": -15.0
+  },
+  {
+   "label": "metal click A6",
+   "t": 10.0,
+   "sample": 480000,
+   "layer": "post",
+   "gain_db": -14.6
+  },
+  {
+   "label": "metal click C#7",
+   "t": 10.066667,
+   "sample": 483200,
+   "layer": "post",
+   "gain_db": -14.2
+  },
+  {
+   "label": "spark A6",
+   "t": 10.12298,
+   "sample": 485903,
+   "layer": "post",
+   "gain_db": -27.68
+  },
+  {
+   "label": "spark F#6",
+   "t": 10.191212,
+   "sample": 489178,
+   "layer": "post",
+   "gain_db": -26.51
+  },
+  {
+   "label": "spark D7",
+   "t": 10.268672,
+   "sample": 492896,
+   "layer": "post",
+   "gain_db": -25.34
+  },
+  {
+   "label": "spark E6",
+   "t": 10.347677,
+   "sample": 496688,
+   "layer": "post",
+   "gain_db": -27.29
+  },
+  {
+   "label": "spark B6",
+   "t": 10.418351,
+   "sample": 500081,
+   "layer": "post",
+   "gain_db": -27.91
+  },
+  {
+   "label": "spark F#6",
+   "t": 10.471424,
+   "sample": 502628,
+   "layer": "post",
+   "gain_db": -29.0
+  },
+  {
+   "label": "soft swish L->R",
+   "t": 10.9,
+   "sample": 523200,
+   "layer": "post",
+   "gain_db": -17.0
+  },
+  {
+   "label": "pad Gmaj9",
+   "t": 11.1,
+   "sample": 532800,
+   "layer": "pad",
+   "gain_db": -2.0
+  },
+  {
+   "label": "print cascade grains x280 (~400/s) L->R",
+   "t": 11.2,
+   "sample": 537600,
+   "layer": "post",
+   "gain_db": -33.0
+  },
+  {
+   "label": "bell D6 @11.7",
+   "t": 11.9,
+   "sample": 571200,
+   "layer": "post",
+   "gain_db": -12.0
+  },
+  {
+   "label": "rule sweep step F#5",
+   "t": 12.0,
+   "sample": 576000,
+   "layer": "post",
+   "gain_db": -26.0
+  },
+  {
+   "label": "key tick",
+   "t": 12.1,
+   "sample": 580800,
+   "layer": "post",
+   "gain_db": -32.0
+  },
+  {
+   "label": "rule sweep step A5",
+   "t": 12.1,
+   "sample": 580800,
+   "layer": "post",
+   "gain_db": -24.5
+  },
+  {
+   "label": "rule sweep step D6",
+   "t": 12.2,
+   "sample": 585600,
+   "layer": "post",
+   "gain_db": -23.0
+  },
+  {
+   "label": "pad D final",
+   "t": 12.82,
+   "sample": 615360,
+   "layer": "pad",
+   "gain_db": -2.0
+  },
+  {
+   "label": "dot1 D5 warm pluck",
+   "t": 12.9,
+   "sample": 619200,
+   "layer": "post",
+   "gain_db": -15.0
+  },
+  {
+   "label": "dot2 A5 bell",
+   "t": 13.25,
+   "sample": 636000,
+   "layer": "post",
+   "gain_db": -17.0
+  },
+  {
+   "label": "dot3 F#6 glass",
+   "t": 13.6,
+   "sample": 652800,
+   "layer": "post",
+   "gain_db": -19.0
+  },
+  {
+   "label": "air swell around 14.0",
+   "t": 13.9,
+   "sample": 667200,
+   "layer": "post",
+   "gain_db": -25.0
+  },
+  {
+   "label": "last tick sub pulse D1 50ms",
+   "t": 14.1,
+   "sample": 676800,
+   "layer": "post",
+   "gain_db": -9.0
+  }
+ ]
+}
