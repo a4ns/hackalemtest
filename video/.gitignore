@@ -2,3 +2,4 @@ node_modules/
 .hyperframes/
 renders/draft*
 renders/*.log
+renders/test_*

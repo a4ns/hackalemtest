@@ -194,7 +194,7 @@
   }
 
   const HITS = [
-    [0.0, 9], [0.4, 12], [0.8, 12], [1.2, 16], [3.2, 22], [4.0, 10], [4.4, 10], [4.8, 12],
+    [0.0, 18], [0.4, 12], [0.8, 12], [1.2, 16], [3.2, 22], [4.0, 10], [4.4, 10], [4.8, 12],
     [5.6, 8], [7.2, 8], [8.0, 8], [8.4, 9], [8.8, 11], [9.0, 11], [9.1, 12], [9.6, 38],
   ];
   function shakePunch(t) {
@@ -416,7 +416,7 @@
     // crack: a vertical slit of light, grows from the centre
     const crackT = T.ideaOpen + 0.3;
     if (t < crackT) {
-      const h = H * (0.22 + 0.78 * eOutExpo(inv(0, T.crackFull, t)));
+      const h = H * (0.34 + 0.66 * eOutExpo(inv(0, T.crackFull, t)));
       const jit = (hash(frameOf(t), 5) - 0.5) * 6;
       const wd = lerp(5, 18, inv(0, T.ideaOpen, t));
       X.fillStyle = "#fff";
@@ -558,7 +558,7 @@
     // idea spark in the slab (frame 0 event)
     if (t < T.ideaOpen + 0.2) {
       const pul = 1 + 0.9 * Math.sin(inv(0, 0.2, t) * Math.PI) * (t < 0.2 ? 1 : 0);
-      const s = (t < 0.4 ? lerp(34, 22, inv(0, 0.4, t)) : 22 * (1 - inv(0.4, 0.6, t))) * pul;
+      const s = (t < 0.4 ? lerp(44, 24, inv(0, 0.4, t)) : 24 * (1 - inv(0.4, 0.6, t))) * pul;
       spark(X, CX, CY, s, SPARK_COL[0], 1 - inv(0.5, 0.6, t), 1.4);
     }
     // three sparks: born at the closing front of ИДЕЯ, hop to the cutters' start points
@@ -571,7 +571,7 @@
     const docks = DOCK;
     for (let k = 0; k < 3; k++) {
       const col = SPARK_COL[k];
-      let p = null, size = 34, a = 1;
+      let p = null, size = 42, a = 1;
       if (t >= born[k] && t < T.sparkHop[0]) p = { x: bx[k], y: wI.mid };
       else if (t >= T.sparkHop[0] && t < T.teamCut[0]) p = hop(t, T.sparkHop[0], T.sparkHop[1], { x: bx[k], y: wI.mid }, starts[k], arcs[k]);
       else if (t >= T.teamCut[0] && t < T.teamClose[0]) {
