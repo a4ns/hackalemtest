@@ -219,7 +219,7 @@
   const PLATE_KEYS = [
     [0.0, "warm", 1.0], [2.0, "warm", 1.0], [2.4, "warm", 0.45], [2.8, "ice", 0.55], [3.2, "ice", 1.0],
     [5.19, "ice", 1.0], [5.2, "dark", 0.0], [9.55, "dark", 0.0],
-    [T.hit, "burst", 1.0], [T.hit + 0.5, "burst", 1.0], [T.hit + 0.68, "drain", 0.85], [T.hit + 0.98, "dark", 0.0],
+    [T.hit, "burst", 1.0], [T.hit + 0.5, "burst", 1.0], [T.hit + 0.75, "burst", 1.0], [T.hit + 0.9, "drain", 0.85], [T.hit + 1.15, "dark", 0.0],
     [T.lastTick - 0.034, "dark", 0.0], [T.lastTick, "burst", 0.85], [T.lastTick + 0.07, "burst", 0.7], [T.lastTick + 0.17, "drain", 0.8], [T.lastTick + 0.4, "dark", 0.0],
   ];
   function plateState(t) {
@@ -505,7 +505,7 @@
     haloX.globalCompositeOperation = "source-over";
     X.save();
     X.globalCompositeOperation = "lighter";
-    X.globalAlpha = 0.6 + 0.4 * Math.min(1, pulse(t, T.syncPulses, 0.12) + pulse(t, T.buildPulses, 0.1) * 0.8);
+    X.globalAlpha = 0.6 + 0.4 * Math.min(1, pulse(t, T.syncPulses, 0.12) + pulse(t, PK, 0.08) * 0.7);
     X.imageSmoothingEnabled = true;
     X.drawImage(haloC, 0, 0, W, H);
     X.restore();
@@ -537,7 +537,8 @@
     return { x: lerp(p0.x, p1.x, u), y: lerp(p0.y, p1.y, u) - arc * Math.sin(Math.PI * u) };
   }
 
-  const DOCK = [0, 1, 2].map((k) => ({ x: CX + (k - 1) * 136, y: 972 }));
+  const DOCK = [0, 1, 2].map((k) => ({ x: CX + (k - 1) * 196, y: 930 }));
+  const PK = Array.from({ length: 12 }, (_, i) => T.buildPulses[0] + i * STEP); // arrival times of the packets: one per 16th note
   const SPARK_COL = [[255, 150, 60], [255, 255, 255], [60, 215, 255]];
   const SP = 72; // size of the three team sparks, px
 
@@ -573,7 +574,14 @@
       const h = H * (0.34 + 0.66 * eOutExpo(inv(0, T.crackFull, t)));
       const g = X.createLinearGradient(CX - 150, 0, CX + 150, 0);
       g.addColorStop(0, "rgba(255,170,70,0)"); g.addColorStop(0.5, `rgba(255,196,110,${a})`); g.addColorStop(1, "rgba(255,170,70,0)");
-      X.save(); X.globalCompositeOperation = "lighter"; X.fillStyle = g; X.fillRect(CX - 150, CY - h / 2, 300, h); X.restore();
+      X.save(); X.globalCompositeOperation = "lighter"; X.fillStyle = g;
+      const N = 36; // strips fade out towards both ends of the crack: no hard rectangle edge
+      for (let i = 0; i < N; i++) {
+        const y0 = CY - h / 2 + (h * i) / N, u = (i + 0.5) / N, e = Math.min(1, Math.min(u, 1 - u) * 4);
+        X.globalAlpha = e * e * (3 - 2 * e);
+        X.fillRect(CX - 150, y0, 300, h / N + 1);
+      }
+      X.restore();
     }
     if (t < T.ideaOpen + 0.2) {
       const pul = 1 + 0.9 * Math.sin(inv(0, 0.2, t) * Math.PI) * (t < 0.2 ? 1 : 0);
@@ -608,8 +616,8 @@
       else if (t >= T.dock[1] && t < T.gather[0]) {
         // docked: the team stays below the word and pulses with the work
         const lp = letterPulse(t, k);
-        dockSquare(X, docks[k].x, docks[k].y, 84, SPARK_COL[k], Math.min(1, pulse(t, T.buildPulses, 0.12) + lp + pulse(t, T.syncPulses, 0.1)));
-      } else if (t >= T.gather[0] && t < T.gather[1]) { size = 84; p = mkhop(T.gather[0], T.gather[1], docks[k], { x: CX, y: CY }, (k - 1) * 110); }
+        dockSquare(X, docks[k].x, docks[k].y, 124, SPARK_COL[k], Math.min(1, pulse(t, T.buildPulses, 0.12) * 0.5 + lp + launch(t, k) + pulse(t, T.syncPulses, 0.1)));
+      } else if (t >= T.gather[0] && t < T.gather[1]) { size = 100; p = mkhop(T.gather[0], T.gather[1], docks[k], { x: CX, y: CY }, (k - 1) * 110); }
       if (p) {
         if (hp) echoes(X, t, hp, col, size);
         spark(X, p.x, p.y, size, col, a, 1);
@@ -617,7 +625,7 @@
     }
     // agent spark: the writer. During the build it waits under the word and is fed by the team.
     const wl = T.agentLetters, last = wl[wl.length - 1][1];
-    const hub = { x: CX, y: wA.bottom + 108 };
+    const hub = { x: CX, y: wA.bottom + 96 };
     if (t >= T.dock[1] - 0.1 && t < T.gather[1]) {
       let p = null, size = 64;
       if (t < wl[0][0]) p = { x: CX, y: CY };
@@ -631,20 +639,19 @@
         p = { x: scanX(k, camera(t)), y: CY };
       } else if (t < T.gather[0]) p = hop(t, T.scan[1] + STEP, T.scan[1] + 3 * STEP, { x: scanX(8, camera(T.scan[0])), y: CY }, hub, 0);
       else p = hop(t, T.gather[0], T.gather[1], hub, { x: CX, y: CY }, 0);
-      const charge = t > T.scan[1] ? 1 + 0.6 * pulse(t, T.buildPulses, 0.1) : 1;
+      const charge = t > T.scan[1] ? 1 + 0.5 * pulse(t, PK, 0.07) : 1;
       if (p) spark(X, p.x, p.y, size * charge, [255, 255, 255], 1, 1.3);
     }
-    // team → agent: every build pulse sends three packets from the docked team to the agent
-    for (let m = 0; m < T.buildPulses.length; m++) {
-      const pt = T.buildPulses[m];
+    // team → agent: a continuous stream, one packet per 16th note, each member in turn
+    for (let i = 0; i < PK.length; i++) {
+      const pt = PK[i], k = i % 3;
       if (t >= pt - 0.3 && t < pt) {
-        for (let k = 0; k < 3; k++) {
-          const hp = { t0: pt - 0.3, t1: pt, from: docks[k], to: hub, arc: (k - 1) * 46 };
-          const pp = hop(t, hp.t0, hp.t1, hp.from, hp.to, hp.arc);
-          echoes(X, t, hp, SPARK_COL[k], 34);
-          X.fillStyle = rgba(SPARK_COL[k]); X.fillRect(pp.x - 24, pp.y - 24, 48, 48);
-          X.fillStyle = "#fff"; X.fillRect(pp.x - 12, pp.y - 12, 24, 24);
-        }
+        const hp = { t0: pt - 0.3, t1: pt, from: docks[k], to: hub, arc: (k - 1) * 60 };
+        const pp = hop(t, hp.t0, hp.t1, hp.from, hp.to, hp.arc);
+        echoes(X, t, hp, SPARK_COL[k], 44);
+        X.fillStyle = rgba(C.hudInk); X.fillRect(pp.x - 36, pp.y - 36, 72, 72);
+        X.fillStyle = rgba(SPARK_COL[k]); X.fillRect(pp.x - 30, pp.y - 30, 60, 60);
+        X.fillStyle = "#fff"; X.fillRect(pp.x - 14, pp.y - 14, 28, 28);
       }
     }
     // the centre spark just before the hit (mirror of frame 0)
@@ -669,6 +676,12 @@
       }
       X.restore();
     });
+  }
+
+  function launch(t, k) {
+    let p = 0; // a docked square flashes when it sends a packet
+    for (let i = k; i < PK.length; i += 3) { const d = t - (PK[i] - 0.3); if (d >= 0 && d < 0.4) p += Math.exp(-d / 0.08); }
+    return Math.min(1, p);
   }
 
   function letterPulse(t, k) {
@@ -754,15 +767,6 @@
       X.fillRect(x0 - th / 2, y1 - th / 2, half * 2 + th, th);
       X.fillRect(x0 - th / 2, y0, th, half * 2);
       X.fillRect(x1 - th / 2, y0, th, half * 2);
-      X.strokeStyle = rgba(C.cyan, 0.25 * oa); X.lineWidth = th * 2.2;
-      X.strokeRect(x0, y0, half * 2, half * 2);
-    }
-    // light shaft out of the figure (the site's own hero light, brief)
-    const sh = !COVER && age > 0.05 ? Math.exp(-(age - 0.05) / 0.12) : 0;
-    if (sh > 0.01) {
-      const g = X.createLinearGradient(cam.ox - 90, 0, cam.ox + 90, 0);
-      g.addColorStop(0, "rgba(0,200,255,0)"); g.addColorStop(0.5, `rgba(190,240,255,${0.30 * sh})`); g.addColorStop(1, "rgba(0,200,255,0)");
-      X.fillStyle = g; X.fillRect(cam.ox - 90, 0, 180, H);
     }
     X.restore();
     // light bleeding out of the lit void onto the neighbouring blue cells
@@ -856,12 +860,12 @@
       const s = TXT.tagline;
       const n = Math.min(s.length, Math.floor((t - T.tagline[0]) * FPS + EPS) + 1);
       X.save();
-      X.font = `700 34px ${MONO}`;
-      X.letterSpacing = "7px";
+      X.font = `700 40px ${MONO}`;
+      X.letterSpacing = "8px";
       X.textBaseline = "alphabetic";
       X.fillStyle = rgba(C.sky, 0.92);
-      X.fillText(s.slice(0, n), LOGO_X, 710);
-      if (n < s.length) { const wd = X.measureText(s.slice(0, n)).width; X.fillStyle = rgba(C.ice); X.fillRect(LOGO_X + wd + 2, 682, 18, 30); }
+      X.fillText(s.slice(0, n), LOGO_X, 716);
+      if (n < s.length) { const wd = X.measureText(s.slice(0, n)).width; X.fillStyle = rgba(C.ice); X.fillRect(LOGO_X + wd + 2, 684, 20, 36); }
       X.restore();
     }
     // the dot of "hackalem.ai": the first pixel comes back as idea · team · agent
@@ -888,21 +892,25 @@
 
   // ───────────────────────── HUD ─────────────────────────
   function drawHUD(X, t) {
-    if (t >= T.hit + 0.84) return;
-    const a = 1 - smooth(T.hit + 0.62, T.hit + 0.82, t);
+    if (t >= T.hit + 0.72) return;
+    const a = 1 - smooth(T.hit + 0.58, T.hit + 0.70, t);
     const n = pixelCount(t);
     const chg = [T.n2, T.n4, T.n8, ...T.countdown, T.hit];
     let flash = 0;
     chg.forEach((c) => { if (t >= c && t < c + 0.1) flash = 1; });
     X.save();
     X.globalAlpha = a;
-    X.fillStyle = t >= T.hit ? rgba(C.ice) : rgba(flash ? C.ice : C.hudInk);
+    X.fillStyle = t >= T.hit ? rgba(C.ice) : rgba(flash ? C.ice : C.hudInk); // dark ink on the blue slab; from the hit on light ink with a dark keyline (readable on blue and on the dark void)
     X.textBaseline = "alphabetic";
-    X.font = `700 31px ${MONO}`; X.letterSpacing = "7px";
-    X.fillText(TXT.hudLabel, 72, 106);
-    X.font = `800 104px ${MONO}`; X.letterSpacing = "-3px";
-    X.fillText(String(n), 72, 208);
-    X.fillRect(72, 124, 64, 5);
+    X.font = `700 38px ${MONO}`; X.letterSpacing = "8px";
+    const outline = t >= T.hit; // over the light/dark seam of the zoom-out the HUD gets a dark keyline
+    X.lineJoin = "round"; X.lineWidth = 9; X.strokeStyle = rgba(C.hudInk, 0.9);
+    if (outline) X.strokeText(TXT.hudLabel, 72, 112);
+    X.fillText(TXT.hudLabel, 72, 112);
+    X.font = `800 120px ${MONO}`; X.letterSpacing = "-3px";
+    if (outline) X.strokeText(String(n), 72, 234);
+    X.fillText(String(n), 72, 234);
+    X.fillRect(72, 132, 72, 6);
     X.restore();
   }
 
@@ -1050,15 +1058,15 @@
     out.fillStyle = rgba(C.ice);
     out.font = '800 176px "Manrope"';
     out.letterSpacing = "-5px";
-    out.fillText("HackAlem", 960, 560);
+    out.fillText("HackAlem", 960, 478);
     out.fillStyle = rgba(C.cyan);
-    out.fillText("AI", 960, 724);
-    out.fillStyle = rgba(C.sky, 0.95);
-    out.font = `700 30px ${MONO}`;
-    out.letterSpacing = "7px";
-    out.fillText(TXT.tagline, 966, 818);
+    out.fillText("AI", 960, 640);
     out.fillStyle = rgba(C.wall, 0.95);
-    out.fillRect(962, 770, 150, 5);
+    out.fillRect(962, 690, 170, 6);
+    out.fillStyle = rgba(C.sky, 0.95);
+    out.font = `700 38px ${MONO}`;
+    out.letterSpacing = "8px";
+    out.fillText(TXT.tagline, 964, 758);
     out.restore();
     post(out, t);
     COVER = false;

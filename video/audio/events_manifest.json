@@ -1,11 +1,11 @@
 {
  "sr": 48000,
  "samples": 720000,
- "master_gain_db": 0.673,
- "limiter_ceiling_db": -2.75,
- "after_aac192_true_peak_db": -1.1,
- "after_aac192_lufs": -14.1,
- "sha256_wav": "61518daa2d2ef33a59290948b4d45a9b9a032b4713a774ef00364a9f707603cd",
+ "master_gain_db": 1.714,
+ "limiter_ceiling_db": -3.65,
+ "after_aac192_true_peak_db": -1.9,
+ "after_aac192_lufs": -14.6,
+ "sha256_wav": "92a7e8905ed4ced51807ae7566dea1c4665a5acdb07de2b68f3608d5cf0b57d6",
  "events": [
   {
    "label": "accent1 crackle 2bit/4kHz",
@@ -27,6 +27,13 @@
    "sample": 2400,
    "layer": "fx",
    "gain_db": -20.0
+  },
+  {
+   "label": "act I bed D2+A2",
+   "t": 0.4,
+   "sample": 19200,
+   "layer": "bed",
+   "gain_db": -31.0
   },
   {
    "label": "kick 0.4 lofi 4bit",
@@ -208,21 +215,21 @@
    "t": 3.2,
    "sample": 153600,
    "layer": "kick",
-   "gain_db": -1.5
+   "gain_db": -4.5
   },
   {
    "label": "ACCENT2 noise burst",
    "t": 3.2,
    "sample": 153600,
    "layer": "perc",
-   "gain_db": -9.0
+   "gain_db": -11.0
   },
   {
    "label": "ACCENT2 sub boom",
    "t": 3.2,
    "sample": 153600,
    "layer": "kick",
-   "gain_db": -4.0
+   "gain_db": -7.0
   },
   {
    "label": "arp 8bit/24k 16th x60",
@@ -1269,36 +1276,36 @@
   },
   {
    "label": "spark F#6",
-   "t": 10.191212,
-   "sample": 489178,
+   "t": 10.219545,
+   "sample": 490538,
    "layer": "post",
    "gain_db": -26.51
   },
   {
    "label": "spark D7",
-   "t": 10.268672,
-   "sample": 492896,
+   "t": 10.325339,
+   "sample": 495616,
    "layer": "post",
    "gain_db": -25.34
   },
   {
    "label": "spark E6",
-   "t": 10.347677,
-   "sample": 496688,
+   "t": 10.432677,
+   "sample": 500768,
    "layer": "post",
    "gain_db": -27.29
   },
   {
    "label": "spark B6",
-   "t": 10.418351,
-   "sample": 500081,
+   "t": 10.531684,
+   "sample": 505521,
    "layer": "post",
    "gain_db": -27.91
   },
   {
    "label": "spark F#6",
-   "t": 10.471424,
-   "sample": 502628,
+   "t": 10.613091,
+   "sample": 509428,
    "layer": "post",
    "gain_db": -29.0
   },

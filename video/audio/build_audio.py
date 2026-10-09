@@ -44,11 +44,11 @@ MANIFEST = os.path.join(HERE, "events_manifest.json")
 
 SR = 48000
 SEED = 0x48414B4C  # "HAKL"
-TARGET_LUFS = -14.0
+TARGET_LUFS = -14.5          # чуть ниже -14: стройка тише, чтобы главный удар был заметно крупнее акцента №2
 TRUE_PEAK_CEIL_DB = -1.35   # потолок лимитера (детекция по 4x oversampling); цель <= -1.0 dBTP
 # Поправка внутреннего измерителя к ffmpeg ebur128 (подбирается по проверке ffmpeg, см. 04_sound.md)
 LUFS_CAL_DB = 0.0
-AAC_TP_LIMIT_DB = -1.05     # HyperFrames кодирует AAC 192k и сам занижает звук, если true peak ПОСЛЕ AAC > -1 dBTP; подбираем потолок так, чтобы не занижал
+AAC_TP_LIMIT_DB = -1.75     # HyperFrames кодирует AAC 192k и сам занижает звук, если true peak ПОСЛЕ AAC > -1 dBTP; подбираем потолок так, чтобы не занижал
 PRE_TRIM = 0.0              # доп. подрезка пред-слоя перед сведением (дБ); 0 - не используется
 
 with open(CUES_PATH, "r", encoding="utf-8") as _f:
@@ -73,8 +73,8 @@ CUT_T = CD[0]              # музыка вырезается с 9.2
 # Свет из выреза знака (указание режиссёра; в cues.json отдельных ключей нет): яркий до HIT+0.50 (10.10),
 # уходит к lock[0]-0.32 (10.58); от 10.58 до начала сжатия lock[0] (10.90) знак тёмный и спокойный.
 # Pad / саб / хвост удара затихают вслед за светом.
-LIGHT_BRIGHT = HIT + 0.50
-LIGHT_OUT = T["lock"][0] - 0.32
+LIGHT_BRIGHT = HIT + 0.75   # свет знака полный до 10.35 (картинка: plate burst до hit+0.75)
+LIGHT_OUT = HIT + 1.15      # тёмный знак с 10.75 (картинка: dark на hit+1.15)
 
 
 def S(t: float) -> int:
@@ -680,6 +680,11 @@ def score_act1_2_pre():
     sw = square_sweep(t_end - 0.05, 200.0, 900.0, bits=2, rate=8000, pw=2.2)
     put("fx", sw, 0.05, g=-20.0, fi=96, fo=288, label="crack sweep 200->900 2bit")
 
+    # ---- тихая «постель» акта I (D2+A2): без цифровых провалов между тиками
+    bed_d = int((T["n8"] - 0.05 - 0.4) * SR)
+    put("bed", (pad_note(note("D2"), bed_d / SR, "bed-I-D") + 0.6 * pad_note(note("A2"), bed_d / SR, "bed-I-A")), 0.4, g=-31.0,
+        fi=int(0.45 * SR), fo=int(0.5 * SR), label="act I bed D2+A2")
+
     # ---- 0.40 удар + аккорд-стаб D/A 4 бит
     t = T["ideaOpen"]
     put("kick", kick_drum(0.3, 140, 55, 0.025, 0.09, bits=4, rate=12000, name="k-0.4", lp=2500), t,
@@ -789,13 +794,13 @@ def score_act2_3_pre():
     """3.2 - 9.2: акт II (8-бит + ритм) и акт III (бас, райзер, ускорение)."""
     t32 = T["n8"]
     # ---- 3.20 Акцент №2: бочка + саб-бум + шумовой всплеск
-    put("kick", kick_drum(0.42, 190, 55, 0.028, 0.15, click=0.4, drive=2.2, name="k-3.2"), t32, g=-1.5, trig=True,
+    put("kick", kick_drum(0.42, 190, 55, 0.028, 0.15, click=0.4, drive=2.2, name="k-3.2"), t32, g=-4.5, trig=True,
         label="ACCENT2 kick")
-    put("kick", sub_tone(0.7, 70.0, D1, tau_f=0.18, harm=0.3) * env_exp(int(0.7 * SR), a=0.003, tau=0.22), t32, g=-4.0,
+    put("kick", sub_tone(0.7, 70.0, D1, tau_f=0.18, harm=0.3) * env_exp(int(0.7 * SR), a=0.003, tau=0.22), t32, g=-7.0,
         fo=960, label="ACCENT2 sub boom")
     nb = noise_sweep(0.5, 9000.0, 900.0, q=0.8, name="burst-3.2", mode="lp",
                      ampfn=lambda u: np.exp(-u * 5.0))
-    put("perc", nb, t32, g=-9.0, rev=-10.0, label="ACCENT2 noise burst")
+    put("perc", nb, t32, g=-11.0, rev=-10.0, label="ACCENT2 noise burst")
 
     # ---- сетка: kicks 4-on-the-floor 4.0 ... 8.8
     kick_times = []
@@ -1209,8 +1214,8 @@ def lofi_bandwidth(x2):
 
 def ACT_TRIM_DB():
     """Кривая динамики по актам (дБ): акт II тише, акт III растёт, билд - максимум перед вырезом."""
-    return curve([(0.0, 0.0), (T["n8"] + 0.3, 0.0), (T["syncPulses"][0], -3.5), (T["syncPulses"][2], -3.5),
-                  (T["agentLetters"][0][0], -2.0), (T["scan"][0], -1.0), (T["buildPulses"][0], 0.0), (CUT_T, 1.0)])
+    return curve([(0.0, 0.0), (T["n8"] + 0.3, 0.0), (T["syncPulses"][0], -6.0), (T["syncPulses"][2], -6.0),
+                  (T["agentLetters"][0][0], -4.0), (T["scan"][0], -3.0), (T["buildPulses"][0], -2.0), (CUT_T, -0.5)])
 
 
 def mix_all(irs):
