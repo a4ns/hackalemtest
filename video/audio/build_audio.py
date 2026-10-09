@@ -68,6 +68,12 @@ HIT = T["hit"]             # 9.600
 CD = T["countdown"]        # 9.2 9.3 9.4 9.5
 CUT_T = CD[0]              # музыка вырезается с 9.2
 
+# Свет из выреза знака (указание режиссёра; в cues.json отдельных ключей нет): яркий до HIT+0.50 (10.10),
+# уходит к lock[0]-0.32 (10.58); от 10.58 до начала сжатия lock[0] (10.90) знак тёмный и спокойный.
+# Pad / саб / хвост удара затихают вслед за светом.
+LIGHT_BRIGHT = HIT + 0.50
+LIGHT_OUT = T["lock"][0] - 0.32
+
 
 def S(t: float) -> int:
     """Секунды -> индекс семпла (с округлением к ближайшему)."""
@@ -1000,8 +1006,10 @@ def score_climax():
     n = int(dur * SR)
     boom = sub_tone(dur, 80.0, D1, tau_f=0.33, harm=0.35, drive=1.6)
     t = tvec(n)
-    boom *= np.minimum(1.0, t / 0.003) * np.where(t < 1.2, np.exp(-np.maximum(t - 0.1, 0) / 0.75), np.exp(-1.47 - (t - 1.2) / 0.12))
-    put("hit", boom, HIT, g=-4.5, fo=480, label="HIT sub boom 80->36Hz 1.2s")
+    boom *= np.minimum(1.0, t / 0.003) * np.exp(-np.maximum(t - 0.1, 0) / 0.75)
+    # скольжение 80->36 Гц задано на 1.2 с; амплитуда уходит к LIGHT_OUT вслед за светом знака
+    boom *= curve([(0.0, 1.0), (LIGHT_BRIGHT - HIT, 1.0), (LIGHT_OUT - HIT, 0.0), (dur, 0.0)], n=n)
+    put("hit", boom, HIT, g=-4.5, fo=480, label="HIT sub boom 80->36Hz (fades with light)")
     # большая бочка
     put("hit", kick_drum(0.6, 210, 52, 0.032, 0.2, click=0.5, drive=2.4, name="k-big"), HIT, g=-3.0, trig=True,
         label="HIT big kick")
@@ -1013,9 +1021,9 @@ def score_climax():
     put("hit", crash(2.8, "hit-crash", tau=0.95), HIT, g=-12.5, rev=-8.0, fi=48, label="HIT crash")
     # аккорд Dmaj9 (суперпила) D2 A2 E3 F#3 A3 C#4 E4
     chord_hz = [note(x) for x in ("D2", "A2", "E3", "F#3", "A3", "C#4", "E4")]
-    cd = 1.9
+    cd = LIGHT_OUT - HIT + 0.02
     ss = supersaw(chord_hz, cd, "dmaj9-super", voices=5, detune_c=14.0)
-    ss *= curve([(0, 1.0), (0.12, 1.0), (0.9, 0.58), (1.5, 0.32), (cd, 0.0)], n=int(cd * SR), ease_on=True)[None, :]
+    ss *= curve([(0, 1.0), (0.12, 1.0), (LIGHT_BRIGHT - HIT, 0.62), (LIGHT_OUT - HIT, 0.0), (cd, 0.0)], n=int(cd * SR), ease_on=True)[None, :]
     put("pad", ss, HIT, g=-8.0, rev=-5.0, fo=960, label="HIT Dmaj9 supersaw")
 
     # ---- 9.600-10.100: 8 металлических кликов с ростом высоты (по аккорду), расширяющаяся база
@@ -1027,10 +1035,12 @@ def score_climax():
         pn = width * (1 if k % 2 == 0 else -1)
         put("post", metal_click(note(nm), 0.12, f"mclick{k}"), tt, g=-17.0 + 0.4 * k, pan=pn, rev=-9.0, label=f"metal click {nm}")
 
-    # ---- 10.1-10.5 знак сияет: тихие искры
+    # ---- знак сияет (до LIGHT_OUT): тихие искры
     r = rng("sparks-10.1")
+    sp0 = HIT + 0.52
+    sp_step = (LIGHT_OUT - 0.04 - sp0) / 6.0
     for i in range(6):
-        tt = 10.12 + 0.07 * i + float(r.uniform(0, 0.03))
+        tt = sp0 + sp_step * i + float(r.uniform(0, 0.03))
         nm = ["A6", "F#6", "D7", "E6", "B6", "F#6"][i]
         put("post", glass_ping(note(nm), 0.5, tau=0.18, name=f"spark{i}"), tt, g=-27.0 + float(r.uniform(-2, 2)),
             pan=float(r.uniform(-0.85, 0.85)), rev=-4.0, label=f"spark {nm}")
@@ -1040,28 +1050,28 @@ def score_climax():
     ch2 = [note(x) for x in ("G2", "D3", "F#3", "B3", "D4", "A4")]            # Gmaj9 (без 5-й)
     ch3 = [note(x) for x in ("D3", "A3", "D4", "F#4", "A4", "E5")]            # Dadd9/maj
     t_a = HIT
-    t_b = HIT + 2 * BAR / 2 * 1.0 + BAR - BAR  # = HIT + BAR (11.2)
-    t_b = HIT + BAR
-    t_c = T["dotAccents"][0]
-    t_e = T["lastTick"]
+    t_b = T["lock"][0]               # сжатие знака: Gmaj9 входит со стартом сжатия
+    t_c = T["dotAccents"][0]         # «точка»: финальный чистый D
 
-    def pad_chord(freqs, t0, dur, att, rel, label, g):
+    def pad_chord(freqs, t0, dur, att, rel, label, g, pts=None):
         n = int(dur * SR)
         acc = np.zeros((2, n))
         for i, f in enumerate(freqs):
             acc += pad_note(f, dur, f"{label}-{i}") / math.sqrt(len(freqs))
-        env = curve([(0, 0), (att, 1), (dur - rel, 1), (dur, 0)], n=n)
+        env = curve(pts if pts else [(0, 0), (att, 1), (dur - rel, 1), (dur, 0)], n=n)
         acc = acc * env[None, :]
         held = env > 0.5
         rms = math.sqrt(float(np.mean(acc[:, held] ** 2)))
         acc *= 0.1 / rms                       # опорный уровень -20 dBFS RMS на удержании, g - относительно него
         put("pad", acc, t0, g=g, rev=-7.0, fi=24, fo=240, label=label)
 
-    pad_chord(ch1, t_a, (t_b + 0.35) - t_a, 0.18, 0.5, "pad Dmaj9", -3.0)
-    pad_chord(ch2, t_b - 0.1, (t_c + 0.35) - (t_b - 0.1), 0.4, 0.55, "pad Gmaj9", -2.0)
-    pad_chord(ch3, t_c - 0.08, 15.0 - (t_c - 0.08), 0.45, 1.6, "pad D final", -2.0)
+    d1 = (t_b + 0.4) - t_a
+    pad_chord(ch1, t_a, d1, 0, 0, "pad Dmaj9", -3.0,
+              pts=[(0, 0), (0.18, 1), (LIGHT_BRIGHT - t_a, 1), (LIGHT_OUT - t_a, 0.15), (t_b - t_a, 0.15), (d1, 0)])
+    pad_chord(ch2, t_b, (t_c + 0.35) - t_b, 0.5, 0.6, "pad Gmaj9", -2.0)
+    pad_chord(ch3, t_c - 0.08, DURATION - (t_c - 0.08), 0.45, DURATION - T["lastTick"] - 0.02, "pad D final", -2.0)
 
-    # ---- 10.5-11.1 мягкий свуш L->R, затухание саба (естественно через boom)
+    # ---- мягкий свуш L->R на сжатии знака (lock)
     l0, l1 = T["lock"]
     sw = noise_sweep(l1 - l0, 2800.0, 600.0, q=1.2, name="lock-swish", mode="bp", wide=False,
                      ampfn=lambda u: np.sin(np.pi * np.clip(u, 0, 1)) ** 1.5)
@@ -1084,7 +1094,7 @@ def score_climax():
         put("post", y, tt, g=lvl, pan=-0.9 + 1.8 * u + float(r.uniform(-0.05, 0.05)), rev=-3.0, fi=0, fo=0)
     EVENTS.append({"label": "print cascade grains x%d (~400/s) L->R" % ntick, "t": p0, "sample": S(p0), "layer": "post", "gain_db": -33.0})
     put("post", fm_bell(note("D6"), 1.4, ratio=3.5, index=1.6, tau_i=0.12, tau_a=0.5, name="bellD6"), p1, g=-12.0, pan=0.1,
-        rev=-4.0, label="bell D6 @11.7")
+        rev=-4.0, label="bell D6 @print end")
 
     # ---- 11.8-12.1 тонкий восходящий свип в 3 ступени
     r0, r1 = T["rule"]
@@ -1131,13 +1141,8 @@ def score_climax():
     pulse = sub_tone(0.05, D1, harm=0.25, drive=1.1) * np.sin(np.pi * np.linspace(0, 1, n)) ** 1.5
     put("post", pulse, tl, g=-9.0, fi=48, fo=240, label="last tick sub pulse D1 50ms")
     dsw = 0.9
-    n = int(dsw * SR)
-    u = np.linspace(0, 1, n)
     r = rng("air-14")
-    air = np.stack([svf(r.standard_normal(n), 5200.0, 0.9, "bp"), svf(r.standard_normal(n), 5200.0, 0.9, "bp")])
-    up = 0.2
-    amp = np.where(u * dsw < up, ease(u * dsw / up), np.exp(-(u * dsw - up) / 0.3))
-    # свелл набирается ДО 14.0 и уходит после
+    # свелл набирается ДО последнего тика и уходит после
     pre = 0.2
     nn = int((pre + dsw) * SR)
     amp_full = np.concatenate([ease(np.linspace(0, 1, int(pre * SR))) ** 2, np.exp(-np.arange(int(dsw * SR)) / SR / 0.3)])
@@ -1231,11 +1236,16 @@ def mix_all(irs):
     pad = padL.dry + conv_stereo(padL.send, IR_HALL)
     duck_pad = sidechain_gain(TRIG * (np.arange(N) >= S(HIT)), depth_db=5.0, rel=0.35)
     pad = pad * duck_pad[None, :]
-    fc = curve([(0, 14000.0), (HIT, 14000.0), (HIT + 0.9, 9000.0), (T["lock"][0], 9000.0), (T["lock"][1], 700.0),
-                (T["print"][1], 3500.0), (T["rule"][1] + 0.3, 9000.0), (14.0, 9000.0)], log=True)
+    fc = curve([(0, 14000.0), (HIT, 14000.0), (LIGHT_BRIGHT, 9000.0), (LIGHT_OUT, 600.0), (T["lock"][0], 600.0),
+                (T["lock"][0] + 0.5, 2500.0), (T["print"][1], 4500.0), (T["rule"][1] + 0.3, 9000.0), (T["lastTick"], 9000.0)],
+               log=True)
     s0 = S(HIT) - 2
     pad_f = pad.copy()
     pad_f[:, s0:] = svf_st(pad[:, s0:], fc[s0:], 0.7071, "lp")
+    # свет уходит -> хвост удара и pad затихают вслед (гладкие кривые в дБ)
+    hit = hit * np.power(10.0, curve([(0, 0.0), (LIGHT_BRIGHT, 0.0), (LIGHT_OUT, -24.0)]) / 20.0)[None, :]
+    pad_f = pad_f * np.power(10.0, curve([(0, 0.0), (LIGHT_BRIGHT, 0.0), (LIGHT_OUT, -9.0), (T["lock"][0], -9.0),
+                                          (T["lock"][0] + 0.7, 0.0)]) / 20.0)[None, :]
     post = LAYERS["post"].dry + conv_stereo(LAYERS["post"].send, IR_HALL)
     return pre_sum, cd_sum, hit, pad_f, post
 
@@ -1292,7 +1302,7 @@ def master(mix, gain_db, ceiling_db=TRUE_PEAK_CEIL_DB, knee=0.72):
     y = mix * float(db(gain_db))
     y = soft_clip(y, knee)
     y, g = limiter(y, float(db(ceiling_db)))
-    fade = curve([(0.0, 0.0), (0.002, 1.0), (14.25, 1.0), (14.96, 0.0), (DURATION, 0.0)])
+    fade = curve([(0.0, 0.0), (0.002, 1.0), (T["staticFrom"] - 0.25, 1.0), (DURATION - 0.04, 0.0), (DURATION, 0.0)])
     return y * fade[None, :], g
 
 

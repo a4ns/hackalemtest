@@ -1,8 +1,8 @@
 {
  "sr": 48000,
  "samples": 720000,
- "master_gain_db": -0.733,
- "sha256_wav": "d0df7c19c2a2eeaacc0152a2a8e2871654ecd69e4355e4600cb43acf3ef65bbe",
+ "master_gain_db": -0.207,
+ "sha256_wav": "50684cf7ab51cbe368e5e4f0467e84cde5a85770c1eea8841915a966a7755be6",
  "events": [
   {
    "label": "accent1 crackle 2bit/4kHz",
@@ -1181,7 +1181,7 @@
    "gain_db": -12.5
   },
   {
-   "label": "HIT sub boom 80->36Hz 1.2s",
+   "label": "HIT sub boom 80->36Hz (fades with light)",
    "t": 9.6,
    "sample": 460800,
    "layer": "hit",
@@ -1300,18 +1300,18 @@
    "gain_db": -29.0
   },
   {
+   "label": "pad Gmaj9",
+   "t": 10.9,
+   "sample": 523200,
+   "layer": "pad",
+   "gain_db": -2.0
+  },
+  {
    "label": "soft swish L->R",
    "t": 10.9,
    "sample": 523200,
    "layer": "post",
    "gain_db": -17.0
-  },
-  {
-   "label": "pad Gmaj9",
-   "t": 11.1,
-   "sample": 532800,
-   "layer": "pad",
-   "gain_db": -2.0
   },
   {
    "label": "print cascade grains x280 (~400/s) L->R",
@@ -1321,7 +1321,7 @@
    "gain_db": -33.0
   },
   {
-   "label": "bell D6 @11.7",
+   "label": "bell D6 @print end",
    "t": 11.9,
    "sample": 571200,
    "layer": "post",

@@ -44,11 +44,19 @@ a = np.frombuffer(raw, np.float32).reshape(-1, 2)
 print(f"samples: {len(a)} ({len(a) / 48000:.3f} s)  sample peak: {20 * np.log10(np.abs(a).max() + 1e-12):.2f} dBFS  clipped(>=0.999): {(np.abs(a) >= 0.999).sum()}")
 print("first 10 ms peak:", round(float(np.abs(a[:480]).max()), 4), " last 10 ms peak:", round(float(np.abs(a[-480:]).max()), 6))
 mono = np.abs(a).max(axis=1)
-env = np.convolve(mono, np.ones(240) / 240, "same")
-d = np.diff(env, prepend=0)
-win = slice(int(9.3 * 48000), int(9.9 * 48000))
-onset = (np.argmax(d[win]) + win.start) / 48000
-print(f"largest energy onset near the hit: {onset:.4f} s (expected {HIT})")
+w0, w1 = int((HIT - 0.1) * 48000), int((HIT + 0.3) * 48000)
+thr = 0.5 * mono[w0:w1].max()
+onset = (np.argmax(mono[w0:w1] > thr) + w0) / 48000  # first sample of the main impact (threshold crossing)
+print(f"main impact onset: {onset:.4f} s (expected {HIT})")
+import os
+WAV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "assets", "audio", "hackalem-intro-mix.wav")
+if os.path.exists(WAV):
+    ref = np.frombuffer(subprocess.run(["ffmpeg", "-v", "error", "-i", WAV, "-f", "f32le", "-ac", "2", "-ar", "48000", "-"], capture_output=True).stdout, np.float32).reshape(-1, 2)
+    sl = slice(int(8.0 * 48000), int(11.0 * 48000))
+    x, y = ref[sl, 0], a[sl, 0]
+    lag = int(np.argmax(np.correlate(y - y.mean(), x - x.mean(), "full")) - (len(x) - 1))
+    gain = 20 * np.log10(np.sqrt((y ** 2).mean()) / np.sqrt((x ** 2).mean()))
+    print(f"muxed audio vs source WAV: lag {lag} samples ({lag / 48:.2f} ms), gain {gain:+.2f} dB (renderer's AAC true-peak correction)")
 secs = [20 * np.log10(np.sqrt((a[int(i * 48000):int((i + 1) * 48000)] ** 2).mean()) + 1e-9) for i in range(15)]
 print("RMS dBFS per second:", " ".join(f"{v:5.1f}" for v in secs))
 

@@ -83,10 +83,16 @@ def metrics(x, sr):
         sm = rms_db(side[a:b]) - rms_db(mid[a:b]) if rms_db(mid[a:b]) > -100 else float("nan")
         print(f" {s:2d}.0-{s+1:2d}.0    {rms_db(seg):8.1f}   {dbfs(np.abs(seg).max()):8.1f}   {sm:7.1f}   {corr(x[0, a:b], x[1, a:b]):7.2f}")
     print("\n== Ключевые окна ==")
+    H, LK, PR, DOT, LT = T["hit"], T["lock"], T["print"], T["dotAccents"], T["lastTick"]
+    lo_ = LK[0] - 0.32          # свет ушёл (указание режиссёра: 10.58)
     wins = [("0.00-0.35 акцент №1", 0.0, 0.35), ("2.4-3.2 арпеджио+райзер", 2.4, 3.2), ("3.2-3.4 акцент №2", 3.2, 3.4),
             ("8.0-9.2 билд", 8.0, 9.2), ("9.20-9.50 отсчёт", 9.2, 9.5), ("9.50-9.60 вдох", 9.5, 9.6),
-            ("9.60-9.80 ГЛАВНЫЙ УДАР", 9.6, 9.8), ("9.6-10.6 климакс", 9.6, 10.6), ("10.6-11.7 затухание/печать", 10.6, 11.7),
-            ("12.7-13.9 точки/pad", 12.7, 13.9), ("14.0-15.0 финал", 14.0, 15.0)]
+            (f"{H:.2f}-{H+0.2:.2f} ГЛАВНЫЙ УДАР", H, H + 0.2), (f"{H:.1f}-{H+1.0:.1f} климакс", H, H + 1.0),
+            (f"{H+0.5:.2f}-{lo_:.2f} свет гаснет", H + 0.5, lo_),
+            (f"{lo_:.2f}-{LK[0]:.2f} тёмный знак (тихо)", lo_ + 0.02, LK[0]),
+            (f"{LK[0]:.2f}-{PR[0]:.2f} сжатие", LK[0], PR[0]),
+            (f"{PR[0]:.2f}-{PR[1]:.2f} печать вордмарка", PR[0], PR[1]),
+            (f"{DOT[0]:.1f}-{DOT[2]+0.3:.1f} точки/pad", DOT[0], DOT[2] + 0.3), (f"{LT:.1f}-15.0 финал", LT, 15.0)]
     for name, a, b in wins:
         seg = x[:, int(a * sr):int(b * sr)]
         mid_, side_ = (seg[0] + seg[1]) / 2, (seg[0] - seg[1]) / 2
@@ -106,6 +112,28 @@ def metrics(x, sr):
     d = np.abs(np.diff(x, axis=1)).max(axis=0)
     i = int(d.argmax())
     print(f" макс скачок между соседними семплами: {d.max():.4f} FS на t={i / sr:.4f} с")
+    try:
+        with open(os.path.join(HERE, "events_manifest.json"), "r", encoding="utf-8") as mf:
+            onsets = np.array(sorted({e["sample"] for e in json.load(mf)["events"]}))
+    except Exception:
+        onsets = np.array([])
+    for thr in (0.5, 0.35):
+        idxs = np.where(d > thr)[0]
+        clusters = []
+        for k in idxs:
+            if clusters and k - clusters[-1][-1] < int(0.005 * sr):
+                clusters[-1].append(k)
+            else:
+                clusters.append([k])
+        print(f" скачков > {thr} FS: {len(idxs)} семплов в {len(clusters)} кластерах")
+        for c in clusters[:12]:
+            k = c[int(np.argmax(d[c]))]
+            near = ""
+            if len(onsets):
+                prev = onsets[onsets <= k]
+                if len(prev):
+                    near = f", после ближайшего события {1000.0 * (k - prev[-1]) / sr:.1f} мс"
+            print(f"    t={k / sr:.4f} с  скачок {d[k]:.3f} FS{near}")
     print(f" семплов >= 0.98 FS: {(np.abs(x) >= 0.98).sum()},  >= 0.89 FS (-1 dBFS): {(np.abs(x) >= 0.891).sum()}")
     print(f" DC (среднее): L {x[0].mean():+.2e}  R {x[1].mean():+.2e}")
     # локальные "щелчки": резкие скачки на фоне тихой окрестности
@@ -208,8 +236,8 @@ def render_png(x, sr, path):
     marks = [(0.0, L("0.00 акцент", "0.00 accent")), (T["n2"], "0.40"), (T["n8"], L("3.20 акцент 2", "3.20 accent 2")),
              (T["syncPulses"][0], L("4.0 ритм", "4.0 groove")), (T["scan"][0], L("7.2 райзер", "7.2 riser")),
              (T["countdown"][0], L("9.2 вырез", "9.2 cut")), (T["hit"], L("9.60 УДАР", "9.60 HIT")),
-             (T["lock"][0], "10.5"), (T["print"][0], L("10.95 печать", "10.95 print")), (T["dotAccents"][0], L("12.7 точки", "12.7 dots")),
-             (T["lastTick"], "14.0")]
+             (T["lock"][0], f"{T['lock'][0]:.2f} " + L("сжатие", "lock")), (T["print"][0], f"{T['print'][0]:.2f} " + L("печать", "print")),
+             (T["dotAccents"][0], f"{T['dotAccents'][0]:.1f} " + L("точки", "dots")), (T["lastTick"], f"{T['lastTick']:.1f}")]
     for t, lab in marks:
         xp = xpix(t)
         col = (255, 255, 255) if abs(t - T["hit"]) < 1e-6 else (120, 200, 255)
