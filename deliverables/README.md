@@ -27,7 +27,7 @@ python3 scripts/qc.py renders/hackalem-intro.mp4 renders/hackalem-intro-silent.m
 
 Звук пересобирается отдельно и детерминированно: `npm run cues && npm run audio` (нужны Python 3, numpy, scipy, soundfile, pedalboard).
 
-**Проверка повторяемости:** архив `hackalem-ai-intro-project.zip` распакован в другую папку, там выполнены `npm run check` и `npm run render:final` — результат проверки записан ниже после завершения (см. раздел «Итог проверки архива»). Дополнительно два полных рендера подряд в рабочей папке дали видеопоток с одинаковым MD5 (`3df03315ac5c13106e76e186f21ce929`), см. `video/docs/05_qc.md`.
+**Итог проверки архива:** `hackalem-ai-intro-project.zip` распакован в другую папку, там выполнены `npm run check` (ошибок нет; одно предупреждение линтера `duplicate_media_discovery_risk` — знак подключён двумя `<img>` намеренно: в углу и в лок-апе) и `npm run render:final` (≈ 25 мин). Получившийся MP4 **побитово идентичен** поставляемому (`cmp` — файлы совпали; MD5 видеопотока `3df03315ac5c13106e76e186f21ce929`, MD5 звукового потока `3ade12de130fc185146506145ed9ded4`).
 
 ## Документы (`video/docs/`)
 `01_research.md` — бренд и проверка фактов · `02_diagnosis_and_concept.md` — почему v1 получил 5.5 и что сделано · `03_storyboard_and_art_direction.md` — сценарий по таймкодам, арт-дирекшн, реализация · `04_sound.md` — звук, CC0-семплы, измерения · `05_qc.md` — проверка результата и три раунда независимой критики · `critic_rounds/` — сырой вывод критиков · `qc_report.txt` — вывод автоматической проверки.
