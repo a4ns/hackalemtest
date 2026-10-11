@@ -1,0 +1,370 @@
+[
+ {
+  "score": 6,
+  "verdict": "A competent, on-brand and well-structured intro, clearly better than v1 on inversion and darkness. It does not reach premium-agency level. The cubes look like frosted pastel plastic under a locked front-on camera. The 8.4 s hit is a brief milky wash that hides the brand figure at the moment it should pop. The 3-second lockup hold has a kerning collision and visible seams in what should be a clean vector mark. Fix the hit and the lockup first, then the material and lighting.",
+  "strengths": [
+   "The dark brand base is honoured. Frame corners measure about (0,4,20), close to #060B16, and frame 0 has mean luma 23. There are no bright or inverted frames, so the v1 'inverted vs brand' complaint is fixed.",
+   "Lockup structure is well built. The rule and the letter-spaced tagline are justified to exactly the wordmark width (x 435-1165 at 1280 wide). Left and right margins are 108 and 115 px. The mark is vertically centred on the text block. 'AI' measures (0,197,252), close to #00C8FF, and the mark (1,152,238) is close to #009AF0.",
+   "Frame 0 is a strong opener. A single hero cube sits among dark cubes with thin cyan rim light. It gives scale and depth, and the first event lands in under 0.5 s.",
+   "The cube-built Cyrillic words tie directly to the 16x16 pixel mark. All three words are readable even in the 360 px phone sheet. The pixel letterforms are clean and evenly spaced, for example АГЕНТ at 6.20.",
+   "The inhale before the hit gives the hit something to contrast against. The wall and vignette are darker at 8.30 than at 7.50.",
+   "No black frames, NaN blocks or single-frame jumps (QC). The video flash and the audio onset agree to 0.2 ms."
+  ],
+  "flaws": [
+   {
+    "timecode": "8.40-9.80 (peak and beauty shot)",
+    "flaw": "The climax is a short milky wash, not a designed peak. At the peak the wall goes pastel and low-contrast, and the carved figure, which is the brand's key shape, almost disappears for about 3 frames. The shockwave ring is a faint hairline. The 'ripple' is the whole wall rocking like a rigid card, not cubes moving one by one. After 8.7 s the picture drops back to pre-hit brightness and the beauty shot barely changes for about 1 s.",
+    "why_it_matters": "The customer marked v1's weak climax down specifically. A hit that lowers the contrast of the logo it is revealing will not read as a climax. It also gives the sound nothing visual to match, and the energy leaves right after the peak.",
+    "fix": "1) During the flash, drop the wall's cube albedo to about 0.6 and send the emission only through the carved-figure cells with additive bloom. The figure then goes to white and the cube edges stay visible. 2) Clip the figure core to 255 for about 3 frames, then decay the bloom exponentially over 0.4-0.6 s. 3) Replace the hairline ring with an 8-12 px additive ring that travels past the frame edge in about 0.5 s. 4) Give each cube a radial z-offset of about half a cube plus an emissive pulse, delayed by its distance from the centre, so the wall visibly ripples. 5) Add a 3% camera punch-in and a 2-frame shake. 6) Keep light moving across the wall through 8.7-9.8, for example a slow orbit or a light sweep, so the beauty shot is not a still.",
+    "severity": "major",
+    "evidence": "qc_report: flash luma goes 29 to 51 and the maximum mean luma over the whole film is 71.5 of 255, about 2x the film average of 36. still_08.50: the figure interior samples at (200,219,226), a pale grey fill, and the wall at (63,162,212). In hit_sequence, frames 8.433-8.533 have no cube-edge contrast and the figure outline is nearly gone. The ring at 8.467 is 2-3 px thick, and at 8.600 and 8.700 it is a hairline. At 8.533 the wall is a rigid trapezoid. Frames 8.833-9.200 are lit like 8.300. The same four vertical light streaks sit at the same left and right positions before, during and after the hit (8.300, 8.700, 9.000), so they do not react to it and look like a comb artefact."
+   },
+   {
+    "timecode": "0.00-8.30 (hero cube 0.00, words 2.20/4.00/6.20, wall 8.30)",
+    "flaw": "The material and lighting read as frosted pastel plastic, not premium glass. The word cubes are uniformly lit ice-blue with almost no difference between faces, no reflections, refraction or contact shadow. The 'glowing' hero cube is a matte pastel die with no bloom. The camera is locked front-on for all 15 s, so the words and the wall are flat planes and the only depth is random debris. I see no volumetric beam from above (the site hero's signature). Stray neutral grey and white cubes are off-palette.",
+    "why_it_matters": "The v1 complaint was 'flat, no depth or lighting'. This version is darker but still reads flat when a cube wall is front-on. The pastel cube colour is also not the brand blue, which only appears as the flat logo at 10.5 s, so the brand colour arrives very late.",
+    "fix": "Add an environment map for reflections with a fresnel rim. Give the lit cubes a dark-glass shell with an inner emissive core, and apply bloom to the emissive part only. Add soft AO or contact shadow on the wall. Add a volumetric beam from above, as on the site. Move the camera slowly during each word hold, about 3-5% dolly or +-4 degrees of orbit, so the cubes show parallax. Add depth of field on foreground debris. Re-tint cube albedo toward #009AF0, keep cyan #00C8FF for glints only, and delete the neutral-grey cubes.",
+    "severity": "major",
+    "evidence": "Pixel samples: lit cube faces are (129,204,228) at 2.20 and (87,196,219) on the hero cube at 0.00. The wall cube at 8.30 is (37,168,205). That is desaturated and shifted to teal, against the brand (0,154,240). Faces and neighbouring cubes differ by only a few levels in stills 02.20, 04.00 and 08.30. The wall at 8.30 is a flat tile field. Stray grey or white cubes: still_03.00 top-right, still_06.20 at about (440,525) and (940,665), still_06.80 at about (995,655). The 12.50 still shows only a faint lit disc at top-centre, and no beam in any of the other frames."
+   },
+   {
+    "timecode": "11.00-15.00 (lockup hold)",
+    "flaw": "The brand lockup that holds for 3+ s has defects. 1) In 'HackAlem' the foot of the 'k' and the foot of the 'A' touch and merge at the baseline. 2) The 'flat vector' mark still shows 15 faint vertical hairlines from the cube columns, so it is a flattened mesh and not a clean vector. 3) The tagline is small: about 33 px cap height at 1080p and about 6 px in the phone view.",
+    "why_it_matters": "The last frame is the one the presentation will sit on, and the brief asks for an original vector logo and a recognisable name. A kerning collision and seams on the largest hold frame look unfinished. The tagline carries the only Russian descriptor of the event, and a phone viewer cannot read it.",
+    "fix": "Use the brand's outlined wordmark SVG, or add about 10-15 units of kerning on the k-A pair. Draw the final mark as one clean SVG shape with a single #009AF0 fill and no per-column mesh, and swap it in on one frame once it matches the wall pixel for pixel. Enlarge the tagline to at least 40 px at 1080p, use weight 500 or more, and give it a slightly brighter colour.",
+    "severity": "major",
+    "evidence": "A 2x crop of still_12.50 shows the k-A contact. A row profile across the mark in the same still: green channel dips from about 152 to 141-148 at each column boundary (about 7%), the top edge is 1 px lighter, and the 2x crop shows the vertical hairlines. Tagline letters are about 22 px tall in the 1280x720 still (about 33 px at 1080p) and about 6 px in phone_size_360px.png. Seams and k-A contact are also visible in still_11.00, which has the same artefacts."
+   },
+   {
+    "timecode": "10.20-10.90 (wall to vector mark)",
+    "flaw": "The 'flatten into the vector mark' is a cross-dissolve between two slightly misregistered images, not a true flatten. The figure shows a darker offset copy of its stair-step edges. A darker slab ghosts along the left and bottom edges. The colour snaps from teal-ice cubes to flat brand blue.",
+    "why_it_matters": "The transition into the lockup is the moment the film should feel most resolved. The ghost double figure makes the brand mark look unstable.",
+    "fix": "Animate the wall's extrusion depth to zero and the camera to exactly orthographic before the swap. Swap in the SVG on a single frame, once the 3D and 2D images match. Or use a short mask wipe along the glide axis, so there is no overlap of two silhouettes. Ramp the cube tint to #009AF0 during the glide so there is no colour snap.",
+    "severity": "minor",
+    "evidence": "A 3x crop of still_10.60 shows a dark second figure silhouette offset by about 8-10 px to the right and below the stair-steps. A dark slab is visible on the left and bottom outer edge. At 10.20 the wall is still teal with a white blob at the figure centre, while the final mark (12.50) is (1,152,238)."
+   },
+   {
+    "timecode": "1.50-6.60 (the three words)",
+    "flaw": "Word scale, colour and hold time are uneven. КОМАНДА is set at about 57% of the height of ИДЕЯ. The cube colour drifts from pale ice to saturated blue and back. Each word is fully formed for only about 0.8-1.0 s, and the gaps between are shapeless clouds (the 3.00 still contains no word).",
+    "why_it_matters": "The three words are the whole story, and the middle word, Команда, is the smallest and least emphasised. Nothing links the three words visually, so the 'Идея -> Команда -> Агент' progression depends on the viewer reading them in order. About 3 s of readable word in about 5 s of film is on the tight side.",
+    "fix": "Fix the cap height for all three words, for example by dollying the camera for КОМАНДА, or break it into two lines. Hold each word at least 1.3 s once formed. Let the next word start assembling from the previous word's cubes in a tighter overlap, so there is no empty cloud. Keep one cube tint across all three words. Optionally leave a faint ghost of the previous word to link the sequence.",
+    "severity": "minor",
+    "evidence": "Cap height measured in stills: ИДЕЯ about 304 px (208-512 at 720p), КОМАНДА about 170 px (275-445), АГЕНТ about 247 px (238-485). Cube tints: (129,204,228) at 2.20, (73,159,210) at 4.00, (83,195,219) at 6.20. Overview 6.5 s already shows АГЕНТ breaking up as 'АГЕН7'. still_03.00 shows only a cube cloud and no word."
+   },
+   {
+    "timecode": "1.20-6.80 (motion blur), 9.20-14.50 (gradients), 0.00-8.00 (corner logo)",
+    "flaw": "Finishing artefacts. 1) The motion blur is stepped: fast cubes show a stack of discrete ghost copies, not a smooth smear. 2) The dark radial gradient behind the wall and the lockup shows concentric banding rings, with no dither or grain. 3) The corner wordmark's 'a' and 'k' have pixel notches that read as 'häckälem', and it uses lowercase 'hackalem.ai' for 8 s while the lockup uses 'HackAlem AI'.",
+    "why_it_matters": "Stepped blur and banding are the tells of an amateur render on a large screen. A dark gradient on a projector in a dim hall will show contour rings. A misreadable corner name works against 'the name must be recognisable' for the first 8 s.",
+    "fix": "Raise the motion-blur sample count to 16 or more, or use per-frame velocity blur. Add about 1-1.5 LSB of dither or fine film grain before encode, and raise the bitrate or use 10-bit for the gradient scenes. For the corner logo, use the official wordmark outlines at a larger size, or show the mark only, and write the name 'HackAlem AI' consistently.",
+    "severity": "minor",
+    "evidence": "A 3x crop of still_03.00 shows about 8 discrete ghost copies on the cube at about (545,215), and a barred smear at about (470,600). The enhanced backgrounds of stills 10.20 and 12.50 show clear concentric rings. The blue channel along y=60 steps about 1 level per 10 px (from 20 to about 80 across 640 px), and the rings are also faintly visible in the unenhanced stills 09.20-12.50. A 4x crop of the corner logo from still_00.00 shows the pixel-notched 'a' glyphs and the stepped 'k'."
+   }
+  ],
+  "unverifiable": [
+   "Motion quality: stills cannot show easing, judder or whether the 30 fps motion looks smooth. The hit is only about 4 frames (8.40-8.53), so it may read stronger in motion than in the stills, and the thin ring may land better. I cannot judge that.",
+   "A discrepancy I cannot resolve: still_03.00 shows only a loose cube cloud, while the 3.0 s frame in overview_0-7s.png shows КОМ forming at the left. Either one is mislabelled, or the cube simulation is not seek-deterministic and two renders differ. I cannot tell which.",
+   "Sound: I did not review audio. I cannot say from the measurements (loudness -14.7 LUFS, 0.2 ms flash-to-onset) whether the sound feels cheap or premium, or whether it supports the sense of development.",
+   "Whether the k-A contact in the wordmark is the brand's own kerning or the author's rendering, and whether the mark has exactly 173 cells in 16x16, because I cannot compare against hackalem.ai.",
+   "Whether the vertical seams in the lockup mark and the gradient banding are visible after a player's scaling or on a given projector or screen. They are measurable at 1:1 in the stills.",
+   "Whether the single sheen across the mark at 12.6-13.6 is perceptible. I see only a faint light patch at the left of the mark in the 13.0 s frame, and the lockup is otherwise static for about 3 s, ending in a frozen last 0.46 s (QC).",
+   "The 'glossy glass' claim. The stills show matte, frosted faces, but specular highlights may move and look glossier in motion."
+  ]
+ },
+ {
+  "score": 6.5,
+  "verdict": "Everything below is inferred from measurements, the event list, the spectrogram and the stills. I did not listen to the film. As a technical master it is clean: 15 of 16 checks pass, there is no clipping, no click candidates and no phase problem, and the hit is sample-locked to the picture. The emotional dynamics are weaker than the picture. The hit is only about 3 to 6 LU above the build and sits within roughly 2 LU and 0.5 dB of peak of the frame-0 hook. The 'inhale' is a 5.7 dB dip rather than a vacuum. The whole hit lands inside a 56 ms stack, so nothing tracks the expanding shockwave ring on screen. The 2 to 5 s build looks bass-forward and dull in the windowed numbers. The ML listeners lean towards 'chiptune / glockenspiel' in the climax windows, which is the 'toy-like' complaint the customer raised about v1. The ending is a 147 Hz drone plus pure-sine bells. That is a risky 'hold' on small speakers, and the ML tags it 'Ding'. I score it as competent and safe but not yet premium-agency, mainly because the hit is not a real event in loudness terms.",
+  "strengths": [
+   "Technical hygiene is excellent. 15 of 16 checks pass and 0 samples clip. Click candidates are 0 and the maximum sample step is 0.497 FS. True peak is -2.14 dBTP (safe for AAC), integrated loudness is -14.67 LUFS and PLR is 12.5 dB. L/R correlation never goes negative (minimum +0.29), bass correlation is 0.98 and the worst mono-fold loss is -1.9 dB. Phase and mono-compatibility risks are low.",
+   "A/V sync of the hit is sample-accurate in the measurements. The video flash frame is at 8.4000 s and the audio broadband onset at 8.4002 s (0.2 ms). Muxed audio against the source WAV shows 0 samples of lag, so the AAC encode did not shift it.",
+   "The whole-file octave balance is inside the real-music p10 to p90 range in every octave from 63 Hz to 8 kHz. 63 Hz is 4.9 dB below the median, so v1's 'bass-heavy' complaint is not reproduced globally. Small-speaker loss is mild (laptop -0.7 LU, phone -1.5 LU, percentiles p60 and p74). The measured spectral tilt is -1.7 dB/oct, which is in the normal range.",
+   "The harmonic plan is visible in the event labels. The run notes lift from a C/F area (ИДЕЯ) to D-minor with Bb (КОМАНДА, АГЕНТ). The mark landings use C#, G and B, which reads as dominant tension. The hit then resolves to D5, A5, D6 and F#6, which is D major with a bright F# lift. That is a deliberate V7-to-I move into the climax. It is judged from labels only.",
+   "The level arc across the four landing runs is monotonic. Landing-note gains rise from about -28.7 dB (ИДЕЯ) to -22.8, -18, -16.2 and finally -13.5 dB (mark). Kick gain steps from -18.5 to -16.5 to -14.5 dB. The low end is pulled before the hit (last bass at 7.4 s, last kick at 7.6 s), and the spectrogram shows a dark 20 to 130 Hz region from about 7.6 to 8.3 s.",
+   "Real CC0 samples are layered sensibly. The Kenney crunch sits 50 ms ahead of the hit at 8.35 s as a pre-transient. Glass and metal impacts sit at 8.43 s. Per-letter glass ticks run under the title. No noise or distortion artefacts appear in the ML tags (AST noise 0.00, static 0.002, distortion 0.001). The CLAP 'harsh noisy glitchy 8-bit' cosine is only 0.063.",
+   "The beauty shot carries weight. The loudest RMS window is 8.5 to 9.5 s (-13.7 dBFS), and momentary loudness decays gradually (-11, -11, -12, -13, -13, -14) rather than collapsing after the hit."
+  ],
+  "flaws": [
+   {
+    "timecode": "7.8-8.4 s (inhale) and the 0.0 s hook vs the 8.4 s hit",
+    "flaw": "Build-to-hit contrast is modest and the 'inhale' is not a vacuum. The frame-0 hook is almost as hot as the climax, and the single highest sample in the file is not the hit.",
+    "why_it_matters": "A hit reads as big because of the step from silence or near-silence to full level. A 5.7 dB dip and about a 3 to 6 LU step read as 'the music got louder'. The spectrogram shows the HF noise riser running right up to the hit, so there is no sonic breath. A listener who got a loud ding at frame 0 has already spent the dynamic range.",
+    "fix": "Lower the hook by about 6 dB (bell -10 to about -16, body -9 to about -15, ding -14 to about -19) so frame 0 is a clear cue and the hit has headroom. Then carve a true pre-hit vacuum. Duck the riser, reverse swell, pad and bed by at least 20 dB from about 8.22 to 8.38 s, with a closing low-pass sweep and a reverse-reverb tail. Keep the 8.35 s crunch as the tick. Target a pre-hit RMS of about -45 dBFS and a hit step of at least 12 LU. Check that the post-AAC true peak at 8.4 s is the file maximum (at most -1.5 dBTP).",
+    "severity": "major",
+    "evidence": "QC 'pre-hit hole' is -28.1 dBFS RMS against -22.4 dBFS before it, a 5.7 dB dip. Momentary loudness (0.5 s grid) is -14 at 7.5 s, -17 at 8.0 s, then -11 at 8.5 s, with a maximum of -10.6 LUFS. That is only about 3.4 LU above the build's own peak and about 2.4 LU above the hook (-13 at 0.0 s). Per-second RMS is -16.5 (0 to 1 s), -18.6 (7 to 8 s) and -15.2 (8 to 9 s). Window peaks are -2.8 (0 to 1 s), -5.2 (7 to 8 s) and -2.3 (8 to 9 s). The first 10 ms peak is 0.7247 (-2.8 dBFS). The true peak of -2.14 dBTP is at t=9.20 s, 0.8 s after the hit. The nearest listed event there is a -21.6 dB spark."
+   },
+   {
+    "timecode": "8.35-8.46 s (stack) and 8.47-8.8 s (shockwave ring)",
+    "flaw": "The hit is a single fused 12 ms stack with no staggering. Nothing audible follows the expanding shockwave ring or the ripple through the wall. The decay is a mechanical, evenly gridded spark arpeggio.",
+    "why_it_matters": "The five loudest layers sum to one thud, so the ear hears one event. The picture then develops for another 300 to 400 ms (the ring grows from about 8.47 to past the frame edge at 8.7 s) while the sound is only a decay. The real Kenney glass and metal layers sit about 10 dB under the synthesised thump, midburst and chord, so they are probably masked. Identical 100 ms spark steps with a -0.6 dB per step ramp sound like a game arpeggio, which supports the 'toy' read.",
+    "fix": "Stagger the layers over about 150 ms. Put the sub or thump with a pitch fall at 8.40 s. Put the glass and metal body at about +25 to +40 ms. Put the chord bloom and bells at about +60 to +90 ms. Raise the Kenney glass and metal by about 6 dB, or high-pass the synth layers they fight. Add a 300 to 400 ms band-passed noise swell that widens from mono to wide, timed to the visible ring (8.47 to 8.8 s). Add a distinct accent at about 8.5 to 8.6 s for the light bursting through the carved figure. Randomise the spark timing (plus or minus 30 to 40 ms), level (plus or minus 3 dB) and pan, and drop the strict descending pitch ladder.",
+    "severity": "major",
+    "evidence": "Event list: crunch 8.350 (-18.5), thump 8.400 (-3), crack 8.400 (-9), sub 8.400 (-10), midburst 8.405 (-5), metal 8.408 (-12), chord 8.412 (-6), bell D5 8.420 (-17), Kenney glass 8.430 (-13), Kenney metal 8.430 (-14), bell A5 8.432, crash 8.440 (-19), bells D6 8.444 and F#6 8.456. The five strongest layers (thump -3, midburst -5, chord -6, crack -9, sub -10) fall within 12 ms. No event sits between 8.456 and the first spark at 8.580. The sparks then fall exactly every 0.1 s (D7, B6, B6, A6, A6, F#6, ...) from -18 to about -25.8 dB. The hit-sequence frames show the ring at 8.467, 8.600 and 8.700 s."
+   },
+   {
+    "timecode": "2.0-5.5 s (КОМАНДА and АГЕНТ build)",
+    "flaw": "The build is bass-forward and dull in the middle windows. Pads and whooshes are buried, and the melodic layer is a repeating bell and pluck gesture. The ML tags lean to 'mallet / chiptune' in the 6 to 10.5 s windows, which is the customer's v1 'thin toy-like' complaint.",
+    "why_it_matters": "Bass at -14.5 dB and kick at -18.5 dB out-gain every melodic element until АГЕНТ, so the 2 to 5 s windows measure darker and boomier than 90% of real music. The word-to-word regroup motion on screen (2.4 to 3.6 s, 4.6 to 5.6 s) has almost no audible motion because the whooshes are very quiet. The same rising 8-note run recurs four times, at 0.8, 3.0, 5.1 and 7.3 s. A constant 0.2 s arpeggio sits under it for 7 s. Together these read as game 'level-up' gestures rather than a cinematic build. Caveat: the window-versus-whole-track percentile comparison is crude, and the ML tags are indicative only.",
+    "fix": "Lower bass to about -19 dB and kick to about -22 dB until 4.4 s, or sidechain them. Raise the pads from -26 to -30 dB up to about -20 dB, with real 250 to 800 Hz body. Raise the whooshes at 2.4 and 4.8 s from -28.5 and -26.5 dB to about -20 dB, with filtered-noise HF so 2 to 8 kHz is not 0.7 to 1.2%. Give each word a different timbre (glass pluck, then a soft swell, then a synth stab) instead of four identical rising runs. Thin or randomise the arpeggio.",
+    "severity": "major",
+    "evidence": "Windowed centroid and 2 to 8 kHz share: 2.0 to 3.0 s is 335 Hz and 0.7%. 2.5 to 3.5 s is 368 Hz and 1.8%. 4.0 to 5.0 s is 377 Hz and 1.2%. Real-music p10 is 385 Hz and 1.4%. The RMS of these windows is -19.5 to -20.1 dBFS, the quietest in the film. Event gains: bass -14.5, kick -18.5 to -14.5, pads -26, -30, -28.5 and -27, whoosh -28.5 at 2.4 s and -26.5 at 4.8 s, arp -28 to -37.6. AST top-12: Glockenspiel 0.13, Marimba/xylophone 0.10, Mallet percussion 0.09, Ding 0.07, Jingle 0.05, Video game music 0.05. CLAP '8-bit chiptune video game music' is 0.385, second only to 'clean premium tech logo sting' at 0.46. It is the best-matching prompt for 6.0 to 9.0 s (0.347) and 7.5 to 10.5 s (0.447), which includes the climax."
+   },
+   {
+    "timecode": "10.9-15.0 s (lockup hold, sheen stings)",
+    "flaw": "The end is a 147 Hz drone plus pure-sine bell stings with no sustained mid-register body. On small speakers the weight disappears, and the ML tags the end as a 'ding'. The film then sags and stops dead.",
+    "why_it_matters": "The brief wants a lockup that can hold under a longer presentation. The loudest sustained element is the D3 tonic at 146.8 Hz, which sits at the cutoff of the laptop and phone high-pass models (150 and 300 Hz). What survives is bells at 1.3 to 3 kHz (D6, A6, F#7, E6, B6, D7), the ear's most sensitive range, and these read as a notification chime. The 4 dB level sag over the last second and the digital-silence final sample (-200 dBFS) work against a 'hold'. The sting peaks of -6.8 dBFS are only about 4.5 dB under the hit peak. Caveat: the overall small-speaker loss figure is fine, and I cannot hear the bells.",
+    "fix": "Raise the lock tonic by an octave, or add a 300 to 1200 Hz sustained pad chord (for example D3, A3, F#4, D4) as a constant bed from about 11 s to the end. Reduce the stings by about 6 dB and avoid pure-sine D7 and F#7. Let the bed hold level and fade only in the last 200 to 300 ms, or deliver a separate loopable hold stem. Add a faint swept shimmer across the 12.6 to 13.6 s sheen instead of two isolated dings at 12.7 and 13.6 s.",
+    "severity": "minor",
+    "evidence": "Event list: lock:tonic D3 at 10.950 (-15 dB), sting D6, A6, F#7 at 12.70 to 12.76 (-20, -21, -22) and E6, B6, D7 at 13.60 to 13.66 (-25, -26, -27). Windows 12.5 to 15 s have centroid 1360 to 1780 Hz and 2 to 8 kHz share 19.2%, 26.4%, 23.3% and 20.3%. 26.4% is the only window above 25%. Window peaks at 12.5 to 14 s are -6.8 and -6.7 dBFS against the hit's -2.3. RMS per second falls from -18.3 to -22.5 over the last second. The last sample is -200 dBFS. AST for 12 to 15 s is 'Ding 0.25 / 0.20', with Music down to 0.47. Audiobox PC (complexity) is 2.3. CLAP best prompt is 'clean premium tech logo sting' (0.41), so the tags are not uniformly negative."
+   },
+   {
+    "timecode": "0.00-0.80 s (frame-0 hook and cube swarm)",
+    "flaw": "The frame-0 hook is a hot, hard-started three-layer attack. After about 0.4 s nothing carries the cube swarm until the first landing at 0.8 s, and the swarm itself is barely scored.",
+    "why_it_matters": "The first sample is -40 dBFS and the first 5 ms RMS is -12 dBFS, so there is no fade-in. Bell, body and ding all attack at 0.000 s. A first-sound hit at -2.8 dBFS in a presentation opener can startle and, at that level, leaves nothing for the climax. The picture shows a swarm of cubes flying in from 0.15 s, yet the events there (swell -31, arp -29.4 to -37.6) are 18 to 27 dB under the hook. The visual 'memorable event' in the first 2 seconds is therefore carried by a ding that is gone by about 0.4 s.",
+    "fix": "Add a 3 to 5 ms fade-in so the first sample is zero (this also clears the QC edges WARN). Lower the hook as in the first flaw. Add a rising granular or glassy whoosh at about -20 dB from 0.15 s that tracks the swarm density up to the first landing at 0.8 s.",
+    "severity": "minor",
+    "evidence": "QC edges WARN: first sample -40 dBFS, first 5 ms RMS -12 dBFS, first 10 ms peak 0.7247. Event list at 0.000 s: hook:bell -10, hook:body -9, Kenney ding -14, air -26, pad -26. After that: hook:swell 0.250 (-31), arp C4 0.400 (-29.4), arp E4 0.600 (-37.6), arp D4 0.800 (-37.3), first landing click 0.800 (-30) and note 0.800 (-28.7). The 0.5 s still in the overview shows the swarm in flight."
+   }
+  ],
+  "unverifiable": [
+   "All judgements are inferred from measurements, the event list, the spectrogram and the stills, never from hearing. I cannot say how the film sounds.",
+   "Whether the synthesised bells are sine, FM or something else, and so whether they are actually toy-like. AST glockenspiel and marimba labels, CLAP prompt cosines and Audiobox scores are zero-shot ML tags on music and are only indicative. CLAP cosines mean more as differences between versions than as absolute values, and Audiobox PQ may be saturated. The brief admits nobody has listened.",
+   "Whether the real CC0 layers are audible under the thump, midburst and chord at -3 to -6 dB. Only gains are known, not spectra or lengths.",
+   "Why the true peak sits at 9.20 s. It could be low-frequency beating, a limiter or reverb tail summation. No listed event explains it, and the master chain is not shown.",
+   "Per-event panning and stereo width. Only whole-window correlation and S/M are available. The late windows (14 to 15 s) have lower correlation (about +0.30) and S/M of -2.6 dB, but I cannot tell which elements cause it.",
+   "Small-speaker translation of the hit specifically. The global phone and laptop loss figures are good, but the thump, sub, bass and D3 drone are all below about 150 Hz and per-window phone loudness was not computed.",
+   "Whether the 16 kHz octave (+7.8 dB above the real-music median, above p90) is real excess air or an artefact of the reference tracks. The FMA clips are MP3-sourced and probably band-limited, and window-versus-whole-track percentile comparisons are loose in any case.",
+   "Fine sync of the ten letter ticks (10.32 to 10.725 s, 45 ms apart) against the title reveal. Stills suggest roughly seven of ten letters are visible at 10.60 s, which matches. The title looks fully formed only by about 11.0 s, so the last 'AI' ticks may lead the picture by roughly 0.2 to 0.3 s. I cannot verify this from stills.",
+   "Whether -14.7 LUFS is right for a presentation opener in a room or on a PA. The target is not stated in the brief.",
+   "How the final second sounds. The shape of the fade (4 dB sag in RMS, then digital silence at 15.000 s) is inferred from RMS and edge numbers only."
+  ]
+ },
+ {
+  "score": 6.5,
+  "verdict": "A clear step up from v1. The scene is dark, lit and has depth, the first 2 s have a real event, and the lockup is clean. It still reads as a competent voxel-type reel, not a premium agency intro. The one moment that has to hit, 8.4 s, washes the mark out into pale haze instead of landing as a blow. The brand is only a tiny tag for the first 10 s, and the three-word sequence repeats one gag with no escalation. On a phone with sound off, I would swipe around 3.5-4.5 s, when КОМАНДА repeats the ИДЕЯ beat. I would never reach the best-looking part, the HackAlem AI lockup at 10.5 s.",
+  "strengths": [
+   "Frame 0 has one focal point: a big glowing cyan cube alone in dark glass debris, centred and readable even at 360 px. The burst at 0.5 s and ИДЕЯ fully formed by 1.5 s are inside the 2 s window, so the event requirement is met.",
+   "The v1 criticisms of flat, inverted and no lighting are fixed. The scene is dark navy, the cubes have specular edges, depth-of-field blur and motion blur, and the glow reads as lit objects (stills 0.50, 1.20, 5.50). Palette and mark match the brand facts.",
+   "ИДЕЯ at 1.5-2.2 s (still 2.20 and the 360 px sheet) is big and legible, with the Cyrillic clear. It is the strongest typographic frame in the film.",
+   "The 16x16 glossy wall at 8.30 s is a convincing object. It has a clear silhouette with carved dark figure holes and a believable build-up, and the figure stays recognisable up to the hit.",
+   "The end lockup (11.0-14.5 s) is clean and correctly spelled 'HackAlem AI', with a letter-by-letter rise and a rule and tagline in the right fonts. It holds about 3 s, so it works as a presentation opener.",
+   "Technical QC is clean: 450 frames, no black frames or NaN blocks, no single-frame jumps, A/V flash-to-onset delta 0.2 ms, loudness -14.7 LUFS with no clipping."
+  ],
+  "flaws": [
+   {
+    "timecode": "8.40-8.70 s (the hit)",
+    "flaw": "The peak does not land. At 8.43-8.53 s the wall turns into a pale, low-contrast grey-blue haze and the carved figure is swallowed by a milky veil. Contrast falls instead of rising. The shockwave is a hairline ring on the wall, then a faint large ring mostly outside the frame at 8.6-8.7 s. The 'light through the figure' is a diffuse white wash, not a beam. Only the first 2-3 frames read as a flash.",
+    "why_it_matters": "This is the film's one real visual peak and the thing the v1 critic called a weak climax. QC shows flash luma only 29 to 51, brightest frame luma 71, and no frame above luma 90. At phone size the ring is about 1 px, so the hit reads as the square getting slightly brighter and slightly bigger, not as an impact. A sound-off viewer gets no sense of release.",
+    "fix": "Make the 'inhale' darker (7.9-8.4 s, background near black, wall dimmed 30-40%). At 8.40 s give a 2-3 frame hard flash well above the current peak (mean luma 120+) that clips through the carved holes only. Keep the holes dark against a bright rim so the figure stays readable during the flash. Replace the diffuse veil with volumetric rays or a vertical beam bursting through the figure, which also echoes the brand's site hero. Thicken the shockwave ring to 8-12 px at 1080p with a bright leading edge. Add a 4-6 frame camera punch-in of about 8-12% with a damped shake.",
+    "severity": "major",
+    "evidence": "hit_sequence_8.3-9.2s.png frames 8.433, 8.467, 8.500 (pale veil, figure lost) and 8.600, 8.700 (hairline ring). Stills still_08.50.png vs still_08.30.png. qc_report.txt: 'luma 29 -> 51', 'max luma 71.5', 'frames with mean luma>90: 0'."
+   },
+   {
+    "timecode": "0.00-10.20 s",
+    "flaw": "Nothing on screen says what this is until about 10.5 s. The only brand cue is a roughly 20 px corner tag at 360 px, and it is spelled lowercase 'hackalem.ai' (domain style), not 'HackAlem AI'. The corner mark is also a different logo from the end lockup. ИДЕЯ, КОМАНДА and АГЕНТ are generic words and carry no event context (хакатон, Астана) until the tagline at 11.0 s.",
+    "why_it_matters": "A feed viewer who leaves at 3-5 s never learns the brand or that it is a hackathon. A 10 s delay before the name appears is a long wait for a 15 s film. The brief needs the name 'recognisable' and says it 'stays HackAlem AI'. A second spelling in the corner tag works against that.",
+    "fix": "Spell the corner tag 'HackAlem AI' in the exact lockup casing. Add one early brand moment inside 0-4 s, for example a brief 'HackAlem AI' mono label or a larger wordmark glint when ИДЕЯ forms. Alternatively flash 'ХАКАТОН' under КОМАНДА at about 3.5 s so a short-patience viewer gets the context before the swipe point.",
+    "severity": "major",
+    "evidence": "still_00.00.png and every still up to 7.40 s show only the small 'hackalem.ai' tag top-left. phone_size_360px.png tiles 1-4 show the tag at about 12 px. The first 'HackAlem AI' appears in still_10.60.png."
+   },
+   {
+    "timecode": "2.40-7.40 s",
+    "flaw": "The middle of the film is one gag repeated three times: scatter into cube cloud, reform as pale-cyan pixel type centred in frame, hold about 1 s, scatter. The words never escalate in colour, scale, camera or light, so by КОМАНДА the trick is understood. Each word is fully formed for only about 0.7-1.0 s, and АГЕНТ, the payoff word, gets the least. The 6.6-7.4 s swirl into the mark looks like random confetti with no readable direction until the wall resolves at about 7.5 s.",
+    "why_it_matters": "This is the likely swipe point. Words need to stay on screen long enough to read. A metronomic 2.2 s period (ИДЕЯ 1.5, КОМАНДА 3.4, АГЕНТ 5.6) with a feel-alike template has no dead frame but no development either. It reads as a generic voxel-type reel, and 'idea to team to agent' is carried by the word swap, not by the image.",
+    "fix": "Make each beat change the world: ИДЕЯ as one cube and sparks, КОМАНДА with many cubes and more glow or links between cubes, АГЕНТ with the first motion that suggests agency (a cube leading others, a path or trace). Hold АГЕНТ fully formed for at least 1.0 s. Cut the dissolve phases about 20% shorter, and aim the 6.6-7.4 swirl at the wall's centre so it reads as a vortex.",
+    "severity": "major",
+    "evidence": "overview_0-7s.png: 1.5-2.0 s ИДЕЯ formed, 2.5 s dissolving, 3.5-4.0 s КОМАНДА formed, 4.5 s dissolving, 5.5-6.0 s АГЕНТ, 6.5 s already breaking, 7.0 s undirected cloud. Stills 05.50, 06.20, 06.80 show the same type, colour and placement across the three words."
+   },
+   {
+    "timecode": "9.80-10.60 s and 10.60-15.00 s",
+    "flaw": "The glossy 3D world cuts to a flat 2D lockup on a plain navy radial gradient. The lighting that made the film look premium (specular edges, depth, glow) is gone from the brand moment. At 10.0 s the mark is small and sits far left with about 60% of the frame empty. At 10.20 s a random white cube-cluster blob pulls the eye to the centre of the mark. The end card itself is the standard 'logo plus wordmark plus tagline' template. The site's blue beam from above is never used.",
+    "why_it_matters": "The final image is what the presentation will sit on, and it is the least distinctive frame in the film. The material change from glass to flat vector looks like a hard seam, not a settling, and the brand's own lighting idea is missing.",
+    "fix": "Keep a trace of the 3D world in the lockup: a faint volumetric beam from above (the site hero), a soft floor or glow reflection under the mark, and a slow parallax drift on the cube dust. Let the wall flatten while the title is already entering, so the frame is never half-empty. Remove the stray bright cluster at 10.2 s or tie it to the title's first letter.",
+    "severity": "minor",
+    "evidence": "still_10.20.png (small mark far left, empty right, white blob), overview_7.5-14.5s.png row 2 and 3, still_14.50.png (flat gradient, no beam or depth cue)."
+   },
+   {
+    "timecode": "11.00-14.50 s",
+    "flaw": "The end hold has visible polish gaps. Faint vertical column seams show across the flat mark fill in the full-size stills. The 12.6-13.6 s sheen is barely perceptible in the sheet (a soft highlight on the left edge). QC reports frames fully frozen from 14.47 to 14.93 s. The tagline is about 16 px tall at 1280x720, so roughly 8 px in a 360 px-wide feed player.",
+    "why_it_matters": "The lockup sits for about 4 s and is the longest static image in the film, so it needs to be flawless. A sheen nobody notices adds no life. A frozen tail and stripe artefacts read as unfinished on a big screen, and the tagline is the part a phone viewer cannot read.",
+    "fix": "Check the mark fill at 100% and remove the cube seams after the flatten, for example by swapping to the true vector mark a frame earlier or hiding the seams. Make the sheen stronger and wider, and add slow drift so no frame is frozen. Raise the tagline size by about 25% and its contrast.",
+    "severity": "minor",
+    "evidence": "still_11.00.png, still_12.50.png and still_14.50.png (faint vertical lines on the blue square). qc_report.txt: 'frozen runs (>=6 frames): [(14.47, 14.93)]'. phone_size_360px.png last tile (tagline very small). overview_7.5-14.5s.png 12.5-13.5 s show almost no visible change."
+   }
+  ],
+  "unverifiable": [
+   "How the sound works with the picture: sentiment of the synthesised sound, timbre, bass heaviness, toy-likeness. The QC shows the audio onset lands at 8.4002 s with 0.2 ms A/V offset, loudness -14.7 LUFS and no clipping, but that does not say whether it sounds full or thin.",
+   "Whether motion is smooth or choppy. All judgement here is from still frames and 0.5 s sheets, so judder, interpolation quality and whether the 0.5 s burst reads cleanly in real time cannot be assessed. QC only shows no single-frame jumps.",
+   "Whether the hit feels strong in real time with the audio. The flash is short (about 3 frames), and sound or camera motion could make it land better than the frames suggest.",
+   "Whether the 12.6-13.6 s sheen is perceptible at normal playback. The sheet shows only a faint highlight at 13.0 s.",
+   "Whether the faint vertical seams on the flat mark are visible on a normal display or only in the 1280 px stills. I read them from the stills.",
+   "Real phone behaviour. The 360 px sheet is a proxy. Actual feed crop, letterboxing of 16:9 in a portrait player and platform compression of the dark gradients (possible banding) are not testable here."
+  ]
+ },
+ {
+  "score": 6.5,
+  "verdict": "A big step up from v1 in look: dark brand-faithful base, real depth and lighting, a clean and well-aligned final lockup. As brand communication it is late and indirect. A stranger gets the name only as a small URL bug, and never sees AI, hackathon or Astana until about 11 s of 15. The word АГЕНТ carries no AI cue, and the peak at 8.4 s does not carry the name. The flat vector mark has leftover cube-seam hairlines across the whole hold. It is a polished abstract cube-typography piece; as a premium agency brand intro it falls short, mainly because the message arrives last.",
+  "strengths": [
+   "Dark base is faithful, not inverted like v1. Sampled background is about rgb(0,5,24) in frame 0, with glow up to about rgb(0,45,91); frame-0 luma 23, mean luma 36. Depth, rim light and a vignette are visible in the stills.",
+   "Name is on screen from frame 0. The 'hackalem.ai' bug is top-left from 0.0 s to about 7.9 s, so a stranger is never nameless in the first 8 s.",
+   "Hook within 2 s: a lone glowing cube among dark glass debris at 0.0 s, a swarm at 0.5 s, and a half-formed ИДЕЯ at 1.2 s. By 1.5 s ИДЕЯ is fully formed. One continuous action, no cuts.",
+   "The three Russian words (ИДЕЯ, КОМАНДА, АГЕНТ) are spelled correctly and read as large pixel words even at 360 px wide (phone_size sheet). Each is fully formed for roughly 0.7-1.0 s.",
+   "Final lockup is faithful. The mark measures rgb(0,152,238), about #009AF0. 'AI' is in the cyan accent, the tagline is in a mono face, and the rule and tagline are justified exactly to the right edge of 'AI'. The block is horizontally centred (108 px left and 114 px right margin at 1280 scale). Full lockup is on screen from about 11.5 s to 15 s.",
+   "No disputed facts (no dates, sums or head-counts). The hit is cleanly synchronised: video flash at 8.400 s, audio onset 8.4002 s.",
+   "The 3D wall flattening into the flat mark gives a motivated link between the 'story' half and the brand half, and the mark never changes identity between 8.3 s and the lockup."
+  ],
+  "flaws": [
+   {
+    "timecode": "0.0-11.4 s (context arrives at 11.0-11.9 s)",
+    "flaw": "A stranger does not learn what this is until the last quarter. 'AI', 'hackathon' and 'Астана' appear only in the tagline: 'AGENTIC' starts at about 11.0 s and the full line is on screen at about 11.5 s. The first 10 s contain only the 'hackalem.ai' bug and three bare Russian nouns. АГЕНТ with no ИИ/AI cue reads as 'secret agent' or 'insurance agent'. Frame 0, the likely poster or thumbnail, shows only a cube and a URL.",
+    "why_it_matters": "Brief goal: name, Astana and agentic-AI communicated early. Idea > team > agent only lands as an AI story once the viewer knows AI is the subject. Muted autoplay or a shared preview may never reach 11 s.",
+    "fix": "Put the category in the first 3 s. For example, add a one-line sub-label under the corner bug from 0 s ('AGENTIC-AI ХАКАТОН · АСТАНА' small, fading in at about 0.8 s). Also change the third word to 'ИИ-АГЕНТ' or add a small 'AI' chip beside АГЕНТ at 5.0 s. Pull the full tagline reveal back to about 9.5-10.0 s so the complete lockup has 5 s on screen.",
+    "severity": "major",
+    "evidence": "Stills 00.00 to 09.50 and overview_0-7s: no 'AI', 'хакатон' or 'Астана' in any frame. Overview_7.5-14.5s: tagline absent at 10.5 s, only 'AGENTIC' at 11.0 s, complete at 11.5 s. still_06.20 shows the bare word 'АГЕНТ'."
+   },
+   {
+    "timecode": "10.6-15.0 s (mark in the final lockup)",
+    "flaw": "The 'original vector logo' on the hold frame is not clean. Faint vertical hairline seams run through the whole flat mark at every cell boundary (about every 16-17 px at 1280 scale). They are residue from the cube wall. At 10.6 s, while it flattens, the figure cut-out also shows stepped double edges, ghost offsets and a stray cyan flare at the right edge.",
+    "why_it_matters": "The brief calls for a clean brand lockup that can hold, and the mark is the one asset a client will inspect at 100%. The seams are on screen for about 4.5 s, 30% of the film, and on a projector or 4K screen they read as a rendering defect on the logo itself.",
+    "fix": "At about 10.9 s, crossfade or swap from the 3D wall to a true SVG or DOM mark: a single flat #009AF0 path with no cell gaps, AO or edge darkening. Check a 1:1 crop of the 1920x1080 frame at 12.5 s and 14.5 s. Hide the flatten artifacts by finishing the flatten off-screen or under a short bloom at 10.3-10.6 s.",
+    "severity": "major",
+    "evidence": "Zoomed crop of still_14.50 (mark region): vertical lines visible at every column. Pixel scan across solid-blue rows (y=232 and y=480): green-channel dips from about 157 to 136, at x=141, 158, 174, 191, 208, 224, 241, 258, 274, 291, 308. Still_10.60 shows stepped, offset edges inside the carved figure."
+   },
+   {
+    "timecode": "8.4-10.3 s",
+    "flaw": "The peak does not carry the brand payoff, and the name arrives about 1.9 s after the hit. The hit is a flash on an already-finished mark: frame 8.3 s and frame 9.2 s are almost the same object, with the same wall, the same figure and nothing new. At the flash peak (8.43-8.53 s) the wall turns pale and milky and the carved figure, the brand's distinguishing feature, loses contrast against it. Between 8.4 s and 10.3 s there is no name on screen, because the corner bug has already gone. The brightest frame is only luma 71, and no frame exceeds luma 90.",
+    "why_it_matters": "The strongest moment of the film is spent on an unlabeled abstract square. The viewer's attention is highest at 8.4 s, and the brand name only shows up when the energy is already falling (9.5-10.0 s). Visually the peak is a modest brightness bump on a dark brand.",
+    "fix": "Make the hit reveal something. Land 'HackAlem AI' on or just after the hit: start the glide at about 8.9 s instead of 9.8 s, and begin the letters at about 9.1-9.3 s. Alternatively keep the figure dark and sharp against a white-blue burst so it stays readable. Increase the flash peak and use the saved time for a longer final hold.",
+    "severity": "major",
+    "evidence": "hit_sequence frames 008.433-008.500: wall and figure turn pale grey-blue, low contrast. Frames 9.0 and 9.2 look like 8.3 with a slight tilt. Overview 8.0-10.0 s: no name. QC: brightest frame luma 71.5, 0 frames above luma 90, flash luma 29 to 51 at frame 252."
+   },
+   {
+    "timecode": "11.0-15.0 s (tagline); 3.0-6.3 s (Russian words)",
+    "flaw": "The line that carries all the 'what and where' is the smallest and least prominent element on screen: 'AGENTIC-AI ХАКАТОН · АСТАНА'. Measured cap height is about 35-39 px at 1920x1080 (about 3.3% of frame height). At phone width (360 px) that is roughly 6-7 px, and it reads only with effort. It is also a mixed-script line, with an untranslated Latin 'AGENTIC-AI' next to Russian words. v1 was criticised for small text, and the key information is again the tiny text.",
+    "why_it_matters": "A promo like this is likely to be viewed on phones in Telegram or Instagram. The thing a stranger most needs to read is the hardest to read. The mix of Latin and Cyrillic may feel inconsistent to Russian readers when the three story words are fully Russian.",
+    "fix": "Raise the tagline by about 30-40% (cap height about 50 px at 1920) or set it on two lines. Consider 'ХАКАТОН ИИ-АГЕНТОВ · АСТАНА'. Ask the client whether to keep 'AGENTIC-AI' in Latin. Re-check the phone render so the tagline is legible at 360 px.",
+    "severity": "minor",
+    "evidence": "Tagline rows measured at about 26 px height at 1280 scale (including glow), about 17-22 px of letter cap height visually. Compared with the 'H' of HackAlem at about 135 px cap height at 1920. phone_size_360px.png shows the tagline as the faintest text on the last cell."
+   },
+   {
+    "timecode": "0.0-7.9 s (corner bug); 2.0-8.0 s (cube colour)",
+    "flaw": "Brand fidelity is slightly off in two ways. (1) The name appears in two different forms: a lowercase pixel-cut domain wordmark 'hackalem.ai' in the corner for about 8 s, then a differently styled 'HackAlem AI' in the lockup. The bug is constant (about 46 px tall at 1920), reads as a channel watermark rather than a title, and the URL never returns at the end. (2) The cube words are desaturated ice-blue while the brand blue only appears at the end.",
+    "why_it_matters": "The brief says the name stays 'HackAlem AI', and a brand manager may question two wordmark styles in one 15 s film. The brand identity in the site hero is saturated #009AF0/#00C8FF with heavy white type; the first 10 s show a paler, whiter look, so the colour payoff and the brand recognisability arrive only with the lockup.",
+    "fix": "Confirm with the client which wordmark is official. Either keep the bug but reduce its size and opacity and remove it by about 2 s, or use 'HackAlem AI' in the corner as well. Add 'hackalem.ai' under the tagline in the hold. Push the cube albedo toward #009AF0 and use #00C8FF and white only as emissive highlights, so the 3D wall's colour matches the final mark.",
+    "severity": "minor",
+    "evidence": "still_00.00 zoom: lowercase pixel wordmark 'hackalem.ai' (46 px tall at 1920). Cube letter colours sampled: about rgb(105,189,222) in ИДЕЯ (still_02.20) and rgb(73,159,210) / rgb(31,151,202) in КОМАНДА; brand blue is rgb(0,154,240). Final mark samples rgb(0,152,238)."
+   },
+   {
+    "timecode": "11.9-15.0 s (hold)",
+    "flaw": "The hold is functional but nearly lifeless. After the tagline completes there is about 3 s with no new information. The only motion is one sheen at 12.6-13.6 s, which is barely perceptible in the 13.0 and 13.5 s sheet frames, and the last 0.5 s is frozen. For a presenter pausing on this frame it reads as a poster, or as 'the video froze'. The lockup also fills about 83% of the frame width (about 8-9% side margins), leaving little breathing room for the presentation's own title.",
+    "why_it_matters": "The end frame is supposed to be the first slide of a longer presentation. A frozen last half-second gives no signal that the video has finished cleanly, and a lockup that large will feel cramped next to any slide content.",
+    "fix": "Keep very low ambient motion (dust drift, slow glow breathing) alive up to the very last frame so a hold looks intentional. Make the sheen about 2x stronger. Reduce the lockup to about 65-70% of frame width, or leave a clear zone for the presentation title.",
+    "severity": "minor",
+    "evidence": "qc_report: frozen run (14.47, 14.93). Overview_7.5-14.5s at 13.0 and 13.5 s: sheen barely visible. Lockup x-extent measured as 108-1165 of 1280 (82.6% of width) on still_14.50."
+   }
+  ],
+  "unverifiable": [
+   "Motion quality in real time (smoothness of the cube swarm, how the ~1 s dwell per word feels, whether the 8.4-10.3 s span actually reads as a lull). I only saw stills and sheets, so the 'lull' is inferred from near-identical frames, not felt.",
+   "Sound. Only measurements exist: integrated -14.7 LUFS, peak -2.1 dBFS, hit onset aligned with the flash within 0.2 ms, a 5.7 dB pre-hit dip (-22.4 to -28.1 dBFS RMS), and RMS falling to -22.5 dBFS in the last second. These cannot show whether the sound is rich or toy-like, whether the hit feels powerful, or whether the music supports the story.",
+   "Whether the first 10 ms audio peak of 0.72 (about -2.8 dBFS at t=0) is an intentional bell attack or a click. It could pop if the file is dropped into a deck at frame 0.",
+   "Whether the title is really set in Manrope and the tagline in JetBrains Mono. The glyphs look like a clean grotesque and a mono face, but I cannot identify the font from stills.",
+   "Whether the lowercase pixel wordmark 'hackalem.ai' is the client's official logo form, and whether the 16x16 wall matches the official 173-cell mark cell for cell. I did not have the official files.",
+   "Whether the client wants 'AGENTIC-AI' left in Latin, or prefers a Russian phrasing such as 'ИИ-агенты' or 'Agentic AI'.",
+   "What the last two frames do (14.93-15.0 s). QC lists the frozen run as ending at 14.93, so I cannot tell whether there is a fade or something else at the very end.",
+   "How the film plays on a real phone with autoplay muted. The phone sheet shows legibility of the stills only."
+  ]
+ },
+ {
+  "items": [
+   {
+    "id": 1,
+    "status": "partly-fixed",
+    "evidence": "Measured on all 450 frames of hackalem-intro.mp4. The wash-out is much smaller: mean luma 28 at 8.37 s rises to 70 at 8.50 s, with a film maximum of 71.5. Round 1 was 38 to 114, and zero frames exceed luma 90. A shockwave is now visible: a thin ring starts at the centre at 8.40 s (c252.png), reaches wall size by 8.47-8.50 s, and is a large ring past the wall by 8.60-8.70 s (hit_sequence_8.3-9.2s.png). The wall also skews slightly at 8.533 s. Still washed at the peak: the figure interior is pale grey-cyan, RGB (165,208,228), HSV saturation 0.28, at 8.47 s, against 0.94 before the hit. The wall cubes are frosted pastel, left-border RGB (82,169,217), at 8.50 s. At 8.40 s the whole wall reads as a translucent pale slab with a hard rectangular glow edge (still_08.50.png, c252.png). The figure recovers its blue by about 9.0 s (saturation 0.70). Wall size by 5th-95th percentile bbox width: 616 px at 8.0 s, 841 px at 8.60 s, then a steady decay to 730 px by 9.5 s. That is a punch with a settle, never below the pre-hit size, but it still shrinks for 0.9 s after the hit. No debris or cubes fly off. Streak sprites are not removed: groups of four vertical bright dashes on the left and right of the wall are strong at 8.30-8.40 s and still visible at 8.70, 8.83 and 9.0 s.",
+    "remaining": "The pastel frosting of wall and figure at 8.43-8.70 s (the saturation drop to about 0.3 is the cause) should be a saturated, brighter blue-white burst rather than pale grey. The vertical streak sprites at both wall sides still need removing. There is no debris. The post-hit decay of the wall from 841 to 730 px still reads as shrinkage unless it is held."
+   },
+   {
+    "id": 2,
+    "status": "partly-fixed",
+    "evidence": "I took each word's best-formed frame as a template (ИДЕЯ 2.0 s, КОМАНДА 3.8 s, АГЕНТ 6.2 s) and scored every frame by precision and recall against it. Longest contiguous formed window with both at 0.9 or above: ИДЕЯ 0.63 s (1.80-2.40), КОМАНДА 0.67 s (3.50-4.13), АГЕНТ 0.67 s (6.07-6.70). With precision relaxed to 0.75: ИДЕЯ 0.70 s, КОМАНДА 0.70 s, АГЕНТ 0.90 s (5.83-6.70). Visually (my agent_seq.png contact sheet), АГЕНТ reads fully at 5.7 s with one stray cube, stays clean at 6.33 and 6.6 s, and is broken by 6.8 s. That is about 1.0 s legible (5.65-6.70), against about 0.5-0.7 s before. АГЕНТ is no longer the shortest word.",
+    "remaining": "All three words are fully formed for only about 0.65-0.7 s (about 1.0 s legible). Whether that reads comfortably cannot be judged from stills."
+   },
+   {
+    "id": 3,
+    "status": "partly-fixed",
+    "evidence": "Blur is smooth at moderate speeds. Cubes at 0.5 s, 1.2 s, 5.5 s and 6.8 s show smooth blur with no step copies (ghost_b.png, still_01.20.png). Stepped ghosts remain on the fastest cubes. At 3.0 s (frame 90, 2x crop in ghost90.png), the cube at about (1000,200) and the one at about (770,880) show 8-10 stacked, discretely banded copies. Formed-word tiles are still milky and pastel. The IDEA left stem is RGB (114,190,219), HSV saturation 0.48 and value 0.86. The АГЕНТ E stem is (103,199,221). The brand blue is (0,154,240), saturation 1.0. The tiles have a bevel and a glow but flat pale faces, so glass depth is limited (still_02.20.png).",
+    "remaining": "The remaining step-banding on the fastest cubes (about 2.6-3.3 s) needs more blur subsamples. The letter tile faces (saturation about 0.5, value about 0.87) need more saturation and dark glass depth or refraction so they stop looking like frosted tiles."
+   },
+   {
+    "id": 4,
+    "status": "fixed",
+    "evidence": "The glide is one continuous move. The mark's left-edge x runs 600, 593, 581, 565, 542, 511, 472, 424, 367, 319, 279, 247, 222, 203, 187, 176, 168, 163, 159 between 10.10 and 10.70 s. The frame-to-frame step peaks at -57 px/frame at 10.37 s and decays smoothly, with no second plateau. The top edge y0 is also monotone and smooth (205 to 334). The lockup is static from 10.90 s to the end. Mark bbox x 162-563, y 340-739, centre y 539.5 of 540. The title/rule/tagline stack spans y 393-685, centre 539, so the block is vertically centred on the mark. Right edges at 14.5 s: title 1747, rule 1745, tagline 1746, a spread of 2 px. Left edges are all 653. Horizontal centre of the lockup is 954.5 against 960. At 10.5 s the text reaches about x 1360 and the mark starts at 263, so the frame is no longer half empty; the rest fills by 10.8 s.",
+    "remaining": "Nothing material. The title overlap during the glide is listed under new problems."
+   },
+   {
+    "id": 5,
+    "status": "partly-fixed",
+    "evidence": "Background colour measured in the 14.9 s lockup frame. Median background pixel is (0,16,45), p95 (1,34,77). Frame edges are (0.4,9,33). Top-centre under the beam is (0.3,35,78), against the round-1 mid-field of about (0,49,103). The brand base is (6,11,22). So it is clearly darker than round 1 and close to brand at the edges, but still bluer: R is 0 instead of 6, and B is 33-45 at the edges and bulk, about 2x brand. The beam centre is G 35, B 78. Banding is still present: a 3x contrast-stretched frame 435 (bg_stretch435.png) shows clear concentric contour rings. Along rows, the longest constant run is 40-48 px, with 27-84 distinct values. Mild dither exists (spatial std 0.5 in a flat patch), and some 1-LSB rings are likely faintly visible at 1:1.",
+    "remaining": "The background is still bluer than #060B16 (R=0, B about 2x). Ring banding persists in the dark gradients. More dither or noise, or a higher bit depth before the yuv420p encode, would help."
+   },
+   {
+    "id": 6,
+    "status": "partly-fixed",
+    "evidence": "The corner box (x70-540, y40-130) has a constant white-pixel count of about 5100 from t=0 to 7.77 s, so it is crisp and not washed by bloom. It fades out in about 3 frames (7.77-7.87 s) and is gone through the hit. Round 1 had it to 9.7 s. No corner tagline is visible in any still. The logo is about 440x60 px at 1920 (the stills show it at x55-350 of 1280), and it reads at phone size in phone_size_360px.png.",
+    "remaining": "The corner wordmark is still redundant for 7.8 s of a 15 s film. The name still appears in two forms: lowercase 'hackalem.ai' in the corner and 'HackAlem AI' in the final lockup. This contradicts the brief's 'name stays HackAlem AI'."
+   },
+   {
+    "id": 7,
+    "status": "not-fixed",
+    "evidence": "The title letters begin at about 10.27-10.30 s ('Ha' visible at 10.30 s) and the title is full at about 10.8 s (glide.png). Between 8.0 and 10.27 s the only on-screen elements are the wordless mark and background; the corner wordmark is already gone by 7.87 s. At the peak (8.4-9.8 s) there is no name text at all.",
+    "remaining": "The brand name appears at full size only after 10.3 s. The peak (8.4-9.8 s) carries no name. The corner wordmark does not help there because it is removed before the hit. The name could be introduced earlier, or kept in or near the beauty shot."
+   },
+   {
+    "id": 8,
+    "status": "partly-fixed",
+    "evidence": "Inhale: fixed by measurement. RMS per 50 ms is about -18.5 dBFS at 7.8 s, -22 to -23 dBFS from 7.95 to 8.30 s, and -27.7 dBFS at 8.35 s, then jumps to -13.5 at 8.40 s (a 14 dB step). Low band (<150 Hz) falls from -21 dBFS at 7.6 s to -35.8 at 8.1-8.2 s. The qc_report pre-hit hole is -28.1 against -22.4. The spectrogram shows the low-end drop-out and a noise riser from about 7.7 s. The 8.13 s crunch is gone: the CC0 crunch is now at 8.350 s at -18.5 dB, and no distinct transient is left at 8.13 s (peaks there are about -10 dBFS, in line with the noise bed). Hit layers: on the exact 8.400 s frame there are now 4 (crack, sub, thump, lock:bed), with others staggered at 8.405, 8.408, 8.412, 8.420, 8.430 (x2), 8.432, 8.440, 8.444 and 8.456 s. That is roughly 7 within 12 ms, down from 10. But the max sample step is 0.497 FS at 8.4024 s, up from 0.46 and still just under the 0.5 click threshold. Build: events show section-wise development (kick -18.5 to -16.5 to -14.5 dB, chord-stab gain -27.5, -25, -22.5, a pad change per word, a riser from 6.6 s, a roll from 7.0 s). Arp events sit at -26 to -37 dB, 10-20 dB under kick, bass and landing events. Level is still flat to falling: RMS per second is -18.7 (1 s), -19.6, -20.1 (3 s), -19.5, -19.9, -18.5, -18.6 (7 s). Momentary LUFS is -16 to -19 from 1.0 to 7.0 s. Lockup: scored with a D3 tonic at 10.95 s (-15 dB), a bed, a rule bell, a tagline shimmer, and stings at 12.7 and 13.6 s. RMS is -16.6 at 11 s, -18.6 at 12 s, -18.3 at 13 s, then a fade to -22.5. Stereo: the 14-15 s window has L/R correlation +0.29/0.31 and S/M -2.5 dB (mono-fold -1.9 dB); no window is negative.",
+    "remaining": "The build does not rise in loudness; the kick/bass grid repeats every 0.4/0.8 s from 1.5 to 7.6 s. The max sample step at the hit went up to 0.497 FS and 4 layers share one frame. The final second is still the most decorrelated part (correlation about 0.3). Arp prominence and whether the lockup scoring is enough cannot be judged without listening."
+   },
+   {
+    "id": 9,
+    "status": "fixed",
+    "evidence": "I searched frames 246-298 for pixels with R>200, G>200 and B at least 25 below G: zero 'yellowish' pixels at every sampled frame. Near-white blobs (R>215, G>225, B>225, at least 60 px) at 9.43, 9.53, 9.63 and 9.73 s are only at x≈770 (left), x≈1008 and x≈1054. Nothing is at the right edge of the wall (the wall edge is about x 1330), so the dashes at 9.4-9.7 s are gone. still_09.50.png and still_09.20.png show a clean right edge.",
+    "remaining": "A white-cyan glint remains inside the figure at its left side (x≈770, y≈360-435, 15x42-73 px) from about 9.3 to 10.0 s. It is static and unlike the removed right-edge dashes, but could be read as a related specular dash."
+   }
+  ],
+  "new_problems": [
+   {
+    "timecode": "10.27-10.50 s",
+    "problem": "Regression: the title letters now render on top of the gliding mark. At 10.30 s 'Ha' sits inside the mark, and at 10.40 s 'Hack' starts at x≈640 while the mark spans x 319-812. The white letters are blurred and low-contrast over the light-blue mark for about 0.2 s, which reads as a collision rather than a clean reveal (glide.png).",
+    "severity": "minor"
+   },
+   {
+    "timecode": "8.00-9.20 s (peaks 8.30-8.40 s)",
+    "problem": "The vertical streak sprites (groups of four bright dashes on the left and right of the wall) are visible before the hit (still_08.30.png) and persist through it. They are strongest at 8.40 s and still visible at 8.70, 8.83 and 9.0 s. They look like an artifact of the effect.",
+    "severity": "minor"
+   },
+   {
+    "timecode": "10.9-15.0 s",
+    "problem": "Faint 1-px vertical seam lines run at every cell boundary across the flat vector mark in the hold frame (green channel dips to 124-143 against a face value of 153, mark436 crop of frame 435). There are no horizontal seams. The mark should be a clean flat vector, and this is the frame that will be held longest.",
+    "severity": "minor"
+   },
+   {
+    "timecode": "8.4002 s",
+    "problem": "The hit's sample step went up: max 0.497 FS at 8.4024 s, against 0.46 in round 1, just below the 0.5 click threshold. A 14 dB broadband jump plus 4 layers on one frame may sound harsh on small speakers. This cannot be confirmed without listening.",
+    "severity": "minor"
+   },
+   {
+    "timecode": "0.00 s and 15.00 s",
+    "problem": "The audio file begins abruptly: first sample -40 dBFS, but the first 5 ms RMS is -12 dBFS and the first 10 ms peak is 0.72 FS. The eval checklist flags 'edges' as WARN. If the intro is cut into a longer presentation, this is a click risk. The picture also freezes exactly from 14.47 s, which is fine for a hold.",
+    "severity": "minor"
+   },
+   {
+    "timecode": "1.8-2.4 s, 3.5-4.1 s, 5.8-6.7 s",
+    "problem": "All three words are fully formed for only about 0.65-0.7 s each, about 1.0 s counting the nearly-formed frames. The brief says words must stay long enough to read. This is borderline and cannot be judged from stills.",
+    "severity": "minor"
+   },
+   {
+    "timecode": "1.0-8.0 s",
+    "problem": "The build has no loudness arc: RMS per second is -18.7, -19.6, -20.1, -19.5, -19.9, -18.5 and -18.6 dBFS, with the 2-8 kHz share rising only in the last second. The brief asked for sound that helps the sense of development.",
+    "severity": "minor"
+   }
+  ]
+ }
+]

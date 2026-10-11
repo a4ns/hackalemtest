@@ -1,0 +1,16 @@
+{
+  "name": "video",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.8.143 preview",
+    "check": "npx --yes hyperframes@0.8.143 check",
+    "render": "npx --yes hyperframes@0.8.143 render",
+    "cues": "node scripts/build-cues.mjs",
+    "audio": "python3 audio/build_audio.py",
+    "render:final": "npx --yes hyperframes@0.8.143 render --quality delivery --output renders/hackalem-intro.mp4",
+    "render:silent": "ffmpeg -y -v error -i renders/hackalem-intro.mp4 -an -c:v copy -movflags +faststart renders/hackalem-intro-silent.mp4",
+    "cover": "node scripts/cover.mjs renders/hackalem-intro-cover.png",
+    "publish": "npx --yes hyperframes@0.8.143 publish"
+  }
+}

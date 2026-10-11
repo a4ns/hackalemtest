@@ -9,7 +9,8 @@ import numpy as np
 src = sys.argv[1]
 silent = sys.argv[2] if len(sys.argv) > 2 else None
 FPS = 30
-HIT = 9.6
+import os
+HIT = float(json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config", "cues.json")))["T"]["hit"])
 
 
 def run(args):
@@ -44,15 +45,20 @@ a = np.frombuffer(raw, np.float32).reshape(-1, 2)
 print(f"samples: {len(a)} ({len(a) / 48000:.3f} s)  sample peak: {20 * np.log10(np.abs(a).max() + 1e-12):.2f} dBFS  clipped(>=0.999): {(np.abs(a) >= 0.999).sum()}")
 print("first 10 ms peak:", round(float(np.abs(a[:480]).max()), 4), " last 10 ms peak:", round(float(np.abs(a[-480:]).max()), 6))
 mono = a.mean(axis=1)
-# the impact is a sub-bass boom (D1 glide); the reverse swell before it has no energy below 150 Hz
-spec = np.fft.rfft(mono)
-freqs = np.fft.rfftfreq(len(mono), 1 / 48000)
-spec[freqs > 150] = 0
-sub = np.abs(np.fft.irfft(spec, len(mono)))
-w0, w1 = int((HIT - 0.15) * 48000), int((HIT + 0.4) * 48000)
-thr = 0.35 * sub[w0:w1].max()
-onset = (np.argmax(sub[w0:w1] > thr) + w0) / 48000
-print(f"main impact onset (sub-bass <150 Hz, 35% of window peak): {onset:.4f} s (expected {HIT})")
+# the hit is a broadband transient right after a ~60 ms hole in the mix: first sample above 25% of the window peak
+# onset = first 2 ms block whose RMS jumps >= +9.5 dB over the previous 10 ms (the reverb tail of earlier material is steady, the hit is a step)
+blk = 96
+w0, w1 = int((HIT - 0.06) * 48000), int((HIT + 0.2) * 48000)
+rms = np.array([np.sqrt((mono[i:i + blk] ** 2).mean()) for i in range(w0, w1, blk)])
+onset = HIT
+for k in range(5, len(rms)):
+    if rms[k] > 3.0 * (rms[k - 5:k].mean() + 1e-9):
+        onset = (w0 + k * blk) / 48000
+        break
+print(f"main impact onset (first 2 ms block >= +9.5 dB over the previous 10 ms): {onset:.4f} s (expected {HIT})")
+hole = np.sqrt((mono[int((HIT - 0.06) * 48000):int((HIT - 0.01) * 48000)] ** 2).mean())
+pre = np.sqrt((mono[int((HIT - 0.5) * 48000):int((HIT - 0.12) * 48000)] ** 2).mean())
+print(f"pre-hit hole: {20 * np.log10(hole + 1e-9):.1f} dBFS RMS vs {20 * np.log10(pre + 1e-9):.1f} dBFS before it")
 import os
 WAV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "assets", "audio", "hackalem-intro-mix.wav")
 if os.path.exists(WAV):
@@ -68,19 +74,23 @@ print("RMS dBFS per second:", " ".join(f"{v:5.1f}" for v in secs))
 print("\n== picture ==")
 w, h = 320, 180
 p = subprocess.Popen(["ffmpeg", "-v", "error", "-i", src, "-vf", f"scale={w}:{h},format=gray", "-f", "rawvideo", "-"], stdout=subprocess.PIPE)
-lum, diffs, prev = [], [], None
+lum, diffs, prev, darkpix = [], [], None, []
 while True:
     b = p.stdout.read(w * h)
     if len(b) < w * h:
         break
     f = np.frombuffer(b, np.uint8).astype(np.float32)
     lum.append(f.mean())
+    darkpix.append(float((f < 1.5).mean()))
     if prev is not None:
         diffs.append(np.abs(f - prev).mean())
     prev = f
 lum = np.array(lum)
 print("frames decoded:", len(lum))
 print("black frames (mean luma<6):", np.where(lum < 6)[0].tolist())
+dp = np.array(darkpix)
+print(f"frames with >2% pure-black pixels (NaN/Inf blocks show up as 0,0,0 rectangles): {np.where(dp > 0.02)[0].tolist()}  (max {dp.max() * 100:.2f}%)")
+print(f"mean luma: min {lum.min():.1f}  mean {lum.mean():.1f}  max {lum.max():.1f}; frame 0 luma {lum[0]:.1f}; frames with mean luma>90 (very bright): {int((lum > 90).sum())}")
 flash = int(np.argmax(lum))
 print(f"brightest frame: {flash} (t={flash / FPS:.3f} s, luma {lum[flash]:.0f}); expected {int(HIT * FPS)}")
 d = np.array(diffs)
@@ -93,7 +103,14 @@ for k in range(len(d)):
             runs.append((round((st + 1) / FPS, 2), round(k / FPS, 2)))
         st = None
 print("frozen runs (>=6 frames):", runs)
-print(f"A/V sync of the hit: video flash frame {flash / FPS:.4f} s vs audio onset {onset:.4f} s -> delta {(onset - flash / FPS) * 1000:.1f} ms")
+mad = np.median(np.abs(d - np.median(d)))
+roll = np.array([np.median(d[max(0, k - 4):k + 5]) for k in range(len(d))])
+spikes = [round((k + 1) / FPS, 3) for k in range(len(d)) if d[k] > 3.0 * roll[k] + 1.5 and abs((k + 1) / FPS - HIT) > 0.25]
+print("single-frame jumps (>3x local median, outside the hit):", spikes[:20])
+k0, k1 = int((HIT - 0.3) * FPS), int((HIT + 0.3) * FPS)
+jump = next((k for k in range(max(1, k0), k1 + 1) if lum[k] > 1.25 * lum[k - 1]), k0)   # first frame of the flash = first >25 % luma step up
+print(f"hit flash starts at frame {jump} (t={jump / FPS:.4f} s, luma {lum[jump - 1]:.0f} -> {lum[jump]:.0f}); the peak of the glow ripple is frame {flash}")
+print(f"A/V sync of the hit: video flash frame {jump / FPS:.4f} s vs audio onset {onset:.4f} s -> delta {(onset - jump / FPS) * 1000:.1f} ms")
 
 if silent:
     print("\n== silent file ==")

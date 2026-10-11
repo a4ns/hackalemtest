@@ -1,0 +1,250 @@
+{
+ "note": "All files are Kenney (kenney.nl) CC0 1.0 packs; each zip bundles License.txt 'Creative Commons Zero, CC0'. Converted to 48 kHz/24-bit WAV and peak-normalised to -1 dBFS; hits trimmed. Layered under the synthesised score.",
+ "samples": [
+  {
+   "file": "imp_boom_k_explosionCrunch_002.wav",
+   "source_url": "https://kenney.nl/assets/sci-fi-sounds",
+   "download_url": "https://kenney.nl/media/pages/assets/sci-fi-sounds/6b296f9ecf-1677589334/kenney_sci-fi-sounds.zip",
+   "source_pack": "Sci-fi Sounds",
+   "source_file": "kenney/sci-fi-sounds/Audio/explosionCrunch_002.ogg",
+   "author": "Kenney Vleugels (Kenney.nl)",
+   "license_name": "CC0 1.0 Universal (Public Domain Dedication)",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/",
+   "license_evidence": "kenney.nl pack page \"Sci-fi Sounds\" lists License = Creative Commons CC0 (link to http://creativecommons.org/publicdomain/zero/1.0/); the zip bundles License.txt stating \"Creative Commons Zero, CC0\"",
+   "provenance_confidence": "high",
+   "date_checked": "2026-10-11",
+   "duration_s": 1.2557,
+   "processing": {
+    "window": null,
+    "trim_lead_ms": 0.0,
+    "trim_tail_ms": 0.0,
+    "reversed": false,
+    "mono_downmix": false,
+    "fades_ms": [
+     0,
+     10
+    ],
+    "dc_removed": false,
+    "gain_db": -0.05
+   },
+   "metrics": {
+    "peak_position_pct_of_duration": 21.5,
+    "time_to_peak_ms": 270.0,
+    "centroid_hz": 772.0,
+    "e_lt150": 0.0956,
+    "e_200_4k": 0.8373,
+    "dominant_peak_note": "F#4 (+13 cents)"
+   }
+  },
+  {
+   "file": "imp_glass_k_impactGlass_medium_003.wav",
+   "source_url": "https://kenney.nl/assets/impact-sounds",
+   "download_url": "https://kenney.nl/media/pages/assets/impact-sounds/87b4ddecda-1677589768/kenney_impact-sounds.zip",
+   "source_pack": "Impact Sounds",
+   "source_file": "kenney/impact-sounds/Audio/impactGlass_medium_003.ogg",
+   "author": "Kenney Vleugels (Kenney.nl)",
+   "license_name": "CC0 1.0 Universal (Public Domain Dedication)",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/",
+   "license_evidence": "kenney.nl pack page \"Impact Sounds\" lists License = Creative Commons CC0 (link to http://creativecommons.org/publicdomain/zero/1.0/); the zip bundles License.txt stating \"Creative Commons Zero, CC0\"",
+   "provenance_confidence": "high",
+   "date_checked": "2026-10-11",
+   "duration_s": 0.5405,
+   "processing": {
+    "window": null,
+    "trim_lead_ms": 0.0,
+    "trim_tail_ms": 0.0,
+    "reversed": false,
+    "mono_downmix": true,
+    "fades_ms": [
+     0,
+     10
+    ],
+    "dc_removed": false,
+    "gain_db": 0.19
+   },
+   "metrics": {
+    "peak_position_pct_of_duration": 0.0,
+    "time_to_peak_ms": 0.0,
+    "centroid_hz": 899.7,
+    "e_lt150": 0.2242,
+    "e_200_4k": 0.7758,
+    "dominant_peak_note": "A#5 (+39 cents)"
+   }
+  },
+  {
+   "file": "imp_metal_k_scifi_impactMetal_004.wav",
+   "source_url": "https://kenney.nl/assets/sci-fi-sounds",
+   "download_url": "https://kenney.nl/media/pages/assets/sci-fi-sounds/6b296f9ecf-1677589334/kenney_sci-fi-sounds.zip",
+   "source_pack": "Sci-fi Sounds",
+   "source_file": "kenney/sci-fi-sounds/Audio/impactMetal_004.ogg",
+   "author": "Kenney Vleugels (Kenney.nl)",
+   "license_name": "CC0 1.0 Universal (Public Domain Dedication)",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/",
+   "license_evidence": "kenney.nl pack page \"Sci-fi Sounds\" lists License = Creative Commons CC0 (link to http://creativecommons.org/publicdomain/zero/1.0/); the zip bundles License.txt stating \"Creative Commons Zero, CC0\"",
+   "provenance_confidence": "high",
+   "date_checked": "2026-10-11",
+   "duration_s": 0.3895,
+   "processing": {
+    "window": null,
+    "trim_lead_ms": 0.0,
+    "trim_tail_ms": 0.0,
+    "reversed": false,
+    "mono_downmix": false,
+    "fades_ms": [
+     0,
+     10
+    ],
+    "dc_removed": false,
+    "gain_db": -0.07
+   },
+   "metrics": {
+    "peak_position_pct_of_duration": 0.0,
+    "time_to_peak_ms": 0.0,
+    "centroid_hz": 233.4,
+    "e_lt150": 0.1921,
+    "e_200_4k": 0.6299,
+    "dominant_peak_note": "A#3 (-1 cents)"
+   }
+  },
+  {
+   "file": "ui_ding_k_confirmation_001.wav",
+   "source_url": "https://kenney.nl/assets/interface-sounds",
+   "download_url": "https://kenney.nl/media/pages/assets/interface-sounds/fa43c1dd4d-1677589452/kenney_interface-sounds.zip",
+   "source_pack": "Interface Sounds",
+   "source_file": "kenney/interface-sounds/Audio/confirmation_001.ogg",
+   "author": "Kenney Vleugels (Kenney.nl)",
+   "license_name": "CC0 1.0 Universal (Public Domain Dedication)",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/",
+   "license_evidence": "kenney.nl pack page \"Interface Sounds\" lists License = Creative Commons CC0 (link to http://creativecommons.org/publicdomain/zero/1.0/); the zip bundles License.txt stating \"Creative Commons Zero, CC0\"",
+   "provenance_confidence": "high",
+   "date_checked": "2026-10-11",
+   "duration_s": 0.2898,
+   "processing": {
+    "window": null,
+    "trim_lead_ms": 0.0,
+    "trim_tail_ms": 0.0,
+    "reversed": false,
+    "mono_downmix": false,
+    "fades_ms": [
+     0,
+     10
+    ],
+    "dc_removed": false,
+    "gain_db": -0.07
+   },
+   "metrics": {
+    "peak_position_pct_of_duration": 0.0,
+    "time_to_peak_ms": 0.0,
+    "centroid_hz": 665.7,
+    "e_lt150": 0.0001,
+    "e_200_4k": 0.9999,
+    "dominant_peak_note": "D5 (+5 cents)"
+   }
+  },
+  {
+   "file": "ui_ding_k_glass_001.wav",
+   "source_url": "https://kenney.nl/assets/interface-sounds",
+   "download_url": "https://kenney.nl/media/pages/assets/interface-sounds/fa43c1dd4d-1677589452/kenney_interface-sounds.zip",
+   "source_pack": "Interface Sounds",
+   "source_file": "kenney/interface-sounds/Audio/glass_001.ogg",
+   "author": "Kenney Vleugels (Kenney.nl)",
+   "license_name": "CC0 1.0 Universal (Public Domain Dedication)",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/",
+   "license_evidence": "kenney.nl pack page \"Interface Sounds\" lists License = Creative Commons CC0 (link to http://creativecommons.org/publicdomain/zero/1.0/); the zip bundles License.txt stating \"Creative Commons Zero, CC0\"",
+   "provenance_confidence": "high",
+   "date_checked": "2026-10-11",
+   "duration_s": 0.2755,
+   "processing": {
+    "window": null,
+    "trim_lead_ms": 0.0,
+    "trim_tail_ms": 0.0,
+    "reversed": false,
+    "mono_downmix": false,
+    "fades_ms": [
+     0,
+     10
+    ],
+    "dc_removed": false,
+    "gain_db": 0.05
+   },
+   "metrics": {
+    "peak_position_pct_of_duration": 0.0,
+    "time_to_peak_ms": 0.0,
+    "centroid_hz": 1930.3,
+    "e_lt150": 0.0025,
+    "e_200_4k": 0.9975,
+    "dominant_peak_note": "A#6 (+47 cents)"
+   }
+  },
+  {
+   "file": "ui_click_k_tick_004.wav",
+   "source_url": "https://kenney.nl/assets/interface-sounds",
+   "download_url": "https://kenney.nl/media/pages/assets/interface-sounds/fa43c1dd4d-1677589452/kenney_interface-sounds.zip",
+   "source_pack": "Interface Sounds",
+   "source_file": "kenney/interface-sounds/Audio/tick_004.ogg",
+   "author": "Kenney Vleugels (Kenney.nl)",
+   "license_name": "CC0 1.0 Universal (Public Domain Dedication)",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/",
+   "license_evidence": "kenney.nl pack page \"Interface Sounds\" lists License = Creative Commons CC0 (link to http://creativecommons.org/publicdomain/zero/1.0/); the zip bundles License.txt stating \"Creative Commons Zero, CC0\"",
+   "provenance_confidence": "high",
+   "date_checked": "2026-10-11",
+   "duration_s": 0.0551,
+   "processing": {
+    "window": null,
+    "trim_lead_ms": 0.0,
+    "trim_tail_ms": 0.0,
+    "reversed": false,
+    "mono_downmix": false,
+    "fades_ms": [
+     0,
+     10
+    ],
+    "dc_removed": false,
+    "gain_db": 1.0
+   },
+   "metrics": {
+    "peak_position_pct_of_duration": 81.7,
+    "time_to_peak_ms": 45.0,
+    "centroid_hz": 3404.3,
+    "e_lt150": 0.0333,
+    "e_200_4k": 0.9283,
+    "dominant_peak_note": "A7 (+43 cents)"
+   }
+  },
+  {
+   "file": "ui_click_k_select_001.wav",
+   "source_url": "https://kenney.nl/assets/interface-sounds",
+   "download_url": "https://kenney.nl/media/pages/assets/interface-sounds/fa43c1dd4d-1677589452/kenney_interface-sounds.zip",
+   "source_pack": "Interface Sounds",
+   "source_file": "kenney/interface-sounds/Audio/select_001.ogg",
+   "author": "Kenney Vleugels (Kenney.nl)",
+   "license_name": "CC0 1.0 Universal (Public Domain Dedication)",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/",
+   "license_evidence": "kenney.nl pack page \"Interface Sounds\" lists License = Creative Commons CC0 (link to http://creativecommons.org/publicdomain/zero/1.0/); the zip bundles License.txt stating \"Creative Commons Zero, CC0\"",
+   "provenance_confidence": "high",
+   "date_checked": "2026-10-11",
+   "duration_s": 0.0404,
+   "processing": {
+    "window": null,
+    "trim_lead_ms": 0.0,
+    "trim_tail_ms": 0.0,
+    "reversed": false,
+    "mono_downmix": true,
+    "fades_ms": [
+     0,
+     10
+    ],
+    "dc_removed": false,
+    "gain_db": 0.1
+   },
+   "metrics": {
+    "peak_position_pct_of_duration": 0.0,
+    "time_to_peak_ms": 0.0,
+    "centroid_hz": 2355.4,
+    "e_lt150": 0.0008,
+    "e_200_4k": 0.9311,
+    "dominant_peak_note": "C#7 (+7 cents)"
+   }
+  }
+ ]
+}

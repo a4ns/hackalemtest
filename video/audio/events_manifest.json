@@ -1,1411 +1,1661 @@
 {
  "sr": 48000,
  "samples": 720000,
- "master_gain_db": 1.714,
- "limiter_ceiling_db": -3.65,
+ "master_gain_db": 1.38,
+ "limiter_ceiling_db": -2.4,
  "after_aac192_true_peak_db": -1.9,
  "after_aac192_lufs": -14.6,
- "sha256_wav": "92a7e8905ed4ced51807ae7566dea1c4665a5acdb07de2b68f3608d5cf0b57d6",
+ "sha256_wav": "d15928848bf4ffde09d44f8c9efd60b21fbc53e3b3efa7574cfb3642575b0d44",
  "events": [
   {
-   "label": "accent1 crackle 2bit/4kHz",
    "t": 0.0,
    "sample": 0,
-   "layer": "perc",
-   "gain_db": -12.0
+   "label": "hook:air",
+   "gain_db": -27.0
   },
   {
-   "label": "accent1 sub D1",
    "t": 0.0,
    "sample": 0,
-   "layer": "kick",
-   "gain_db": -6.0
-  },
-  {
-   "label": "crack sweep 200->900 2bit",
-   "t": 0.05,
-   "sample": 2400,
-   "layer": "fx",
-   "gain_db": -20.0
-  },
-  {
-   "label": "act I bed D2+A2",
-   "t": 0.4,
-   "sample": 19200,
-   "layer": "bed",
-   "gain_db": -31.0
-  },
-  {
-   "label": "kick 0.4 lofi 4bit",
-   "t": 0.4,
-   "sample": 19200,
-   "layer": "kick",
-   "gain_db": -6.0
-  },
-  {
-   "label": "stab D/A 4bit",
-   "t": 0.4,
-   "sample": 19200,
-   "layer": "bed",
-   "gain_db": -13.0
-  },
-  {
-   "label": "res-tick D4 2bit/4k",
-   "t": 0.6,
-   "sample": 28800,
-   "layer": "bed",
-   "gain_db": -12.0
-  },
-  {
-   "label": "res-tick F4 3bit/8k",
-   "t": 0.8,
-   "sample": 38400,
-   "layer": "bed",
-   "gain_db": -11.0
-  },
-  {
-   "label": "res-tick A4 4bit/12k",
-   "t": 1.0,
-   "sample": 48000,
-   "layer": "bed",
-   "gain_db": -10.0
-  },
-  {
-   "label": "clean bell D5 1.2",
-   "t": 1.2,
-   "sample": 57600,
-   "layer": "bed",
-   "gain_db": -13.0
-  },
-  {
-   "label": "res-tick D5 6bit/24k",
-   "t": 1.2,
-   "sample": 57600,
-   "layer": "bed",
-   "gain_db": -9.0
-  },
-  {
-   "label": "sub pedal D1",
-   "t": 1.2,
-   "sample": 57600,
-   "layer": "kick",
-   "gain_db": -22.0
-  },
-  {
-   "label": "pixel blip 0",
-   "t": 1.284907,
-   "sample": 61676,
-   "layer": "bed",
-   "gain_db": -24.05
-  },
-  {
-   "label": "pixel blip 1",
-   "t": 1.439933,
-   "sample": 69117,
-   "layer": "bed",
-   "gain_db": -25.59
-  },
-  {
-   "label": "pixel blip 2",
-   "t": 1.470393,
-   "sample": 70579,
-   "layer": "bed",
-   "gain_db": -24.0
-  },
-  {
-   "label": "pixel blip 3",
-   "t": 1.535373,
-   "sample": 73698,
-   "layer": "bed",
-   "gain_db": -23.77
-  },
-  {
-   "label": "pixel blip 4",
-   "t": 1.545416,
-   "sample": 74180,
-   "layer": "bed",
-   "gain_db": -24.97
-  },
-  {
-   "label": "pixel blip 5",
-   "t": 1.552537,
-   "sample": 74522,
-   "layer": "bed",
-   "gain_db": -25.13
-  },
-  {
-   "label": "ghost kick",
-   "t": 1.6,
-   "sample": 76800,
-   "layer": "kick",
-   "gain_db": -17.0
-  },
-  {
-   "label": "pixel blip 6",
-   "t": 1.619668,
-   "sample": 77744,
-   "layer": "bed",
-   "gain_db": -23.89
-  },
-  {
-   "label": "pixel blip 7",
-   "t": 1.698422,
-   "sample": 81524,
-   "layer": "bed",
-   "gain_db": -23.56
-  },
-  {
-   "label": "pixel blip 8",
-   "t": 1.899181,
-   "sample": 91161,
-   "layer": "bed",
-   "gain_db": -25.73
-  },
-  {
-   "label": "closing noise L->R",
-   "t": 2.0,
-   "sample": 96000,
-   "layer": "fx",
-   "gain_db": -17.0
-  },
-  {
-   "label": "ghost kick",
-   "t": 2.0,
-   "sample": 96000,
-   "layer": "kick",
-   "gain_db": -17.0
-  },
-  {
-   "label": "spark birth A5",
-   "t": 2.1,
-   "sample": 100800,
-   "layer": "bed",
-   "gain_db": -15.0
-  },
-  {
-   "label": "spark birth C6",
-   "t": 2.2,
-   "sample": 105600,
-   "layer": "bed",
-   "gain_db": -15.0
-  },
-  {
-   "label": "spark birth E6",
-   "t": 2.3,
-   "sample": 110400,
-   "layer": "bed",
-   "gain_db": -15.0
-  },
-  {
-   "label": "riser 2.4->3.2",
-   "t": 2.4,
-   "sample": 115200,
-   "layer": "fx",
-   "gain_db": -11.0
-  },
-  {
-   "label": "spark hop arp x8 6bit",
-   "t": 2.4,
-   "sample": 115200,
-   "layer": "bed",
-   "gain_db": -12.5
-  },
-  {
-   "label": "ACCENT2 kick",
-   "t": 3.2,
-   "sample": 153600,
-   "layer": "kick",
-   "gain_db": -4.5
-  },
-  {
-   "label": "ACCENT2 noise burst",
-   "t": 3.2,
-   "sample": 153600,
-   "layer": "perc",
-   "gain_db": -11.0
-  },
-  {
-   "label": "ACCENT2 sub boom",
-   "t": 3.2,
-   "sample": 153600,
-   "layer": "kick",
-   "gain_db": -7.0
-  },
-  {
-   "label": "arp 8bit/24k 16th x60",
-   "t": 3.2,
-   "sample": 153600,
-   "layer": "bed",
-   "gain_db": -17.0
-  },
-  {
-   "label": "hat 16th",
-   "t": 3.2,
-   "sample": 153600,
-   "layer": "perc",
-   "gain_db": -27.02
-  },
-  {
-   "label": "scan layer scanC",
-   "t": 3.22,
-   "sample": 154560,
-   "layer": "fx",
-   "gain_db": -23.0
-  },
-  {
-   "label": "scan layer scanL",
-   "t": 3.22,
-   "sample": 154560,
-   "layer": "fx",
-   "gain_db": -22.0
-  },
-  {
-   "label": "scan layer scanR",
-   "t": 3.22,
-   "sample": 154560,
-   "layer": "fx",
-   "gain_db": -22.0
-  },
-  {
-   "label": "hat 16th",
-   "t": 3.3,
-   "sample": 158400,
-   "layer": "perc",
-   "gain_db": -32.06
-  },
-  {
-   "label": "hat 16th",
-   "t": 3.4,
-   "sample": 163200,
-   "layer": "perc",
-   "gain_db": -21.45
-  },
-  {
-   "label": "hat 16th",
-   "t": 3.5,
-   "sample": 168000,
-   "layer": "perc",
-   "gain_db": -30.9
-  },
-  {
-   "label": "hat 16th",
-   "t": 3.6,
-   "sample": 172800,
-   "layer": "perc",
-   "gain_db": -27.02
-  },
-  {
-   "label": "hat 16th",
-   "t": 3.7,
-   "sample": 177600,
-   "layer": "perc",
-   "gain_db": -32.06
-  },
-  {
-   "label": "hat 16th",
-   "t": 3.8,
-   "sample": 182400,
-   "layer": "perc",
-   "gain_db": -21.45
-  },
-  {
-   "label": "hat 16th",
-   "t": 3.9,
-   "sample": 187200,
-   "layer": "perc",
-   "gain_db": -30.9
-  },
-  {
-   "label": "clap 4.0",
-   "t": 4.0,
-   "sample": 192000,
-   "layer": "perc",
-   "gain_db": -7.0
-  },
-  {
-   "label": "hat 16th",
-   "t": 4.0,
-   "sample": 192000,
-   "layer": "perc",
-   "gain_db": -27.02
-  },
-  {
-   "label": "kick 4.0 (+clap)",
-   "t": 4.0,
-   "sample": 192000,
-   "layer": "kick",
-   "gain_db": -1.5
-  },
-  {
-   "label": "hat 16th",
-   "t": 4.1,
-   "sample": 196800,
-   "layer": "perc",
-   "gain_db": -32.06
-  },
-  {
-   "label": "bass offbeat",
-   "t": 4.2,
-   "sample": 201600,
-   "layer": "bed",
-   "gain_db": -6.0
-  },
-  {
-   "label": "hat 16th",
-   "t": 4.2,
-   "sample": 201600,
-   "layer": "perc",
-   "gain_db": -21.45
-  },
-  {
-   "label": "hat 16th",
-   "t": 4.3,
-   "sample": 206400,
-   "layer": "perc",
-   "gain_db": -30.9
-  },
-  {
-   "label": "hat 16th",
-   "t": 4.4,
-   "sample": 211200,
-   "layer": "perc",
-   "gain_db": -27.02
-  },
-  {
-   "label": "kick 4-on-floor",
-   "t": 4.4,
-   "sample": 211200,
-   "layer": "kick",
-   "gain_db": -2.0
-  },
-  {
-   "label": "hat 16th",
-   "t": 4.5,
-   "sample": 216000,
-   "layer": "perc",
-   "gain_db": -32.06
-  },
-  {
-   "label": "bass offbeat",
-   "t": 4.6,
-   "sample": 220800,
-   "layer": "bed",
-   "gain_db": -6.0
-  },
-  {
-   "label": "hat 16th",
-   "t": 4.6,
-   "sample": 220800,
-   "layer": "perc",
-   "gain_db": -21.45
-  },
-  {
-   "label": "hat 16th",
-   "t": 4.7,
-   "sample": 225600,
-   "layer": "perc",
-   "gain_db": -30.9
-  },
-  {
-   "label": "descending tick A5",
-   "t": 4.8,
-   "sample": 230400,
-   "layer": "bed",
-   "gain_db": -13.0
-  },
-  {
-   "label": "hat 16th",
-   "t": 4.8,
-   "sample": 230400,
-   "layer": "perc",
-   "gain_db": -27.02
-  },
-  {
-   "label": "kick 4-on-floor",
-   "t": 4.8,
-   "sample": 230400,
-   "layer": "kick",
-   "gain_db": -2.0
-  },
-  {
-   "label": "reverse snare 4.8->5.2",
-   "t": 4.8,
-   "sample": 230400,
-   "layer": "perc",
-   "gain_db": -10.0
-  },
-  {
-   "label": "descending tick F5",
-   "t": 4.9,
-   "sample": 235200,
-   "layer": "bed",
-   "gain_db": -13.0
-  },
-  {
-   "label": "hat 16th",
-   "t": 4.9,
-   "sample": 235200,
-   "layer": "perc",
-   "gain_db": -32.06
-  },
-  {
-   "label": "bass offbeat",
-   "t": 5.0,
-   "sample": 240000,
-   "layer": "bed",
-   "gain_db": -6.0
-  },
-  {
-   "label": "descending tick D5",
-   "t": 5.0,
-   "sample": 240000,
-   "layer": "bed",
-   "gain_db": -13.0
-  },
-  {
-   "label": "hat 16th",
-   "t": 5.0,
-   "sample": 240000,
-   "layer": "perc",
-   "gain_db": -21.45
-  },
-  {
-   "label": "descending tick A4",
-   "t": 5.1,
-   "sample": 244800,
-   "layer": "bed",
-   "gain_db": -13.0
-  },
-  {
-   "label": "hat 16th",
-   "t": 5.1,
-   "sample": 244800,
-   "layer": "perc",
-   "gain_db": -30.9
-  },
-  {
-   "label": "clap backbeat",
-   "t": 5.2,
-   "sample": 249600,
-   "layer": "perc",
-   "gain_db": -10.0
-  },
-  {
-   "label": "hat 16th",
-   "t": 5.2,
-   "sample": 249600,
-   "layer": "perc",
-   "gain_db": -27.02
-  },
-  {
-   "label": "kick 4-on-floor",
-   "t": 5.2,
-   "sample": 249600,
-   "layer": "kick",
-   "gain_db": -2.0
-  },
-  {
-   "label": "dock pluck D4",
-   "t": 5.3,
-   "sample": 254400,
-   "layer": "bed",
-   "gain_db": -12.0
-  },
-  {
-   "label": "hat 16th",
-   "t": 5.3,
-   "sample": 254400,
-   "layer": "perc",
-   "gain_db": -32.06
-  },
-  {
-   "label": "bass offbeat",
-   "t": 5.4,
-   "sample": 259200,
-   "layer": "bed",
-   "gain_db": -6.0
-  },
-  {
-   "label": "dock pluck F4",
-   "t": 5.4,
-   "sample": 259200,
-   "layer": "bed",
-   "gain_db": -12.0
-  },
-  {
-   "label": "hat 16th",
-   "t": 5.4,
-   "sample": 259200,
-   "layer": "perc",
-   "gain_db": -21.45
-  },
-  {
-   "label": "dock pluck A4",
-   "t": 5.5,
-   "sample": 264000,
-   "layer": "bed",
-   "gain_db": -12.0
-  },
-  {
-   "label": "hat 16th",
-   "t": 5.5,
-   "sample": 264000,
-   "layer": "perc",
-   "gain_db": -30.9
-  },
-  {
-   "label": "dock chord Dm @5.6",
-   "t": 5.6,
-   "sample": 268800,
-   "layer": "bed",
-   "gain_db": -11.0
-  },
-  {
-   "label": "hat accel",
-   "t": 5.6,
-   "sample": 268800,
-   "layer": "perc",
-   "gain_db": -27.94
-  },
-  {
-   "label": "kick 4-on-floor",
-   "t": 5.6,
-   "sample": 268800,
-   "layer": "kick",
-   "gain_db": -2.0
-  },
-  {
-   "label": "hat accel",
-   "t": 5.7,
-   "sample": 273600,
-   "layer": "perc",
-   "gain_db": -27.44
-  },
-  {
-   "label": "bass offbeat",
-   "t": 5.8,
-   "sample": 278400,
-   "layer": "bed",
-   "gain_db": -6.0
-  },
-  {
-   "label": "hat accel",
-   "t": 5.8,
-   "sample": 278400,
-   "layer": "perc",
-   "gain_db": -26.98
-  },
-  {
-   "label": "hat accel",
-   "t": 5.9,
-   "sample": 283200,
-   "layer": "perc",
-   "gain_db": -26.53
-  },
-  {
-   "label": "clap backbeat",
-   "t": 6.0,
-   "sample": 288000,
-   "layer": "perc",
-   "gain_db": -10.0
-  },
-  {
-   "label": "hat accel",
-   "t": 6.0,
-   "sample": 288000,
-   "layer": "perc",
-   "gain_db": -26.11
-  },
-  {
-   "label": "kick 4-on-floor",
-   "t": 6.0,
-   "sample": 288000,
-   "layer": "kick",
-   "gain_db": -2.0
-  },
-  {
-   "label": "letter bell D4 @6.0",
-   "t": 6.0,
-   "sample": 288000,
-   "layer": "bed",
-   "gain_db": -12.0
-  },
-  {
-   "label": "hat accel",
-   "t": 6.09,
-   "sample": 292320,
-   "layer": "perc",
-   "gain_db": -25.71
-  },
-  {
-   "label": "hat accel",
-   "t": 6.18,
-   "sample": 296640,
-   "layer": "perc",
-   "gain_db": -25.32
-  },
-  {
-   "label": "bass offbeat",
-   "t": 6.2,
-   "sample": 297600,
-   "layer": "bed",
-   "gain_db": -6.0
-  },
-  {
-   "label": "hat accel",
-   "t": 6.27,
-   "sample": 300960,
-   "layer": "perc",
-   "gain_db": -24.96
-  },
-  {
-   "label": "hat accel",
-   "t": 6.36,
-   "sample": 305280,
-   "layer": "perc",
-   "gain_db": -24.6
-  },
-  {
-   "label": "letter bell F4 @6.36",
-   "t": 6.36,
-   "sample": 305280,
-   "layer": "bed",
-   "gain_db": -11.2
-  },
-  {
-   "label": "kick 4-on-floor",
-   "t": 6.4,
-   "sample": 307200,
-   "layer": "kick",
-   "gain_db": -2.0
-  },
-  {
-   "label": "hat accel",
-   "t": 6.435,
-   "sample": 308880,
-   "layer": "perc",
-   "gain_db": -24.26
-  },
-  {
-   "label": "hat accel",
-   "t": 6.51,
-   "sample": 312480,
-   "layer": "perc",
-   "gain_db": -23.94
-  },
-  {
-   "label": "hat accel",
-   "t": 6.585,
-   "sample": 316080,
-   "layer": "perc",
-   "gain_db": -23.62
-  },
-  {
-   "label": "bass offbeat",
-   "t": 6.6,
-   "sample": 316800,
-   "layer": "bed",
-   "gain_db": -6.0
-  },
-  {
-   "label": "hat accel",
-   "t": 6.66,
-   "sample": 319680,
-   "layer": "perc",
-   "gain_db": -23.32
-  },
-  {
-   "label": "letter bell A4 @6.66",
-   "t": 6.66,
-   "sample": 319680,
-   "layer": "bed",
-   "gain_db": -10.4
-  },
-  {
-   "label": "hat accel",
-   "t": 6.72,
-   "sample": 322560,
-   "layer": "perc",
-   "gain_db": -23.02
-  },
-  {
-   "label": "hat accel",
-   "t": 6.78,
-   "sample": 325440,
-   "layer": "perc",
-   "gain_db": -22.74
-  },
-  {
-   "label": "clap backbeat",
-   "t": 6.8,
-   "sample": 326400,
-   "layer": "perc",
-   "gain_db": -10.0
-  },
-  {
-   "label": "kick 4-on-floor",
-   "t": 6.8,
-   "sample": 326400,
-   "layer": "kick",
-   "gain_db": -2.0
-  },
-  {
-   "label": "hat accel",
-   "t": 6.84,
-   "sample": 328320,
-   "layer": "perc",
-   "gain_db": -22.47
-  },
-  {
-   "label": "hat accel",
-   "t": 6.9,
-   "sample": 331200,
-   "layer": "perc",
-   "gain_db": -22.2
-  },
-  {
-   "label": "letter bell C5 @6.9",
-   "t": 6.9,
-   "sample": 331200,
-   "layer": "bed",
-   "gain_db": -9.6
-  },
-  {
-   "label": "hat accel",
-   "t": 6.95,
-   "sample": 333600,
-   "layer": "perc",
-   "gain_db": -21.94
-  },
-  {
-   "label": "bass offbeat",
-   "t": 7.0,
-   "sample": 336000,
-   "layer": "bed",
-   "gain_db": -6.0
-  },
-  {
-   "label": "hat accel",
-   "t": 7.0,
-   "sample": 336000,
-   "layer": "perc",
-   "gain_db": -21.69
-  },
-  {
-   "label": "hat accel",
-   "t": 7.05,
-   "sample": 338400,
-   "layer": "perc",
-   "gain_db": -21.45
-  },
-  {
-   "label": "letter bell D5 @7.1",
-   "t": 7.1,
-   "sample": 340800,
-   "layer": "bed",
-   "gain_db": -8.8
-  },
-  {
-   "label": "kick 4-on-floor",
-   "t": 7.2,
-   "sample": 345600,
-   "layer": "kick",
-   "gain_db": -2.0
-  },
-  {
-   "label": "riser 7.2->8.0 (200->8k)",
-   "t": 7.2,
-   "sample": 345600,
-   "layer": "fx",
-   "gain_db": -16.0
-  },
-  {
-   "label": "scan click D5",
-   "t": 7.2,
-   "sample": 345600,
-   "layer": "bed",
-   "gain_db": -16.0
-  },
-  {
-   "label": "hat 16th",
-   "t": 7.3,
-   "sample": 350400,
-   "layer": "perc",
-   "gain_db": -32.06
-  },
-  {
-   "label": "scan click F5",
-   "t": 7.3,
-   "sample": 350400,
-   "layer": "bed",
-   "gain_db": -15.4
-  },
-  {
-   "label": "bass offbeat",
-   "t": 7.4,
-   "sample": 355200,
-   "layer": "bed",
-   "gain_db": -6.0
-  },
-  {
-   "label": "hat 16th",
-   "t": 7.4,
-   "sample": 355200,
-   "layer": "perc",
-   "gain_db": -21.45
-  },
-  {
-   "label": "scan click A5",
-   "t": 7.4,
-   "sample": 355200,
-   "layer": "bed",
-   "gain_db": -14.8
-  },
-  {
-   "label": "hat 16th",
-   "t": 7.5,
-   "sample": 360000,
-   "layer": "perc",
-   "gain_db": -30.9
-  },
-  {
-   "label": "scan click C6",
-   "t": 7.5,
-   "sample": 360000,
-   "layer": "bed",
-   "gain_db": -14.2
-  },
-  {
-   "label": "clap backbeat",
-   "t": 7.6,
-   "sample": 364800,
-   "layer": "perc",
-   "gain_db": -10.0
-  },
-  {
-   "label": "hat 16th",
-   "t": 7.6,
-   "sample": 364800,
-   "layer": "perc",
-   "gain_db": -27.02
-  },
-  {
-   "label": "kick 4-on-floor",
-   "t": 7.6,
-   "sample": 364800,
-   "layer": "kick",
-   "gain_db": -2.0
-  },
-  {
-   "label": "scan click D6",
-   "t": 7.6,
-   "sample": 364800,
-   "layer": "bed",
-   "gain_db": -13.6
-  },
-  {
-   "label": "hat 16th",
-   "t": 7.7,
-   "sample": 369600,
-   "layer": "perc",
-   "gain_db": -32.06
-  },
-  {
-   "label": "scan click F6",
-   "t": 7.7,
-   "sample": 369600,
-   "layer": "bed",
-   "gain_db": -13.0
-  },
-  {
-   "label": "bass offbeat",
-   "t": 7.8,
-   "sample": 374400,
-   "layer": "bed",
-   "gain_db": -6.0
-  },
-  {
-   "label": "hat 16th",
-   "t": 7.8,
-   "sample": 374400,
-   "layer": "perc",
-   "gain_db": -21.45
-  },
-  {
-   "label": "scan click A6",
-   "t": 7.8,
-   "sample": 374400,
-   "layer": "bed",
-   "gain_db": -12.4
-  },
-  {
-   "label": "hat 16th",
-   "t": 7.9,
-   "sample": 379200,
-   "layer": "perc",
-   "gain_db": -30.9
-  },
-  {
-   "label": "scan click C7",
-   "t": 7.9,
-   "sample": 379200,
-   "layer": "bed",
-   "gain_db": -11.8
-  },
-  {
-   "label": "big riser 8.0->9.2 peak@9.2",
-   "t": 8.0,
-   "sample": 384000,
-   "layer": "fx",
-   "gain_db": -14.0
-  },
-  {
-   "label": "build clap/snare 8.0",
-   "t": 8.0,
-   "sample": 384000,
-   "layer": "perc",
-   "gain_db": -8.0
-  },
-  {
-   "label": "hat 16th",
-   "t": 8.0,
-   "sample": 384000,
-   "layer": "perc",
-   "gain_db": -27.02
-  },
-  {
-   "label": "kick 4-on-floor",
-   "t": 8.0,
-   "sample": 384000,
-   "layer": "kick",
-   "gain_db": -2.0
-  },
-  {
-   "label": "sub swell 8.0->9.2",
-   "t": 8.0,
-   "sample": 384000,
-   "layer": "kick",
-   "gain_db": -17.0
-  },
-  {
-   "label": "hat 16th",
-   "t": 8.1,
-   "sample": 388800,
-   "layer": "perc",
-   "gain_db": -32.06
-  },
-  {
-   "label": "bass offbeat",
-   "t": 8.2,
-   "sample": 393600,
-   "layer": "bed",
-   "gain_db": -6.0
-  },
-  {
-   "label": "hat 16th",
-   "t": 8.2,
-   "sample": 393600,
-   "layer": "perc",
-   "gain_db": -21.45
-  },
-  {
-   "label": "hat 16th",
-   "t": 8.3,
-   "sample": 398400,
-   "layer": "perc",
-   "gain_db": -30.9
-  },
-  {
-   "label": "build clap/snare 8.4",
-   "t": 8.4,
-   "sample": 403200,
-   "layer": "perc",
-   "gain_db": -7.3
-  },
-  {
-   "label": "hat 16th",
-   "t": 8.4,
-   "sample": 403200,
-   "layer": "perc",
-   "gain_db": -27.02
-  },
-  {
-   "label": "kick 4-on-floor",
-   "t": 8.4,
-   "sample": 403200,
-   "layer": "kick",
-   "gain_db": -2.0
-  },
-  {
-   "label": "hat 16th",
-   "t": 8.5,
-   "sample": 408000,
-   "layer": "perc",
-   "gain_db": -32.06
-  },
-  {
-   "label": "bass offbeat",
-   "t": 8.6,
-   "sample": 412800,
-   "layer": "bed",
-   "gain_db": -6.0
-  },
-  {
-   "label": "hat 16th",
-   "t": 8.6,
-   "sample": 412800,
-   "layer": "perc",
-   "gain_db": -21.45
-  },
-  {
-   "label": "hat 16th",
-   "t": 8.7,
-   "sample": 417600,
-   "layer": "perc",
-   "gain_db": -30.9
-  },
-  {
-   "label": "build clap/snare 8.8",
-   "t": 8.8,
-   "sample": 422400,
-   "layer": "perc",
-   "gain_db": -6.6
-  },
-  {
-   "label": "hat 16th",
-   "t": 8.8,
-   "sample": 422400,
-   "layer": "perc",
-   "gain_db": -27.02
-  },
-  {
-   "label": "kick 4-on-floor",
-   "t": 8.8,
-   "sample": 422400,
-   "layer": "kick",
-   "gain_db": -2.0
-  },
-  {
-   "label": "hat 16th",
-   "t": 8.9,
-   "sample": 427200,
-   "layer": "perc",
-   "gain_db": -32.06
-  },
-  {
-   "label": "bass offbeat",
-   "t": 9.0,
-   "sample": 432000,
-   "layer": "bed",
-   "gain_db": -6.0
-  },
-  {
-   "label": "build clap/snare 9.0",
-   "t": 9.0,
-   "sample": 432000,
-   "layer": "perc",
-   "gain_db": -5.9
-  },
-  {
-   "label": "roll 32nd",
-   "t": 9.05,
-   "sample": 434400,
-   "layer": "perc",
-   "gain_db": -18.08
-  },
-  {
-   "label": "build clap/snare 9.1",
-   "t": 9.1,
-   "sample": 436800,
-   "layer": "perc",
-   "gain_db": -5.2
-  },
-  {
-   "label": "roll 32nd",
-   "t": 9.15,
-   "sample": 439200,
-   "layer": "perc",
-   "gain_db": -15.16
-  },
-  {
-   "label": "countdown tone 0 A5 8bit",
-   "t": 9.2,
-   "sample": 441600,
-   "layer": "cd",
-   "gain_db": -2.5
-  },
-  {
-   "label": "countdown tone 1 A4 6bit",
-   "t": 9.3,
-   "sample": 446400,
-   "layer": "cd",
-   "gain_db": -3.0
-  },
-  {
-   "label": "countdown tone 2 A3 4bit",
-   "t": 9.4,
-   "sample": 451200,
-   "layer": "cd",
-   "gain_db": -3.5
-  },
-  {
-   "label": "countdown tone 3 A2 3bit",
-   "t": 9.5,
-   "sample": 456000,
-   "layer": "cd",
-   "gain_db": -4.0
-  },
-  {
-   "label": "reverse swell (inhale) ->9.6",
-   "t": 9.505,
-   "sample": 456240,
-   "layer": "cd",
-   "gain_db": -4.0
-  },
-  {
-   "label": "high ping A6",
-   "t": 9.55,
-   "sample": 458400,
-   "layer": "cd",
-   "gain_db": -12.0
-  },
-  {
-   "label": "HIT Dmaj9 supersaw",
-   "t": 9.6,
-   "sample": 460800,
-   "layer": "pad",
-   "gain_db": -6.0
-  },
-  {
-   "label": "HIT big kick",
-   "t": 9.6,
-   "sample": 460800,
-   "layer": "hit",
-   "gain_db": -3.0
-  },
-  {
-   "label": "HIT crash",
-   "t": 9.6,
-   "sample": 460800,
-   "layer": "hit",
-   "gain_db": -15.5
-  },
-  {
-   "label": "HIT sub boom 80->36Hz (fades with light)",
-   "t": 9.6,
-   "sample": 460800,
-   "layer": "hit",
-   "gain_db": -4.5
-  },
-  {
-   "label": "HIT wide noise",
-   "t": 9.6,
-   "sample": 460800,
-   "layer": "hit",
-   "gain_db": -9.5
-  },
-  {
-   "label": "metal click D5",
-   "t": 9.6,
-   "sample": 460800,
-   "layer": "post",
-   "gain_db": -17.0
-  },
-  {
-   "label": "pad Dmaj9",
-   "t": 9.6,
-   "sample": 460800,
-   "layer": "pad",
-   "gain_db": -3.0
-  },
-  {
-   "label": "metal click F#5",
-   "t": 9.666667,
-   "sample": 464000,
-   "layer": "post",
-   "gain_db": -16.6
-  },
-  {
-   "label": "metal click A5",
-   "t": 9.733333,
-   "sample": 467200,
-   "layer": "post",
-   "gain_db": -16.2
-  },
-  {
-   "label": "metal click C#6",
-   "t": 9.8,
-   "sample": 470400,
-   "layer": "post",
-   "gain_db": -15.8
-  },
-  {
-   "label": "metal click E6",
-   "t": 9.866667,
-   "sample": 473600,
-   "layer": "post",
-   "gain_db": -15.4
-  },
-  {
-   "label": "metal click F#6",
-   "t": 9.933333,
-   "sample": 476800,
-   "layer": "post",
-   "gain_db": -15.0
-  },
-  {
-   "label": "metal click A6",
-   "t": 10.0,
-   "sample": 480000,
-   "layer": "post",
-   "gain_db": -14.6
-  },
-  {
-   "label": "metal click C#7",
-   "t": 10.066667,
-   "sample": 483200,
-   "layer": "post",
-   "gain_db": -14.2
-  },
-  {
-   "label": "spark A6",
-   "t": 10.12298,
-   "sample": 485903,
-   "layer": "post",
-   "gain_db": -27.68
-  },
-  {
-   "label": "spark F#6",
-   "t": 10.219545,
-   "sample": 490538,
-   "layer": "post",
-   "gain_db": -26.51
-  },
-  {
-   "label": "spark D7",
-   "t": 10.325339,
-   "sample": 495616,
-   "layer": "post",
-   "gain_db": -25.34
-  },
-  {
-   "label": "spark E6",
-   "t": 10.432677,
-   "sample": 500768,
-   "layer": "post",
-   "gain_db": -27.29
-  },
-  {
-   "label": "spark B6",
-   "t": 10.531684,
-   "sample": 505521,
-   "layer": "post",
-   "gain_db": -27.91
-  },
-  {
-   "label": "spark F#6",
-   "t": 10.613091,
-   "sample": 509428,
-   "layer": "post",
-   "gain_db": -29.0
-  },
-  {
-   "label": "pad Gmaj9",
-   "t": 10.9,
-   "sample": 523200,
-   "layer": "pad",
-   "gain_db": -2.0
-  },
-  {
-   "label": "soft swish L->R",
-   "t": 10.9,
-   "sample": 523200,
-   "layer": "post",
-   "gain_db": -17.0
-  },
-  {
-   "label": "print cascade grains x280 (~400/s) L->R",
-   "t": 11.2,
-   "sample": 537600,
-   "layer": "post",
-   "gain_db": -33.0
-  },
-  {
-   "label": "bell D6 @print end",
-   "t": 11.9,
-   "sample": 571200,
-   "layer": "post",
-   "gain_db": -15.0
-  },
-  {
-   "label": "rule sweep step F#5",
-   "t": 12.0,
-   "sample": 576000,
-   "layer": "post",
-   "gain_db": -26.0
-  },
-  {
-   "label": "key tick",
-   "t": 12.1,
-   "sample": 580800,
-   "layer": "post",
-   "gain_db": -32.0
-  },
-  {
-   "label": "rule sweep step A5",
-   "t": 12.1,
-   "sample": 580800,
-   "layer": "post",
-   "gain_db": -24.5
-  },
-  {
-   "label": "rule sweep step D6",
-   "t": 12.2,
-   "sample": 585600,
-   "layer": "post",
-   "gain_db": -23.0
-  },
-  {
-   "label": "pad D final",
-   "t": 12.82,
-   "sample": 615360,
-   "layer": "pad",
-   "gain_db": -2.0
-  },
-  {
-   "label": "dot1 D5 warm pluck",
-   "t": 12.9,
-   "sample": 619200,
-   "layer": "post",
-   "gain_db": -15.0
-  },
-  {
-   "label": "dot2 A5 bell",
-   "t": 13.25,
-   "sample": 636000,
-   "layer": "post",
-   "gain_db": -17.0
-  },
-  {
-   "label": "dot3 F#6 glass",
-   "t": 13.6,
-   "sample": 652800,
-   "layer": "post",
+   "label": "hook:bell",
    "gain_db": -19.0
   },
   {
-   "label": "air swell around 14.0",
-   "t": 13.9,
-   "sample": 667200,
-   "layer": "post",
+   "t": 0.0,
+   "sample": 0,
+   "label": "hook:body",
+   "gain_db": -18.0
+  },
+  {
+   "t": 0.0,
+   "sample": 0,
+   "label": "hook:ding(kenney CC0)",
+   "gain_db": -22.0
+  },
+  {
+   "t": 0.0,
+   "sample": 0,
+   "label": "pad:0",
+   "gain_db": -23.0
+  },
+  {
+   "t": 0.15,
+   "sample": 7200,
+   "label": "hook:swell",
+   "gain_db": -23.0
+  },
+  {
+   "t": 0.4,
+   "sample": 19200,
+   "label": "arp:C4",
+   "gain_db": -31.43
+  },
+  {
+   "t": 0.6,
+   "sample": 28800,
+   "label": "arp:E4",
+   "gain_db": -41.64
+  },
+  {
+   "t": 0.7962,
+   "sample": 38216,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -32.03
+  },
+  {
+   "t": 0.7962,
+   "sample": 38216,
+   "label": "land:idea:C5",
+   "gain_db": -30.67
+  },
+  {
+   "t": 0.7962,
+   "sample": 38216,
+   "label": "tock",
+   "gain_db": -27.03
+  },
+  {
+   "t": 0.8,
+   "sample": 38400,
+   "label": "arp:D4",
+   "gain_db": -41.35
+  },
+  {
+   "t": 0.8881,
+   "sample": 42630,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -30.21
+  },
+  {
+   "t": 0.8881,
+   "sample": 42630,
+   "label": "land:idea:D5",
+   "gain_db": -28.37
+  },
+  {
+   "t": 0.8881,
+   "sample": 42630,
+   "label": "tock",
+   "gain_db": -25.21
+  },
+  {
+   "t": 1.0,
+   "sample": 48000,
+   "label": "arp:F4",
+   "gain_db": -41.06
+  },
+  {
+   "t": 1.0005,
+   "sample": 48025,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -27.95
+  },
+  {
+   "t": 1.0005,
+   "sample": 48025,
+   "label": "land:idea:E5",
+   "gain_db": -25.32
+  },
+  {
+   "t": 1.0005,
+   "sample": 48025,
+   "label": "tock",
+   "gain_db": -22.95
+  },
+  {
+   "t": 1.0926,
+   "sample": 52447,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -28.7
+  },
+  {
+   "t": 1.0926,
+   "sample": 52447,
+   "label": "land:idea:F5",
+   "gain_db": -25.71
+  },
+  {
+   "t": 1.0926,
+   "sample": 52447,
+   "label": "tock",
+   "gain_db": -23.7
+  },
+  {
+   "t": 1.2,
+   "sample": 57600,
+   "label": "arp:E4",
+   "gain_db": -37.78
+  },
+  {
+   "t": 1.2018,
+   "sample": 57689,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -29.25
+  },
+  {
+   "t": 1.2018,
+   "sample": 57689,
+   "label": "land:idea:C6",
+   "gain_db": -25.88
+  },
+  {
+   "t": 1.2018,
+   "sample": 57689,
+   "label": "tock",
+   "gain_db": -24.25
+  },
+  {
+   "t": 1.31,
+   "sample": 62882,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -29.55
+  },
+  {
+   "t": 1.31,
+   "sample": 62882,
+   "label": "land:idea:D6",
+   "gain_db": -25.77
+  },
+  {
+   "t": 1.31,
+   "sample": 62882,
+   "label": "tock",
+   "gain_db": -24.55
+  },
+  {
+   "t": 1.3966,
+   "sample": 67038,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -28.19
+  },
+  {
+   "t": 1.3966,
+   "sample": 67038,
+   "label": "land:idea:F6",
+   "gain_db": -23.75
+  },
+  {
+   "t": 1.3966,
+   "sample": 67038,
+   "label": "tock",
+   "gain_db": -23.19
+  },
+  {
+   "t": 1.4,
+   "sample": 67200,
+   "label": "arp:A4",
+   "gain_db": -40.49
+  },
+  {
+   "t": 1.4894,
+   "sample": 71490,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -29.55
+  },
+  {
+   "t": 1.4894,
+   "sample": 71490,
+   "label": "land:idea:A6",
+   "gain_db": -24.84
+  },
+  {
+   "t": 1.4894,
+   "sample": 71490,
+   "label": "tock",
+   "gain_db": -24.55
+  },
+  {
+   "t": 1.5,
+   "sample": 72000,
+   "label": "stab:A4",
+   "gain_db": -29.5
+  },
+  {
+   "t": 1.5,
+   "sample": 72000,
+   "label": "stab:C4",
+   "gain_db": -29.5
+  },
+  {
+   "t": 1.5,
+   "sample": 72000,
+   "label": "stab:C5",
+   "gain_db": -29.5
+  },
+  {
+   "t": 1.5,
+   "sample": 72000,
+   "label": "stab:D4",
+   "gain_db": -29.5
+  },
+  {
+   "t": 1.5,
+   "sample": 72000,
+   "label": "stab:E4",
+   "gain_db": -29.5
+  },
+  {
+   "t": 1.5,
+   "sample": 72000,
+   "label": "stab:F4",
+   "gain_db": -29.5
+  },
+  {
+   "t": 1.5,
+   "sample": 72000,
+   "label": "stab:bell",
+   "gain_db": -29.5
+  },
+  {
+   "t": 1.6,
+   "sample": 76800,
+   "label": "arp:F4",
+   "gain_db": -40.2
+  },
+  {
+   "t": 1.6,
+   "sample": 76800,
+   "label": "kick",
+   "gain_db": -25.5
+  },
+  {
+   "t": 1.8,
+   "sample": 86400,
+   "label": "arp:E4",
+   "gain_db": -39.91
+  },
+  {
+   "t": 2.0,
+   "sample": 96000,
+   "label": "arp:C4",
+   "gain_db": -36.63
+  },
+  {
+   "t": 2.0,
+   "sample": 96000,
+   "label": "kick",
+   "gain_db": -25.5
+  },
+  {
+   "t": 2.2,
+   "sample": 105600,
+   "label": "arp:E4",
+   "gain_db": -39.34
+  },
+  {
+   "t": 2.4,
+   "sample": 115200,
+   "label": "arp:D4",
+   "gain_db": -39.05
+  },
+  {
+   "t": 2.4,
+   "sample": 115200,
+   "label": "kick",
+   "gain_db": -25.5
+  },
+  {
+   "t": 2.6,
+   "sample": 124800,
+   "label": "arp:F4",
+   "gain_db": -38.76
+  },
+  {
+   "t": 2.7,
+   "sample": 129600,
+   "label": "bass",
+   "gain_db": -21.0
+  },
+  {
+   "t": 2.7,
+   "sample": 129600,
+   "label": "pad:1",
+   "gain_db": -27.5
+  },
+  {
+   "t": 2.7,
+   "sample": 129600,
+   "label": "whoosh",
+   "gain_db": -23.0
+  },
+  {
+   "t": 2.8,
+   "sample": 134400,
+   "label": "arp:A4",
+   "gain_db": -33.98
+  },
+  {
+   "t": 2.8,
+   "sample": 134400,
+   "label": "kick",
+   "gain_db": -24.0
+  },
+  {
+   "t": 3.0,
+   "sample": 144000,
+   "label": "arp:D5",
+   "gain_db": -36.69
+  },
+  {
+   "t": 3.2,
+   "sample": 153600,
+   "label": "arp:Bb4",
+   "gain_db": -36.4
+  },
+  {
+   "t": 3.2,
+   "sample": 153600,
+   "label": "kick",
+   "gain_db": -24.0
+  },
+  {
+   "t": 3.3064,
+   "sample": 158708,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -28.05
+  },
+  {
+   "t": 3.3064,
+   "sample": 158708,
+   "label": "land:team:D5",
+   "gain_db": -23.34
+  },
+  {
+   "t": 3.3064,
+   "sample": 158708,
+   "label": "tock",
+   "gain_db": -23.05
+  },
+  {
+   "t": 3.4,
+   "sample": 163200,
+   "label": "arp:A4",
+   "gain_db": -36.11
+  },
+  {
+   "t": 3.4023,
+   "sample": 163309,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -26.0
+  },
+  {
+   "t": 3.4023,
+   "sample": 163309,
+   "label": "land:team:A5",
+   "gain_db": -20.5
+  },
+  {
+   "t": 3.4023,
+   "sample": 163309,
+   "label": "tock",
+   "gain_db": -21.0
+  },
+  {
+   "t": 3.494,
+   "sample": 167713,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -26.0
+  },
+  {
+   "t": 3.494,
+   "sample": 167713,
+   "label": "land:team:A5",
+   "gain_db": -20.0
+  },
+  {
+   "t": 3.494,
+   "sample": 167713,
+   "label": "tock",
+   "gain_db": -21.0
+  },
+  {
+   "t": 3.5,
+   "sample": 168000,
+   "label": "bass",
+   "gain_db": -21.0
+  },
+  {
+   "t": 3.5931,
+   "sample": 172466,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -26.0
+  },
+  {
+   "t": 3.5931,
+   "sample": 172466,
+   "label": "land:team:D6",
+   "gain_db": -19.5
+  },
+  {
+   "t": 3.5931,
+   "sample": 172466,
+   "label": "tock",
+   "gain_db": -21.0
+  },
+  {
+   "t": 3.6,
+   "sample": 172800,
+   "label": "arp:D4",
+   "gain_db": -32.83
+  },
+  {
+   "t": 3.6,
+   "sample": 172800,
+   "label": "kick",
+   "gain_db": -24.0
+  },
+  {
+   "t": 3.7,
+   "sample": 177600,
+   "label": "stab:A4",
+   "gain_db": -25.5
+  },
+  {
+   "t": 3.7,
+   "sample": 177600,
+   "label": "stab:Bb4",
+   "gain_db": -25.5
+  },
+  {
+   "t": 3.7,
+   "sample": 177600,
+   "label": "stab:D4",
+   "gain_db": -25.5
+  },
+  {
+   "t": 3.7,
+   "sample": 177600,
+   "label": "stab:D5",
+   "gain_db": -25.5
+  },
+  {
+   "t": 3.7,
+   "sample": 177600,
+   "label": "stab:F4",
+   "gain_db": -25.5
+  },
+  {
+   "t": 3.7,
+   "sample": 177600,
+   "label": "stab:F5",
+   "gain_db": -25.5
+  },
+  {
+   "t": 3.7,
+   "sample": 177600,
+   "label": "stab:bell",
+   "gain_db": -25.5
+  },
+  {
+   "t": 3.705,
+   "sample": 177838,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -26.45
+  },
+  {
+   "t": 3.705,
+   "sample": 177838,
+   "label": "land:team:F6",
+   "gain_db": -19.52
+  },
+  {
+   "t": 3.705,
+   "sample": 177838,
+   "label": "tock",
+   "gain_db": -21.45
+  },
+  {
+   "t": 3.8,
+   "sample": 182400,
+   "label": "arp:A4",
+   "gain_db": -35.54
+  },
+  {
+   "t": 3.8042,
+   "sample": 182601,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -26.0
+  },
+  {
+   "t": 3.8042,
+   "sample": 182601,
+   "label": "land:team:F6",
+   "gain_db": -18.5
+  },
+  {
+   "t": 3.8042,
+   "sample": 182601,
+   "label": "tock",
+   "gain_db": -21.0
+  },
+  {
+   "t": 3.9039,
+   "sample": 187388,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -27.47
+  },
+  {
+   "t": 3.9039,
+   "sample": 187388,
+   "label": "land:team:Bb6",
+   "gain_db": -19.68
+  },
+  {
+   "t": 3.9039,
+   "sample": 187388,
+   "label": "tock",
+   "gain_db": -22.47
+  },
+  {
+   "t": 3.9989,
+   "sample": 191948,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -31.25
+  },
+  {
+   "t": 3.9989,
+   "sample": 191948,
+   "label": "land:team:Bb6",
+   "gain_db": -24.0
+  },
+  {
+   "t": 3.9989,
+   "sample": 191948,
+   "label": "tock",
+   "gain_db": -26.25
+  },
+  {
+   "t": 4.0,
+   "sample": 192000,
+   "label": "arp:F4",
+   "gain_db": -35.25
+  },
+  {
+   "t": 4.0,
+   "sample": 192000,
+   "label": "kick",
+   "gain_db": -24.0
+  },
+  {
+   "t": 4.2,
+   "sample": 201600,
+   "label": "arp:Bb4",
+   "gain_db": -34.96
+  },
+  {
+   "t": 4.3,
+   "sample": 206400,
+   "label": "bass",
+   "gain_db": -21.0
+  },
+  {
+   "t": 4.4,
+   "sample": 211200,
+   "label": "arp:A4",
+   "gain_db": -31.68
+  },
+  {
+   "t": 4.4,
+   "sample": 211200,
+   "label": "kick",
+   "gain_db": -24.0
+  },
+  {
+   "t": 4.6,
+   "sample": 220800,
+   "label": "arp:D5",
+   "gain_db": -34.39
+  },
+  {
+   "t": 4.8,
+   "sample": 230400,
+   "label": "arp:Bb4",
+   "gain_db": -34.1
+  },
+  {
+   "t": 4.8,
+   "sample": 230400,
+   "label": "kick",
+   "gain_db": -24.0
+  },
+  {
+   "t": 5.0,
+   "sample": 240000,
+   "label": "arp:A4",
+   "gain_db": -33.81
+  },
+  {
+   "t": 5.1,
+   "sample": 244800,
+   "label": "bass",
+   "gain_db": -15.7
+  },
+  {
+   "t": 5.1,
+   "sample": 244800,
+   "label": "pad:2",
+   "gain_db": -24.7
+  },
+  {
+   "t": 5.1,
+   "sample": 244800,
+   "label": "whoosh",
+   "gain_db": -19.7
+  },
+  {
+   "t": 5.2,
+   "sample": 249600,
+   "label": "arp:D4",
+   "gain_db": -29.23
+  },
+  {
+   "t": 5.2,
+   "sample": 249600,
+   "label": "kick",
+   "gain_db": -17.7
+  },
+  {
+   "t": 5.4,
+   "sample": 259200,
+   "label": "arp:G4",
+   "gain_db": -31.94
+  },
+  {
+   "t": 5.6,
+   "sample": 268800,
+   "label": "arp:F4",
+   "gain_db": -31.65
+  },
+  {
+   "t": 5.6,
+   "sample": 268800,
+   "label": "kick",
+   "gain_db": -17.7
+  },
+  {
+   "t": 5.604,
+   "sample": 268991,
+   "label": "land:agent:D5",
+   "gain_db": -21.7
+  },
+  {
+   "t": 5.604,
+   "sample": 268991,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -28.2
+  },
+  {
+   "t": 5.604,
+   "sample": 268991,
+   "label": "tock",
+   "gain_db": -23.2
+  },
+  {
+   "t": 5.6898,
+   "sample": 273109,
+   "label": "land:agent:F5",
+   "gain_db": -17.37
+  },
+  {
+   "t": 5.6898,
+   "sample": 273109,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -24.7
+  },
+  {
+   "t": 5.6898,
+   "sample": 273109,
+   "label": "tock",
+   "gain_db": -19.7
+  },
+  {
+   "t": 5.7922,
+   "sample": 278027,
+   "label": "land:agent:Bb5",
+   "gain_db": -16.7
+  },
+  {
+   "t": 5.7922,
+   "sample": 278027,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -24.7
+  },
+  {
+   "t": 5.7922,
+   "sample": 278027,
+   "label": "tock",
+   "gain_db": -19.7
+  },
+  {
+   "t": 5.8,
+   "sample": 278400,
+   "label": "arp:A4",
+   "gain_db": -31.36
+  },
+  {
+   "t": 5.9,
+   "sample": 283200,
+   "label": "bass",
+   "gain_db": -15.7
+  },
+  {
+   "t": 5.9,
+   "sample": 283200,
+   "label": "stab:A4",
+   "gain_db": -21.7
+  },
+  {
+   "t": 5.9,
+   "sample": 283200,
+   "label": "stab:Bb4",
+   "gain_db": -21.7
+  },
+  {
+   "t": 5.9,
+   "sample": 283200,
+   "label": "stab:D4",
+   "gain_db": -21.7
+  },
+  {
+   "t": 5.9,
+   "sample": 283200,
+   "label": "stab:D5",
+   "gain_db": -21.7
+  },
+  {
+   "t": 5.9,
+   "sample": 283200,
+   "label": "stab:F4",
+   "gain_db": -21.7
+  },
+  {
+   "t": 5.9,
+   "sample": 283200,
+   "label": "stab:G4",
+   "gain_db": -21.7
+  },
+  {
+   "t": 5.9,
+   "sample": 283200,
+   "label": "stab:bell",
+   "gain_db": -21.7
+  },
+  {
+   "t": 5.9091,
+   "sample": 283638,
+   "label": "land:agent:F6",
+   "gain_db": -16.03
+  },
+  {
+   "t": 5.9091,
+   "sample": 283638,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -24.7
+  },
+  {
+   "t": 5.9091,
+   "sample": 283638,
+   "label": "tock",
+   "gain_db": -19.7
+  },
+  {
+   "t": 6.0,
+   "sample": 288000,
+   "label": "arp:G4",
+   "gain_db": -28.08
+  },
+  {
+   "t": 6.0,
+   "sample": 288000,
+   "label": "kick",
+   "gain_db": -17.7
+  },
+  {
+   "t": 6.0028,
+   "sample": 288136,
+   "label": "land:agent:F6",
+   "gain_db": -15.37
+  },
+  {
+   "t": 6.0028,
+   "sample": 288136,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -24.7
+  },
+  {
+   "t": 6.0028,
+   "sample": 288136,
+   "label": "tock",
+   "gain_db": -19.7
+  },
+  {
+   "t": 6.0903,
+   "sample": 292335,
+   "label": "land:agent:A6",
+   "gain_db": -15.49
+  },
+  {
+   "t": 6.0903,
+   "sample": 292335,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -25.39
+  },
+  {
+   "t": 6.0903,
+   "sample": 292335,
+   "label": "tock",
+   "gain_db": -20.39
+  },
+  {
+   "t": 6.2,
+   "sample": 297600,
+   "label": "arp:Bb4",
+   "gain_db": -30.79
+  },
+  {
+   "t": 6.2001,
+   "sample": 297603,
+   "label": "land:agent:Bb6",
+   "gain_db": -19.87
+  },
+  {
+   "t": 6.2001,
+   "sample": 297603,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -29.23
+  },
+  {
+   "t": 6.2001,
+   "sample": 297603,
+   "label": "tock",
+   "gain_db": -24.23
+  },
+  {
+   "t": 6.4,
+   "sample": 307200,
+   "label": "arp:A4",
+   "gain_db": -30.5
+  },
+  {
+   "t": 6.4,
+   "sample": 307200,
+   "label": "kick",
+   "gain_db": -17.7
+  },
+  {
+   "t": 6.6,
+   "sample": 316800,
+   "label": "arp:G4",
+   "gain_db": -30.21
+  },
+  {
+   "t": 6.7,
+   "sample": 321600,
+   "label": "bass",
+   "gain_db": -15.7
+  },
+  {
+   "t": 6.8,
+   "sample": 326400,
+   "label": "arp:D4",
+   "gain_db": -26.93
+  },
+  {
+   "t": 6.8,
+   "sample": 326400,
+   "label": "kick",
+   "gain_db": -17.7
+  },
+  {
+   "t": 7.0,
+   "sample": 336000,
+   "label": "arp:G4",
+   "gain_db": -29.64
+  },
+  {
+   "t": 7.2,
+   "sample": 345600,
+   "label": "arp:G4",
+   "gain_db": -28.15
+  },
+  {
+   "t": 7.2,
+   "sample": 345600,
+   "label": "bass",
+   "gain_db": -14.5
+  },
+  {
+   "t": 7.2,
+   "sample": 345600,
+   "label": "kick",
+   "gain_db": -13.5
+  },
+  {
+   "t": 7.2,
+   "sample": 345600,
+   "label": "pad:3",
+   "gain_db": -22.0
+  },
+  {
+   "t": 7.2,
+   "sample": 345600,
+   "label": "riser:noise",
+   "gain_db": -24.0
+  },
+  {
+   "t": 7.2,
+   "sample": 345600,
+   "label": "riser:saw",
+   "gain_db": -30.0
+  },
+  {
+   "t": 7.3,
+   "sample": 350400,
+   "label": "arp:B4",
+   "gain_db": -28.01
+  },
+  {
+   "t": 7.4,
+   "sample": 355200,
+   "label": "arp:A4",
+   "gain_db": -24.87
+  },
+  {
+   "t": 7.4,
+   "sample": 355200,
+   "label": "roll",
+   "gain_db": -34.5
+  },
+  {
+   "t": 7.5,
+   "sample": 360000,
+   "label": "arp:C#5",
+   "gain_db": -27.72
+  },
+  {
+   "t": 7.5,
+   "sample": 360000,
+   "label": "roll",
+   "gain_db": -33.6
+  },
+  {
+   "t": 7.55,
+   "sample": 362400,
+   "label": "reverse swell",
+   "gain_db": -21.0
+  },
+  {
+   "t": 7.6,
+   "sample": 364800,
+   "label": "arp:B4",
+   "gain_db": -27.58
+  },
+  {
+   "t": 7.6,
+   "sample": 364800,
+   "label": "kick",
+   "gain_db": -13.5
+  },
+  {
+   "t": 7.6,
+   "sample": 364800,
+   "label": "roll",
+   "gain_db": -32.7
+  },
+  {
+   "t": 7.7,
+   "sample": 369600,
+   "label": "arp:A4",
+   "gain_db": -27.43
+  },
+  {
+   "t": 7.7,
+   "sample": 369600,
+   "label": "roll",
+   "gain_db": -31.8
+  },
+  {
+   "t": 7.7973,
+   "sample": 374272,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -28.75
+  },
+  {
+   "t": 7.7973,
+   "sample": 374272,
+   "label": "land:mark:C#5",
+   "gain_db": -20.5
+  },
+  {
+   "t": 7.7973,
+   "sample": 374272,
+   "label": "tock",
+   "gain_db": -23.75
+  },
+  {
+   "t": 7.8,
+   "sample": 374400,
+   "label": "arp:E4",
+   "gain_db": -24.29
+  },
+  {
+   "t": 7.8,
+   "sample": 374400,
+   "label": "roll",
+   "gain_db": -30.9
+  },
+  {
+   "t": 7.8964,
+   "sample": 379025,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -23.95
+  },
+  {
+   "t": 7.8964,
+   "sample": 379025,
+   "label": "land:mark:C#5",
+   "gain_db": -15.02
+  },
+  {
+   "t": 7.8964,
+   "sample": 379025,
+   "label": "tock",
+   "gain_db": -18.95
+  },
+  {
+   "t": 7.9,
+   "sample": 379200,
+   "label": "arp:A4",
+   "gain_db": -27.15
+  },
+  {
+   "t": 7.9,
+   "sample": 379200,
+   "label": "roll",
+   "gain_db": -30.0
+  },
+  {
+   "t": 7.9939,
+   "sample": 383707,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -23.5
+  },
+  {
+   "t": 7.9939,
+   "sample": 383707,
+   "label": "land:mark:G5",
+   "gain_db": -13.9
+  },
+  {
+   "t": 7.9939,
+   "sample": 383707,
+   "label": "tock",
+   "gain_db": -18.5
+  },
+  {
+   "t": 8.0,
+   "sample": 384000,
+   "label": "arp:G4",
+   "gain_db": -27.0
+  },
+  {
+   "t": 8.0,
+   "sample": 384000,
+   "label": "bass",
+   "gain_db": -14.5
+  },
+  {
+   "t": 8.0,
+   "sample": 384000,
+   "label": "kick",
+   "gain_db": -13.5
+  },
+  {
+   "t": 8.0,
+   "sample": 384000,
+   "label": "roll",
+   "gain_db": -29.1
+  },
+  {
+   "t": 8.0995,
+   "sample": 388777,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -23.5
+  },
+  {
+   "t": 8.0995,
+   "sample": 388777,
+   "label": "land:mark:B5",
+   "gain_db": -13.3
+  },
+  {
+   "t": 8.0995,
+   "sample": 388777,
+   "label": "tock",
+   "gain_db": -18.5
+  },
+  {
+   "t": 8.1,
+   "sample": 388800,
+   "label": "arp:B4",
+   "gain_db": -26.86
+  },
+  {
+   "t": 8.1,
+   "sample": 388800,
+   "label": "roll",
+   "gain_db": -28.2
+  },
+  {
+   "t": 8.1976,
+   "sample": 393486,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -23.5
+  },
+  {
+   "t": 8.1976,
+   "sample": 393486,
+   "label": "land:mark:C#6",
+   "gain_db": -12.7
+  },
+  {
+   "t": 8.1976,
+   "sample": 393486,
+   "label": "tock",
+   "gain_db": -18.5
+  },
+  {
+   "t": 8.2,
+   "sample": 393600,
+   "label": "arp:A4",
+   "gain_db": -23.72
+  },
+  {
+   "t": 8.2,
+   "sample": 393600,
+   "label": "roll",
+   "gain_db": -27.3
+  },
+  {
+   "t": 8.3,
+   "sample": 398400,
+   "label": "arp:C#5",
+   "gain_db": -26.57
+  },
+  {
+   "t": 8.3,
+   "sample": 398400,
+   "label": "roll",
+   "gain_db": -26.4
+  },
+  {
+   "t": 8.307,
+   "sample": 398737,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -23.5
+  },
+  {
+   "t": 8.307,
+   "sample": 398737,
+   "label": "land:mark:G6",
+   "gain_db": -12.1
+  },
+  {
+   "t": 8.307,
+   "sample": 398737,
+   "label": "tock",
+   "gain_db": -18.5
+  },
+  {
+   "t": 8.4,
+   "sample": 403200,
+   "label": "kick",
+   "gain_db": -13.5
+  },
+  {
+   "t": 8.4,
+   "sample": 403200,
+   "label": "roll",
+   "gain_db": -25.5
+  },
+  {
+   "t": 8.4072,
+   "sample": 403545,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -23.5
+  },
+  {
+   "t": 8.4072,
+   "sample": 403545,
+   "label": "land:mark:B6",
+   "gain_db": -11.5
+  },
+  {
+   "t": 8.4072,
+   "sample": 403545,
+   "label": "tock",
+   "gain_db": -18.5
+  },
+  {
+   "t": 8.4991,
+   "sample": 407958,
+   "label": "land:click(kenney CC0)",
+   "gain_db": -27.0
+  },
+  {
+   "t": 8.4991,
+   "sample": 407958,
+   "label": "land:mark:B6",
+   "gain_db": -15.5
+  },
+  {
+   "t": 8.4991,
+   "sample": 407958,
+   "label": "tock",
+   "gain_db": -22.0
+  },
+  {
+   "t": 8.85,
+   "sample": 424800,
+   "label": "hit:crunch(kenney CC0)",
+   "gain_db": -16.5
+  },
+  {
+   "t": 8.9,
+   "sample": 427200,
+   "label": "hit:crack",
+   "gain_db": -9.0
+  },
+  {
+   "t": 8.9,
+   "sample": 427200,
+   "label": "hit:sub",
+   "gain_db": -10.0
+  },
+  {
+   "t": 8.9,
+   "sample": 427200,
+   "label": "hit:thump",
+   "gain_db": -3.0
+  },
+  {
+   "t": 8.9,
+   "sample": 427200,
+   "label": "lock:bed",
+   "gain_db": -14.0
+  },
+  {
+   "t": 8.91,
+   "sample": 427680,
+   "label": "hit:midburst",
+   "gain_db": -5.0
+  },
+  {
+   "t": 8.94,
+   "sample": 429120,
+   "label": "hit:imp_glass_k_impactGlass_medium_003(kenney CC0)",
+   "gain_db": -9.0
+  },
+  {
+   "t": 8.94,
+   "sample": 429120,
+   "label": "hit:imp_metal_k_scifi_impactMetal_004(kenney CC0)",
+   "gain_db": -10.0
+  },
+  {
+   "t": 8.94,
+   "sample": 429120,
+   "label": "hit:ring sweep",
+   "gain_db": -14.0
+  },
+  {
+   "t": 8.95,
+   "sample": 429600,
+   "label": "hit:metal",
+   "gain_db": -12.0
+  },
+  {
+   "t": 8.97,
+   "sample": 430560,
+   "label": "hit:chord",
+   "gain_db": -6.0
+  },
+  {
+   "t": 8.99,
+   "sample": 431520,
+   "label": "hit:bell:D5",
+   "gain_db": -17.0
+  },
+  {
+   "t": 9.0,
+   "sample": 432000,
+   "label": "hit:crash",
+   "gain_db": -19.0
+  },
+  {
+   "t": 9.002,
+   "sample": 432096,
+   "label": "hit:bell:A5",
+   "gain_db": -16.0
+  },
+  {
+   "t": 9.014,
+   "sample": 432672,
+   "label": "hit:bell:D6",
+   "gain_db": -15.0
+  },
+  {
+   "t": 9.026,
+   "sample": 433248,
+   "label": "hit:bell:F#6",
+   "gain_db": -14.0
+  },
+  {
+   "t": 9.08,
+   "sample": 435840,
+   "label": "spark:D7",
+   "gain_db": -18.0
+  },
+  {
+   "t": 9.18,
+   "sample": 440640,
+   "label": "spark:B6",
+   "gain_db": -18.6
+  },
+  {
+   "t": 9.28,
+   "sample": 445440,
+   "label": "spark:B6",
+   "gain_db": -19.2
+  },
+  {
+   "t": 9.38,
+   "sample": 450240,
+   "label": "spark:A6",
+   "gain_db": -19.8
+  },
+  {
+   "t": 9.48,
+   "sample": 455040,
+   "label": "spark:A6",
+   "gain_db": -20.4
+  },
+  {
+   "t": 9.5,
+   "sample": 456000,
+   "label": "glide",
+   "gain_db": -15.0
+  },
+  {
+   "t": 9.58,
+   "sample": 459840,
+   "label": "spark:F#6",
+   "gain_db": -21.0
+  },
+  {
+   "t": 9.68,
+   "sample": 464640,
+   "label": "spark:F#6",
+   "gain_db": -21.6
+  },
+  {
+   "t": 9.78,
+   "sample": 469440,
+   "label": "spark:E6",
+   "gain_db": -22.2
+  },
+  {
+   "t": 9.88,
+   "sample": 474240,
+   "label": "spark:E6",
+   "gain_db": -22.8
+  },
+  {
+   "t": 9.98,
+   "sample": 479040,
+   "label": "spark:D6",
+   "gain_db": -23.4
+  },
+  {
+   "t": 10.08,
+   "sample": 483840,
+   "label": "spark:D6",
+   "gain_db": -24.0
+  },
+  {
+   "t": 10.27,
+   "sample": 492960,
+   "label": "letter:0",
+   "gain_db": -23.0
+  },
+  {
+   "t": 10.27,
+   "sample": 492960,
+   "label": "letter:glass0(kenney CC0)",
+   "gain_db": -27.0
+  },
+  {
+   "t": 10.28,
+   "sample": 493440,
+   "label": "spark:B5",
+   "gain_db": -24.6
+  },
+  {
+   "t": 10.315,
+   "sample": 495120,
+   "label": "letter:1",
+   "gain_db": -22.6
+  },
+  {
+   "t": 10.315,
+   "sample": 495120,
+   "label": "letter:glass1(kenney CC0)",
+   "gain_db": -26.7
+  },
+  {
+   "t": 10.36,
+   "sample": 497280,
+   "label": "letter:2",
+   "gain_db": -22.2
+  },
+  {
+   "t": 10.36,
+   "sample": 497280,
+   "label": "letter:glass2(kenney CC0)",
+   "gain_db": -26.4
+  },
+  {
+   "t": 10.405,
+   "sample": 499440,
+   "label": "letter:3",
+   "gain_db": -21.8
+  },
+  {
+   "t": 10.405,
+   "sample": 499440,
+   "label": "letter:glass3(kenney CC0)",
+   "gain_db": -26.1
+  },
+  {
+   "t": 10.45,
+   "sample": 501600,
+   "label": "letter:4",
+   "gain_db": -21.4
+  },
+  {
+   "t": 10.45,
+   "sample": 501600,
+   "label": "letter:glass4(kenney CC0)",
+   "gain_db": -25.8
+  },
+  {
+   "t": 10.48,
+   "sample": 503040,
+   "label": "spark:B5",
+   "gain_db": -25.2
+  },
+  {
+   "t": 10.495,
+   "sample": 503760,
+   "label": "letter:5",
+   "gain_db": -21.0
+  },
+  {
+   "t": 10.495,
+   "sample": 503760,
+   "label": "letter:glass5(kenney CC0)",
+   "gain_db": -25.5
+  },
+  {
+   "t": 10.54,
+   "sample": 505920,
+   "label": "letter:6",
+   "gain_db": -20.6
+  },
+  {
+   "t": 10.54,
+   "sample": 505920,
+   "label": "letter:glass6(kenney CC0)",
+   "gain_db": -25.2
+  },
+  {
+   "t": 10.585,
+   "sample": 508080,
+   "label": "letter:7",
+   "gain_db": -20.2
+  },
+  {
+   "t": 10.585,
+   "sample": 508080,
+   "label": "letter:glass7(kenney CC0)",
+   "gain_db": -24.9
+  },
+  {
+   "t": 10.63,
+   "sample": 510240,
+   "label": "letter:8",
+   "gain_db": -19.8
+  },
+  {
+   "t": 10.63,
+   "sample": 510240,
+   "label": "letter:glass8(kenney CC0)",
+   "gain_db": -24.6
+  },
+  {
+   "t": 10.675,
+   "sample": 512400,
+   "label": "letter:9",
+   "gain_db": -19.4
+  },
+  {
+   "t": 10.675,
+   "sample": 512400,
+   "label": "letter:glass9(kenney CC0)",
+   "gain_db": -24.3
+  },
+  {
+   "t": 10.68,
+   "sample": 512640,
+   "label": "spark:A5",
+   "gain_db": -25.8
+  },
+  {
+   "t": 10.8,
+   "sample": 518400,
+   "label": "rule:bell D5",
+   "gain_db": -19.0
+  },
+  {
+   "t": 10.88,
+   "sample": 522240,
+   "label": "spark:A5",
+   "gain_db": -26.4
+  },
+  {
+   "t": 10.9,
+   "sample": 523200,
+   "label": "lock:tonic D3",
+   "gain_db": -18.0
+  },
+  {
+   "t": 11.0,
+   "sample": 528000,
+   "label": "tagline:shimmer",
+   "gain_db": -30.0
+  },
+  {
+   "t": 11.08,
+   "sample": 531840,
+   "label": "spark:F#5",
+   "gain_db": -27.0
+  },
+  {
+   "t": 11.28,
+   "sample": 541440,
+   "label": "spark:F#5",
+   "gain_db": -27.6
+  },
+  {
+   "t": 11.48,
+   "sample": 551040,
+   "label": "spark:E5",
+   "gain_db": -28.2
+  },
+  {
+   "t": 12.5,
+   "sample": 600000,
+   "label": "sting:D6",
+   "gain_db": -23.0
+  },
+  {
+   "t": 12.53,
+   "sample": 601440,
+   "label": "sting:A6",
+   "gain_db": -24.0
+  },
+  {
+   "t": 12.56,
+   "sample": 602880,
+   "label": "sting:F#6",
    "gain_db": -25.0
   },
   {
-   "label": "last tick sub pulse D1 50ms",
-   "t": 14.1,
-   "sample": 676800,
-   "layer": "post",
-   "gain_db": -9.0
+   "t": 13.4,
+   "sample": 643200,
+   "label": "sting:E6",
+   "gain_db": -28.0
+  },
+  {
+   "t": 13.43,
+   "sample": 644640,
+   "label": "sting:B6",
+   "gain_db": -29.0
+  },
+  {
+   "t": 13.46,
+   "sample": 646080,
+   "label": "sting:D7",
+   "gain_db": -30.0
   }
  ]
 }

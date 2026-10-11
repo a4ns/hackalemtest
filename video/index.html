@@ -1,35 +1,55 @@
 <!doctype html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=1920, height=1080" />
     <title>HackAlem AI — intro</title>
-    <script src="assets/vendor/gsap.min.js"></script>
+    <script type="importmap">{"imports":{"three":"./assets/vendor/three/three.module.min.js","three/addons/":"./assets/vendor/three/addons/"}}</script>
     <style>
-      /* Brand fonts, taken from hackalem.ai (OFL). Cyrillic + Latin subsets of the variable fonts. */
       @font-face { font-family: "Manrope"; font-weight: 200 800; src: url("assets/fonts/Manrope-cyrillic.woff2") format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
       @font-face { font-family: "Manrope"; font-weight: 200 800; src: url("assets/fonts/Manrope-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
       @font-face { font-family: "JetBrains Mono"; font-weight: 400 800; src: url("assets/fonts/JetBrainsMono-cyrillic.woff2") format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
       @font-face { font-family: "JetBrains Mono"; font-weight: 400 800; src: url("assets/fonts/JetBrainsMono-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #060b16; }
-      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #060b16; }
-      #stage { position: absolute; inset: 0; width: 1920px; height: 1080px; display: block; }
+      :root { --void:#060b16; --blue:#009af0; --cyan:#00c8ff; --sky:#8fd2ff; --ink:#f2f6fc; }
+      * { margin:0; padding:0; box-sizing:border-box; }
+      html, body { width:1920px; height:1080px; overflow:hidden; background:var(--void); }
+      #root { position:relative; width:1920px; height:1080px; overflow:hidden; background:var(--void); }
+      #stage { position:absolute; left:0; top:0; width:1920px; height:1080px; display:block; }
+      #bug { position:absolute; left:80px; top:44px; display:flex; align-items:center; gap:18px; opacity:0; }
+      #bugMark { height:86px; width:86px; display:block; }
+      #bug .bn { font:800 48px/1 "Manrope", sans-serif; letter-spacing:-.01em; color:var(--ink); }
+      #bug .bn b { color:var(--cyan); font-weight:800; }
+      #bug .bs { margin-top:11px; font:500 23px/1 "JetBrains Mono", monospace; letter-spacing:.1em; color:#9fcfff; white-space:nowrap; }
+      #markFinal { position:absolute; opacity:0; display:block; }
+      #sheenWrap { position:absolute; overflow:hidden; opacity:0; pointer-events:none; -webkit-mask-image:url("assets/brand/hackalem-mark.svg"); mask-image:url("assets/brand/hackalem-mark.svg"); -webkit-mask-size:100% 100%; mask-size:100% 100%; }
+      #sheen { position:absolute; top:-30%; left:0; height:160%; width:34%; background:linear-gradient(100deg, rgba(255,255,255,0) 0%, rgba(225,246,255,1) 50%, rgba(255,255,255,0) 100%); }
+      #lock { position:absolute; left:640px; top:0; width:1220px; height:1080px; }
+      #title { position:absolute; left:0; top:366px; font:800 188px/1 "Manrope", sans-serif; letter-spacing:-.012em; color:var(--ink); white-space:nowrap; text-shadow:0 0 60px rgba(0,154,240,.28); }
+      #title .ch { display:inline-block; opacity:0; will-change:transform,opacity,filter; }
+      #title .ai { color:var(--cyan); }
+      #title .sp { display:inline-block; width:.26em; }
+      #rule { position:absolute; left:13px; top:600px; width:560px; height:4px; background:linear-gradient(90deg,#009af0,#00c8ff); transform-origin:left center; transform:scaleX(0); opacity:0; box-shadow:0 0 24px rgba(0,154,240,.7); }
+      #tagline { position:absolute; left:11px; top:640px; font:500 49px/1 "JetBrains Mono", monospace; letter-spacing:.06em; color:#c4e2ff; white-space:nowrap; text-shadow:0 0 28px rgba(0,154,240,.45); }
+      #tagline .tc { opacity:0; }
+      #tagline .sp { display:inline-block; width:.6em; }
+      #sweep { position:absolute; left:0; top:300px; width:140px; height:260px; background:linear-gradient(90deg,rgba(255,255,255,0),rgba(190,230,255,.55),rgba(255,255,255,0)); mix-blend-mode:screen; opacity:0; pointer-events:none; filter:blur(10px); }
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-width="1920" data-height="1080" data-duration="15" data-fps="30">
+    <div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-duration="15" data-fps="30">
       <canvas id="stage" width="1920" height="1080" data-layout-allow-overflow></canvas>
-      <!-- Soundtrack: synthesised from scratch by audio/build_audio.py (reads config/cues.json). 15.000 s, 48 kHz, stereo. -->
-      <audio id="mix" src="assets/audio/hackalem-intro-mix.wav" data-start="0" data-duration="15" data-track-index="1" data-volume="1"></audio>
+      <div id="bug"><img id="bugMark" src="assets/brand/hackalem-mark.svg" alt="" /><div class="bt"><div class="bn">HackAlem <b>AI</b></div><div class="bs">AGENTIC-AI ХАКАТОН · АСТАНА</div></div></div>
+      <img id="markFinal" src="assets/brand/hackalem-mark.svg" alt="" />
+      <div id="sheenWrap"><div id="sheen"></div></div>
+      <div id="lock">
+        <div id="title" aria-label="HackAlem AI"><span class="ch">H</span><span class="ch">a</span><span class="ch">c</span><span class="ch" style="margin-right:.035em">k</span><span class="ch">A</span><span class="ch">l</span><span class="ch">e</span><span class="ch">m</span><span class="sp ch" style="width:.26em"></span><span class="ch ai">A</span><span class="ch ai">I</span></div>
+        <div id="rule"></div>
+        <div id="tagline" aria-label="AGENTIC-AI ХАКАТОН · АСТАНА"><span class="tc">A</span><span class="tc">G</span><span class="tc">E</span><span class="tc">N</span><span class="tc">T</span><span class="tc">I</span><span class="tc">C</span><span class="tc">-</span><span class="tc">A</span><span class="tc">I</span><span class="sp"> </span><span class="tc">Х</span><span class="tc">А</span><span class="tc">К</span><span class="tc">А</span><span class="tc">Т</span><span class="tc">О</span><span class="tc">Н</span><span class="sp"> </span><span class="tc">·</span><span class="sp"> </span><span class="tc">А</span><span class="tc">С</span><span class="tc">Т</span><span class="tc">А</span><span class="tc">Н</span><span class="tc">А</span></div>
+      </div>
+      <audio id="mix" src="assets/audio/hackalem-intro-mix.wav" data-start="0" data-duration="15" data-track-index="1"></audio>
     </div>
-    <script src="config/cues.js"></script>
-    <script src="src/hk-engine.js"></script>
-    <script>
-      // The picture is a pure function of time (src/hk-engine.js, drawn on every `hf-seek`).
-      // The GSAP timeline only carries the composition length.
-      const tl = gsap.timeline({ paused: true });
-      window.__timelines["main"] = tl;
-    </script>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <script>window.__timelines = window.__timelines || {}; window.__timelines["main"] = gsap.timeline({ paused: true });</script>
+    <script type="module" src="src/main.js"></script>
   </body>
 </html>

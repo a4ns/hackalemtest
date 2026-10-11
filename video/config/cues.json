@@ -1,62 +1,85 @@
 {
   "meta": {
-    "title": "HackAlem AI — intro",
+    "title": "HackAlem AI — intro v2",
     "fps": 30,
     "duration": 15.0,
     "bpm": 150,
     "width": 1920,
     "height": 1080
   },
+  "seed": 230926,
   "palette": {
     "void": "#060B16",
     "deep": "#03060D",
-    "wall": "#009AF0",
-    "wallDim": "#0A6FB0",
-    "wallDark": "#04223F",
-    "wallHigh": "#3DB7FF",
+    "blue": "#009AF0",
     "cyan": "#00C8FF",
-    "sky": "#A6D8FF",
+    "sky": "#8FD2FF",
     "ice": "#EAF6FF",
-    "ink": "#EEF3FB",
-    "amber": "#FFB23F",
-    "orange": "#FF6B2C",
-    "hudInk": "#03121F"
+    "ink": "#F2F6FC"
   },
   "text": {
     "idea": "ИДЕЯ",
     "team": "КОМАНДА",
-    "agent": "АГЕНТ",
-    "hudLabel": "ПИКСЕЛЕЙ",
-    "tagline": "AGENTIC-AI ХАКАТОН · АСТАНА"
+    "agent": "ИИ-АГЕНТ",
+    "titleA": "HackAlem",
+    "titleB": "AI",
+    "tagline": "AGENTIC-AI ХАКАТОН · АСТАНА",
+    "cornerSub": "AGENTIC-AI ХАКАТОН · АСТАНА"
   },
   "T": {
-    "crackFull": 0.3,
-    "ideaOpen": 0.4,
-    "ideaRes": [[0.4, 120], [0.6, 60], [0.8, 30], [1.0, 15], [1.2, 1]],
-    "n2": 0.4,
-    "n4": 0.8,
-    "n8": 3.2,
-    "pulses1": [1.6, 2.0],
-    "ideaClose": [2.0, 2.4],
-    "sparkHop": [2.4, 3.2],
-    "teamCut": [3.2, 4.0],
-    "syncPulses": [4.0, 4.4, 4.8],
-    "teamClose": [4.8, 5.2],
-    "dock": [5.2, 5.6],
-    "agentLetters": [[5.6, 6.0], [6.0, 6.36], [6.36, 6.66], [6.66, 6.9], [6.9, 7.1]],
-    "scan": [7.2, 8.0],
-    "buildPulses": [8.0, 8.4, 8.8, 9.0, 9.1],
-    "countdown": [9.2, 9.3, 9.4, 9.5],
-    "gather": [9.3, 9.5],
-    "hit": 9.6,
-    "waveFrames": 2,
-    "whip": 0.45,
-    "lock": [10.9, 11.45],
-    "print": [11.2, 11.9],
-    "rule": [12.0, 12.3],
-    "tagline": [12.1, 12.9],
-    "dotAccents": [12.9, 13.25, 13.6],
-    "lastTick": 14.1,
-    "staticFrom": 14.5
+    "hook": 0.0,
+    "idea": {
+      "t0": 0.15,
+      "t1": 1.5,
+      "dur": 0.7
+    },
+    "team": {
+      "t0": 2.7,
+      "t1": 3.9,
+      "dur": 0.6
+    },
+    "agent": {
+      "t0": 5.1,
+      "t1": 6.1,
+      "dur": 0.55
+    },
+    "mark": {
+      "t0": 7.2,
+      "t1": 8.4,
+      "dur": 0.7
+    },
+    "inhale": [
+      8.4,
+      8.9
+    ],
+    "hit": 8.9,
+    "lockMove": [
+      9.5,
+      10.4
+    ],
+    "title": [
+      10.15,
+      11.15
+    ],
+    "tagline": [
+      11.0,
+      11.8
+    ],
+    "rule": [
+      10.8,
+      11.3
+    ],
+    "sweep": 12.4,
+    "staticFrom": 14.5,
+    "cornerFade": [
+      8.2,
+      8.7
+    ],
+    "sweep2": 13.9
+  },
+  "lockup": {
+    "wallX": -16.0,
+    "wallY": 0.0,
+    "wallS": 0.67
   }
 }

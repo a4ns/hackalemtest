@@ -1,0 +1,31 @@
+== streams ==
+video: h264 High 1920x1080 yuv420p 30/1 frames=450 dur=15.000000 bt709/bt709 br=10.7 Mbit/s
+audio: aac 48000 Hz 2ch dur=15.000000 br=194 kbit/s
+container duration: 15.000000 size MB: 20.44
+
+== loudness (muxed audio) ==
+I: -14.7
+LRA: 5.8
+Peak: -2.0
+samples: 720896 (15.019 s)  sample peak: -2.25 dBFS  clipped(>=0.999): 0
+first 10 ms peak: 0.2563  last 10 ms peak: 0.0
+main impact onset (first 2 ms block >= +9.5 dB over the previous 10 ms): 8.8980 s (expected 8.9)
+pre-hit hole: -59.3 dBFS RMS vs -22.0 dBFS before it
+muxed audio vs source WAV: lag 0 samples (0.00 ms), gain -0.20 dB (renderer's AAC true-peak correction)
+RMS dBFS per second: -19.8 -19.4 -19.3 -20.1 -20.7 -19.7 -18.0 -18.6 -17.8 -13.5 -14.4 -15.4 -16.9 -18.9 -23.9
+
+== picture ==
+frames decoded: 450
+black frames (mean luma<6): []
+frames with >2% pure-black pixels (NaN/Inf blocks show up as 0,0,0 rectangles): []  (max 0.68%)
+mean luma: min 15.6  mean 32.0  max 77.9; frame 0 luma 21.5; frames with mean luma>90 (very bright): 0
+brightest frame: 268 (t=8.933 s, luma 78); expected 267
+frozen runs (>=6 frames): []
+single-frame jumps (>3x local median, outside the hit): []
+hit flash starts at frame 267 (t=8.9000 s, luma 28 -> 53); the peak of the glow ripple is frame 268
+A/V sync of the hit: video flash frame 8.9000 s vs audio onset 8.8980 s -> delta -2.0 ms
+
+== silent file ==
+streams: ['video']
+video stream md5 final : MD5=3df03315ac5c13106e76e186f21ce929
+video stream md5 silent: MD5=3df03315ac5c13106e76e186f21ce929

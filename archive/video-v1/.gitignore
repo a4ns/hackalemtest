@@ -1,0 +1,11 @@
+node_modules/
+.hyperframes/
+renders/draft*
+renders/*.log
+renders/test_*
+renders/work-*
+renders/.*
+__pycache__/
+*.pyc
+renders/*
+!renders/.gitkeep
